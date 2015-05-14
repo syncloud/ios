@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9093FDA3B0E203D63CF3D3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0960CE98A7D510C11A587FEC /* libPods.a */; };
 		FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */; };
 		FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */; };
 		FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */; };
@@ -24,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0960CE98A7D510C11A587FEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B07E455A56425243B7FF1F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A57977CAEAA5FF5E7228132D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FB099FBC1AFA4DAE00AE22F2 /* Syncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB099FC01AFA4DAE00AE22F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +44,7 @@
 		FB099FF01AFA54FE00AE22F2 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializable.swift; path = Platform/Serializable.swift; sourceTree = "<group>"; };
 		FB099FF11AFA54FE00AE22F2 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Platform/UserService.swift; sourceTree = "<group>"; };
 		FB099FF21AFA54FE00AE22F2 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebService.swift; path = Platform/WebService.swift; sourceTree = "<group>"; };
+		FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Syncloud-Bridging.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +52,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9093FDA3B0E203D63CF3D3DD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		571B7F5182F1BD46519C370B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A57977CAEAA5FF5E7228132D /* Pods.debug.xcconfig */,
+				9B07E455A56425243B7FF1F9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		ACD7200B542EE69250AFED9B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0960CE98A7D510C11A587FEC /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FB099FB31AFA4DAE00AE22F2 = {
 			isa = PBXGroup;
 			children = (
 				FB099FBE1AFA4DAE00AE22F2 /* Syncloud */,
 				FB099FBD1AFA4DAE00AE22F2 /* Products */,
+				571B7F5182F1BD46519C370B /* Pods */,
+				ACD7200B542EE69250AFED9B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +106,7 @@
 				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
 				FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */,
 				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
+				FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */,
 			);
 			path = Syncloud;
 			sourceTree = "<group>";
@@ -114,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FB099FDB1AFA4DAE00AE22F2 /* Build configuration list for PBXNativeTarget "Syncloud" */;
 			buildPhases = (
+				D307CF6D5E8692DA4A99AC8A /* Check Pods Manifest.lock */,
 				FB099FB81AFA4DAE00AE22F2 /* Sources */,
 				FB099FB91AFA4DAE00AE22F2 /* Frameworks */,
 				FB099FBA1AFA4DAE00AE22F2 /* Resources */,
+				00A8888A762B3A00433B696A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,6 +200,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00A8888A762B3A00433B696A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D307CF6D5E8692DA4A99AC8A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FB099FB81AFA4DAE00AE22F2 /* Sources */ = {
@@ -245,6 +306,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Syncloud/Syncloud-Bridging.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -283,6 +345,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Syncloud/Syncloud-Bridging.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -290,6 +353,7 @@
 		};
 		FB099FDC1AFA4DAE00AE22F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A57977CAEAA5FF5E7228132D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Syncloud/Info.plist;
@@ -300,6 +364,7 @@
 		};
 		FB099FDD1AFA4DAE00AE22F2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B07E455A56425243B7FF1F9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Syncloud/Info.plist;
@@ -327,6 +392,7 @@
 				FB099FDD1AFA4DAE00AE22F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
