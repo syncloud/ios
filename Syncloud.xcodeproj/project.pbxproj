@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9093FDA3B0E203D63CF3D3DD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0960CE98A7D510C11A587FEC /* libPods.a */; };
+		FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0757ED1B043AA800BE741F /* Discovery.swift */; };
 		FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */; };
 		FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */; };
 		FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */; };
@@ -28,6 +29,7 @@
 		0960CE98A7D510C11A587FEC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B07E455A56425243B7FF1F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A57977CAEAA5FF5E7228132D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		FB0757ED1B043AA800BE741F /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
 		FB099FBC1AFA4DAE00AE22F2 /* Syncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB099FC01AFA4DAE00AE22F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				FB099FF01AFA54FE00AE22F2 /* Serializable.swift */,
 				FB099FF11AFA54FE00AE22F2 /* UserService.swift */,
 				FB099FF21AFA54FE00AE22F2 /* WebService.swift */,
+				FB0757ED1B043AA800BE741F /* Discovery.swift */,
 			);
 			name = Platform;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
+				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

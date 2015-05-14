@@ -7,7 +7,10 @@ class AuthCredentialsController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var discovery: Discovery
+    
     init() {
+        discovery = Discovery(serviceName: "syncloud")
         super.init(nibName: "AuthCredentials", bundle: nil)
     }
     
@@ -27,10 +30,12 @@ class AuthCredentialsController: UIViewController {
     
     @IBAction func signIn(sender: UIButton) {
         self.activityIndicator.startAnimating()
-        
+
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
+            
+            self.discovery.start()
             
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
             var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)
