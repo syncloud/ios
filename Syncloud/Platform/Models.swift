@@ -147,3 +147,40 @@ extension User: Serializable {
         }
     }
 }
+
+class Endpoint {
+    var host: String
+    var port: Int
+    
+    init(host: String, port: Int) {
+        self.host = host
+        self.port = port
+    }
+    
+    func toString() -> String {
+        return self.host+":"+String(self.port)
+    }
+    
+}
+
+class Credentials {
+    var login: String
+    var password: String?
+    var key: String?
+    
+    init(login: String, password: String?, key: String?) {
+        self.login = login
+        self.password = password
+        self.key = key
+    }
+}
+
+class ConnectionPoint {
+    var endpoint: Endpoint
+    var credentials: Credentials
+    
+    init(endpoint: Endpoint, credentials: Credentials) {
+        self.endpoint = endpoint
+        self.credentials = credentials
+    }
+}

@@ -52,36 +52,17 @@ class WebService {
         self.apiUrl = apiUrl
     }
     
-    func execute(request: Request) -> (response: NSDictionary?, error: Error?) {
+    func execute(request: Request) -> (result: NSDictionary?, error: Error?) {
         var nsRequest = createRequest(request, self.apiUrl)
         var response: NSURLResponse? = nil
         var error: NSErrorPointer = nil
         var responseData: NSData? =  NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response, error: error)
 
         if error != nil {
-            return (response: nil, error: Error("Error happened"))
+            return (result: nil, error: Error("Error happened"))
         }
 
-        if let theResponseData = responseData {
-            let httpResponse = response as! NSHTTPURLResponse
-
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(theResponseData, options: nil, error: error) as? NSDictionary
-
-            if error != nil {
-                return (response: nil, error: Error("Error happened"))
-            }
-
-            if let theJsonResult = jsonResult {
-                var baseResult = BaseResult(json: theJsonResult)
-                if baseResult.success {
-                    return (response: jsonResult, error: nil)
-                } else {
-                    return (response: nil, error: ResultError("Returned JSON indicates error", result: baseResult))
-                }
-            }
-        }
-
-        return (response: nil, error: Error("Error happened"))
+        return parseJsonResult(responseData)
     }
     
     

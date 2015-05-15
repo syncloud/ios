@@ -35,7 +35,11 @@ class AuthCredentialsController: UIViewController {
         
         dispatch_async(queue) { () -> Void in
             
-            self.discovery.start()
+//            var endpoint = Endpoint(host: "192.168.1.27", port: 22)
+//            var credentials = Credentials(login: "root", password: "syncloud", key: nil)
+//            var connection = ConnectionPoint(endpoint: endpoint, credentials: credentials)
+//            
+//            var response = SshRunner().run(connection, command: ["syncloud-id", "id"])
             
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
             var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)

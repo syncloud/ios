@@ -1,5 +1,31 @@
 import Foundation
 
+
+func parseJsonResult(data: NSData?) -> (result: NSDictionary?, error: Error?) {
+    if data == nil {
+        return (result: nil, error: Error("There's no JSON"))
+    }
+    
+    var error: NSErrorPointer = nil
+    var jsonResult = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: error) as? NSDictionary
+    
+    if error != nil {
+        return (result: nil, error: Error("Parsing JSON caused a error"))
+    }
+    
+    if let theJsonResult = jsonResult {
+        var baseResult = BaseResult(json: theJsonResult)
+        if baseResult.success {
+            return (result: jsonResult, error: nil)
+        } else {
+            return (result: nil, error: ResultError("Returned JSON indicates error", result: baseResult))
+        }
+    }
+    
+    return (result: nil, error: Error("Unable to parse JSON"))
+}
+
+
 class ParameterMessages {
     var parameter: String
     var messages = [String]()
