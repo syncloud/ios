@@ -35,7 +35,7 @@ class SshRunner {
         return (result: result, error: nil)
     }
     
-    func runJson(connectionPoint: ConnectionPoint, command: [String]) -> (result: NSDictionary?, error: Error?) {
+    func runJson(connectionPoint: ConnectionPoint, command: [String]) -> JsonResult {
         let (result, error) = self.run(connectionPoint, command: command)
         
         if error != nil {
@@ -46,9 +46,4 @@ class SshRunner {
         
         return parseJsonResult(data)
     }
-}
-
-
-protocol ConnectionPointProvider {
-    func get() -> ConnectionPoint
 }

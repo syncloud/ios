@@ -1,7 +1,19 @@
 import Foundation
 
+protocol EndpointListener {
+    func found(endpoint: Endpoint)
+    func error(error: Error)
+}
 
-class BMBrowserDelegate : NSObject, NSNetServiceBrowserDelegate {
+
+class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDelegate {
+    var resolving = [NSNetService]()
+    
+    var listener: EndpointListener
+    
+    init(listener: EndpointListener) {
+        self.listener = listener
+    }
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didFindDomain domainName: String, moreComing moreDomainsComing: Bool) {
         println("netServiceDidFindDomain")
@@ -13,9 +25,37 @@ class BMBrowserDelegate : NSObject, NSNetServiceBrowserDelegate {
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didFindService netService: NSNetService, moreComing moreServicesComing: Bool) {
         println("netServiceDidFindService")
+        netService.delegate = self
+        resolving.append(netService)
+        netService.resolveWithTimeout(0.0)
+        
+//        var addresses = netService.addresses!
+//        var i = 0
+//        for i in 0..<addresses.count {
+//            var address = addresses[i] as! NSData
+//            println(address)
+//        }
         var serviceName = netService.name
         println(serviceName)
     }
+
+    func netServiceDidResolveAddress(sender: NSNetService) {
+        var addresses = sender.addresses!
+        var i = 0
+        for i in 0..<addresses.count {
+            var addressData = addresses[i] as! NSData
+            var address = sockaddr()
+            addressData.getBytes(&address, length: sizeof(sockaddr))
+            if address.sa_family == sa_family_t(AF_INET) {
+                println("IPv4 address")
+            }
+            if address.sa_family == sa_family_t(AF_INET6) {
+                println("IPv6 address")
+            }
+            println(addressData)
+        }
+    }
+    
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didRemoveService netService: NSNetService, moreComing moreServicesComing: Bool) {
         println("netServiceDidRemoveService")
@@ -42,12 +82,12 @@ class Discovery {
 
     let serviceName: String
     var nsb: NSNetServiceBrowser
-    var nsbdel: BMBrowserDelegate
+    var nsbdel: BrowserDelegate
     
-    init(serviceName: String) {
+    init(serviceName: String, listener: EndpointListener) {
         self.serviceName = serviceName
         self.nsb = NSNetServiceBrowser()
-        self.nsbdel = BMBrowserDelegate()
+        self.nsbdel = BrowserDelegate(listener: listener)
         nsb.delegate = nsbdel
     }
     

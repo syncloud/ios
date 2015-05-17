@@ -9,8 +9,15 @@ class AuthCredentialsController: UIViewController {
     
     var discovery: Discovery
     
+    class Listener: EndpointListener {
+        func found(endpoint: Endpoint) {
+        }
+        func error(error: Error) {
+        }
+    }
+    
     init() {
-        discovery = Discovery(serviceName: "syncloud")
+        discovery = Discovery(serviceName: "syncloud", listener: Listener())
         super.init(nibName: "AuthCredentials", bundle: nil)
     }
     
@@ -40,6 +47,8 @@ class AuthCredentialsController: UIViewController {
 //            var connection = ConnectionPoint(endpoint: endpoint, credentials: credentials)
 //            
 //            var response = SshRunner().run(connection, command: ["syncloud-id", "id"])
+            
+            self.discovery.start()
             
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
             var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)

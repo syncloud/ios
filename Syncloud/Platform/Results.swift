@@ -1,7 +1,8 @@
 import Foundation
 
+typealias JsonResult = (result: NSDictionary?, error: Error?)
 
-func parseJsonResult(data: NSData?) -> (result: NSDictionary?, error: Error?) {
+func parseJsonResult(data: NSData?) -> JsonResult {
     if data == nil {
         return (result: nil, error: Error("There's no JSON"))
     }
