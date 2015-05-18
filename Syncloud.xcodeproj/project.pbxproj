@@ -24,6 +24,8 @@
 		FB099FF81AFA54FE00AE22F2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF11AFA54FE00AE22F2 /* UserService.swift */; };
 		FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF21AFA54FE00AE22F2 /* WebService.swift */; };
 		FB47D5301B05A6F300910F2D /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Ssh.swift */; };
+		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
+		FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		FB099FF11AFA54FE00AE22F2 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Platform/UserService.swift; sourceTree = "<group>"; };
 		FB099FF21AFA54FE00AE22F2 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebService.swift; path = Platform/WebService.swift; sourceTree = "<group>"; };
 		FB47D52F1B05A6F300910F2D /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
+		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
+		FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryController.swift; sourceTree = "<group>"; };
 		FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Syncloud-Bridging.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +110,8 @@
 				FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */,
 				FB099FE31AFA543000AE22F2 /* Domains.xib */,
 				FB099FE41AFA543000AE22F2 /* DomainsViewController.swift */,
+				FBDB63E51B0A13BF004D2964 /* Discovery.xib */,
+				FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */,
 				FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */,
 				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
 				FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */,
@@ -201,6 +207,7 @@
 				FB099FE61AFA543000AE22F2 /* AuthCredentials.xib in Resources */,
 				FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */,
 				FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */,
+				FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */,
 				FB099FE81AFA543000AE22F2 /* Domains.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +259,7 @@
 				FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */,
 				FB099FF61AFA54FE00AE22F2 /* Results.swift in Sources */,
 				FB099FF71AFA54FE00AE22F2 /* Serializable.swift in Sources */,
+				FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */,
 				FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */,
 				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
