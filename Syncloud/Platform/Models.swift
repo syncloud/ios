@@ -184,3 +184,25 @@ class ConnectionPoint {
         self.credentials = credentials
     }
 }
+
+class Identification {
+    var name: String
+    var title: String
+    var mac_address: String
+    
+    init(json: NSDictionary) {
+        self.name = json.valueForKey("name") as! String
+        self.title = json.valueForKey("title") as! String
+        self.mac_address = json.valueForKey("mac_address") as! String
+    }
+}
+
+class IdentifiedEndpoint {
+    var endpoint: Endpoint
+    var id: Identification
+    
+    init(endpoint: Endpoint, id: Identification) {
+        self.endpoint = endpoint
+        self.id = id
+    }
+}

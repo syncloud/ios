@@ -1,8 +1,10 @@
 import Foundation
 
+
 func quotedCmd(arguments: [String]) -> String {
     return join(" ", arguments)
 }
+
 
 class SshRunner {
     
@@ -46,4 +48,28 @@ class SshRunner {
         
         return parseJsonResult(data)
     }
+}
+
+
+func standardCredentials() -> Credentials {
+    return Credentials(login: "root", password: "syncloud", key: nil)
+}
+
+
+class Tools {
+    
+    var ssh: SshRunner
+    
+    init(ssh: SshRunner) {
+        self.ssh = ssh
+    }
+    
+    func id(connection: ConnectionPoint) -> (result: Identification?, error: Error?) {
+        var (json, error) = ssh.runJson(connection, command: ["syncloud-id", "id"])
+        if error != nil {
+            return (result: nil, error: error)
+        }
+        return (result: Identification(json: json!["data"] as! NSDictionary), error: nil)
+    }
+    
 }

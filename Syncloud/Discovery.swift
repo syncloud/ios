@@ -5,6 +5,18 @@ protocol EndpointListener {
     func error(error: Error)
 }
 
+func ipv4Enpoint(data: NSData) -> Endpoint? {
+    var address = sockaddr()
+    data.getBytes(&address, length: sizeof(sockaddr))
+    if address.sa_family == sa_family_t(AF_INET) {
+        var addressIPv4 = sockaddr_in()
+        data.getBytes(&addressIPv4, length: sizeof(sockaddr))
+        var host = String.fromCString(inet_ntoa(addressIPv4.sin_addr))
+        var port = Int(CFSwapInt16(addressIPv4.sin_port))
+        return Endpoint(host: host!, port: port)
+    }
+    return nil
+}
 
 class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDelegate {
     var resolving = [NSNetService]()
@@ -28,31 +40,16 @@ class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDeleg
         netService.delegate = self
         resolving.append(netService)
         netService.resolveWithTimeout(0.0)
-        
-//        var addresses = netService.addresses!
-//        var i = 0
-//        for i in 0..<addresses.count {
-//            var address = addresses[i] as! NSData
-//            println(address)
-//        }
         var serviceName = netService.name
         println(serviceName)
     }
 
     func netServiceDidResolveAddress(sender: NSNetService) {
-        var addresses = sender.addresses!
-        var i = 0
-        for i in 0..<addresses.count {
-            var addressData = addresses[i] as! NSData
-            var address = sockaddr()
-            addressData.getBytes(&address, length: sizeof(sockaddr))
-            if address.sa_family == sa_family_t(AF_INET) {
-                println("IPv4 address")
+        for addressData in sender.addresses! {
+            var endpoint = ipv4Enpoint(addressData as! NSData)
+            if let theEndpoint = endpoint {
+                self.listener.found(theEndpoint)
             }
-            if address.sa_family == sa_family_t(AF_INET6) {
-                println("IPv6 address")
-            }
-            println(addressData)
         }
     }
     

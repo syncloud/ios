@@ -46,12 +46,12 @@ class ParameterMessages {
 
 class BaseResult {
     var success: Bool
-    var message: String
+    var message: String?
     var parameters_messages: [ParameterMessages]?
     
     init(json: NSDictionary) {
         self.success = json.valueForKey("success") as! Bool
-        self.message = json.valueForKey("message") as! String
+        self.message = json.valueForKey("message") as? String
         
         var itemsJson = json.objectForKey("parameters_messages") as! NSArray?
         if let theItemsJson = itemsJson {

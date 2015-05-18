@@ -8,16 +8,36 @@ class AuthCredentialsController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var discovery: Discovery
+    var ssh: SshRunner
     
     class Listener: EndpointListener {
-        func found(endpoint: Endpoint) {
+        var ssh: SshRunner
+        
+        init(ssh: SshRunner) {
+            self.ssh = ssh
         }
+        
+        func found(endpoint: Endpoint) {
+            var connection = ConnectionPoint(endpoint: endpoint, credentials: standardCredentials())
+            var tools = Tools(ssh: self.ssh)
+            var (id, error) = tools.id(connection)
+            
+            if error != nil {
+                return
+            }
+            
+            var identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
+            
+            println(endpoint.host+":"+String(endpoint.port))
+        }
+        
         func error(error: Error) {
         }
     }
     
     init() {
-        discovery = Discovery(serviceName: "syncloud", listener: Listener())
+        ssh = SshRunner()
+        discovery = Discovery(serviceName: "syncloud", listener: Listener(ssh: ssh))
         super.init(nibName: "AuthCredentials", bundle: nil)
     }
     
