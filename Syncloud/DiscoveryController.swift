@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class DiscoveryController: UIViewController {
+class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     class Listener: EndpointListener {
         var ssh: SshRunner
@@ -28,9 +28,12 @@ class DiscoveryController: UIViewController {
         }
     }
     
+    @IBOutlet weak var tableEndpoints: UITableView!
     
     var discovery: Discovery
     var ssh: SshRunner
+    
+    var endpoints = [IdentifiedEndpoint]()
        
     init() {
         ssh = SshRunner()
@@ -50,6 +53,21 @@ class DiscoveryController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return endpoints.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell: UITableViewCell = self.tableEndpoints.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        var endpoint = self.endpoints[indexPath.row]
+        cell.textLabel?.text = endpoint.id.title
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
 
 }

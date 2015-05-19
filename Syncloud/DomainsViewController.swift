@@ -3,6 +3,7 @@ import UIKit
 
 class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
     var domains = [String]()
@@ -34,6 +35,11 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func clickDiscover(sender: AnyObject) {
+        var viewDiscovery = DiscoveryController()
+        self.presentViewController(viewDiscovery, animated: true, completion: nil)
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return domains.count
     }

@@ -27,27 +27,24 @@ class AuthCredentialsController: UIViewController {
     
     @IBAction func signIn(sender: UIButton) {
         self.activityIndicator.startAnimating()
-
-        var viewDiscovery = DiscoveryController()
-        self.presentViewController(viewDiscovery, animated: true, completion: nil)
         
-//        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-//        
-//        dispatch_async(queue) { () -> Void in
-//            var service = RedirectService(apiUrl: "http://api.syncloud.it")
-//            var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)
-//            
-//            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-//                self.activityIndicator.stopAnimating()
-//                
-//                if result.error != nil {
-//                    
-//                } else {
-//                    var viewDevices = DomainsViewController(user: result.user!)
-//                    self.presentViewController(viewDevices, animated: true, completion: nil)
-//                    
-//                }
-//            }
-//        }
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        
+        dispatch_async(queue) { () -> Void in
+            var service = RedirectService(apiUrl: "http://api.syncloud.it")
+            var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)
+            
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                self.activityIndicator.stopAnimating()
+                
+                if result.error != nil {
+                    
+                } else {
+                    var viewDevices = DomainsViewController(user: result.user!)
+                    self.presentViewController(viewDevices, animated: true, completion: nil)
+                    
+                }
+            }
+        }
     }
 }
