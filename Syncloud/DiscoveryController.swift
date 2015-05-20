@@ -12,8 +12,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
        
     init() {
         ssh = SshRunner()
+        discovery = Discovery()
         super.init(nibName: "Discovery", bundle: nil)
-        discovery = Discovery(serviceName: "syncloud", listener: self)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -23,6 +23,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.tableEndpoints.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        discoveryStart()
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,8 +32,12 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func btnDiscoveryClick(sender: AnyObject) {
+        discoveryStart()
+    }
+    
     func discoveryStart() {
-        discovery.start()
+        discovery.start(serviceName: "syncloud", listener: self)
     }
     
     func found(endpoint: Endpoint) {

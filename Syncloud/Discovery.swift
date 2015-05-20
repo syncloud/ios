@@ -80,7 +80,7 @@ class Discovery {
     var nsb: NSNetServiceBrowser?
     var nsbdel: BrowserDelegate?
     
-    func start(serviceName: String, listener: EndpointListener) {
+    func start(# serviceName: String, listener: EndpointListener) {
         self.nsb = NSNetServiceBrowser()
         self.nsbdel = BrowserDelegate(listener: listener)
         nsb!.delegate = nsbdel
