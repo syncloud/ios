@@ -1,32 +1,7 @@
 import Foundation
 import UIKit
 
-class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    class Listener: EndpointListener {
-        var ssh: SshRunner
-        
-        init(ssh: SshRunner) {
-            self.ssh = ssh
-        }
-        
-        func found(endpoint: Endpoint) {
-            var connection = ConnectionPoint(endpoint: endpoint, credentials: standardCredentials())
-            var tools = Tools(ssh: self.ssh)
-            var (id, error) = tools.id(connection)
-            
-            if error != nil {
-                return
-            }
-            
-            var identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
-            
-            println(endpoint.host+":"+String(endpoint.port))
-        }
-        
-        func error(error: Error) {
-        }
-    }
+class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDataSource, EndpointListener {
     
     @IBOutlet weak var tableEndpoints: UITableView!
     
@@ -37,8 +12,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
        
     init() {
         ssh = SshRunner()
-        discovery = Discovery(serviceName: "syncloud", listener: Listener(ssh: ssh))
         super.init(nibName: "Discovery", bundle: nil)
+        discovery = Discovery(serviceName: "syncloud", listener: self)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -54,6 +29,31 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func discoveryStart() {
+        discovery.start()
+    }
+    
+    func found(endpoint: Endpoint) {
+        var connection = ConnectionPoint(endpoint: endpoint, credentials: standardCredentials())
+        var tools = Tools(ssh: self.ssh)
+        var (id, error) = tools.id(connection)
+        
+        if error != nil {
+            return
+        }
+        
+        var identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.endpoints.append(identifiedEndpoint)
+            self.tableEndpoints.reloadData()
+        }
+    }
+    
+    func error(error: Error) {
+    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return endpoints.count

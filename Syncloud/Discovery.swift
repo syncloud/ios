@@ -77,23 +77,18 @@ class Discovery {
     let BM_DOMAIN = "local."
     let BM_TYPE = "_ssh._tcp."
 
-    let serviceName: String
-    var nsb: NSNetServiceBrowser
-    var nsbdel: BrowserDelegate
+    var nsb: NSNetServiceBrowser?
+    var nsbdel: BrowserDelegate?
     
-    init(serviceName: String, listener: EndpointListener) {
-        self.serviceName = serviceName
+    func start(serviceName: String, listener: EndpointListener) {
         self.nsb = NSNetServiceBrowser()
         self.nsbdel = BrowserDelegate(listener: listener)
-        nsb.delegate = nsbdel
-    }
-    
-    func start() {
-        nsb.searchForServicesOfType(BM_TYPE, inDomain: BM_DOMAIN)
+        nsb!.delegate = nsbdel
+        nsb!.searchForServicesOfType(BM_TYPE, inDomain: BM_DOMAIN)
     }
     
     func stop() {
-        nsb.stop()
+        nsb!.stop()
     }
     
 }
