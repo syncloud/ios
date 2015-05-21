@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navController: UINavigationController?
     var authController: AuthCredentialsController?
 
 
@@ -19,8 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()
+            
             self.authController = AuthCredentialsController()
-            window.rootViewController = self.authController
+            self.navController = UINavigationController(rootViewController: authController!)
+            self.navController?.navigationBar.translucent = false
+            window.rootViewController = self.navController
             window.makeKeyAndVisible()
         }
         return true
