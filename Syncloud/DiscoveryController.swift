@@ -37,7 +37,20 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func discoveryStart() {
-        discovery.start(serviceName: "syncloud", listener: self)
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        var timeout = 20
+        
+        dispatch_async(queue) { () -> Void in
+            self.discovery.start(serviceName: "syncloud", listener: self)
+            
+            var count = 0
+            while (count < timeout) {
+                usleep(1000)
+                count++
+            }
+            
+            self.discovery.stop()
+        }
     }
     
     func found(endpoint: Endpoint) {
