@@ -26,6 +26,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableEndpoints.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.title = "Discovery"
+        var btnRefresh = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: Selector("btnDiscoveryClick:"))
+        self.navigationItem.rightBarButtonItem = btnRefresh
+        
         discoveryStart()
     }
     
@@ -39,10 +42,12 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func discoveryStart() {
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-
+        self.endpoints.removeAll(keepCapacity: true)
+        self.tableEndpoints.reloadData()
+        
         self.discovery.start(serviceName: "syncloud", listener: self)
         
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
             var timeout = 20
             var count = 0

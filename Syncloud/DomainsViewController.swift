@@ -6,8 +6,6 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var btnAdd: UIBarButtonItem?
-    
     var domains = [String]()
     
     init(user: User) {
@@ -32,8 +30,8 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.title = "Domains"
-        self.btnAdd = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("btnAddClick:"))
-        self.navigationItem.rightBarButtonItem = self.btnAdd
+        var btnAdd = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("btnAddClick:"))
+        self.navigationItem.rightBarButtonItem = btnAdd
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,11 +42,6 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     func btnAddClick(sender: UIBarButtonItem) {
         var viewDiscovery = DiscoveryController()
         self.navigationController?.pushViewController(viewDiscovery, animated: true)
-    }
-    
-    @IBAction func clickDiscover(sender: AnyObject) {
-        var viewDiscovery = DiscoveryController()
-        self.presentViewController(viewDiscovery, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
