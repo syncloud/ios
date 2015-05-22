@@ -24,6 +24,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.tableEndpoints.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        self.title = "Discovery"
         discoveryStart()
     }
     
@@ -38,11 +40,11 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func discoveryStart() {
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-        var timeout = 20
+
+        self.discovery.start(serviceName: "syncloud", listener: self)
         
         dispatch_async(queue) { () -> Void in
-            self.discovery.start(serviceName: "syncloud", listener: self)
-            
+            var timeout = 20
             var count = 0
             while (count < timeout) {
                 usleep(1000)

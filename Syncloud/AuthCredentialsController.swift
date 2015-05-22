@@ -65,7 +65,7 @@ class AuthCredentialsController: UIViewController {
                     
                 } else {
                     var viewDevices = DomainsViewController(user: result.user!)
-                    self.navigationController?.pushViewController(viewDevices, animated: true)
+                    self.navigationController!.replaceViewController(viewDevices, animated: true)
 //                    self.presentViewController(viewDevices, animated: true, completion: nil)
                     
                 }
