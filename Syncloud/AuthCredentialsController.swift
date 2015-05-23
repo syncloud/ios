@@ -17,37 +17,13 @@ class AuthCredentialsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        var titleItem = UINavigationItem(title: "Login")
-//
-//        self.navigationController!.navigationBar.pushNavigationItem(titleItem, animated: true)
         
         self.title = "Sign in"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-//    func setupNavigation() {
-//        UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
-//        @"MyButton" style:UIBarButtonItemStyleBordered target:
-//        self action:@selector(myButtonClicked:)];
-//        
-//        [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
-//        [self.navigationItem setRightBarButtonItem:myNavBtn];
-//        
-//        // create a navigation push button that is initially hidden
-//        navButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//        [navButton setFrame:CGRectMake(60, 50, 200, 40)];
-//        [navButton setTitle:@"Push Navigation" forState:UIControlStateNormal];
-//        [navButton addTarget:self action:@selector(pushNewView:)
-//        forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:navButton];
-//        [navButton setHidden:YES];
-//    }
     
     @IBAction func signIn(sender: UIButton) {
         self.activityIndicator.startAnimating()
@@ -56,7 +32,9 @@ class AuthCredentialsController: UIViewController {
         
         dispatch_async(queue) { () -> Void in
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
-            var result = service.getUser(self.emailTextEdit.text, password: self.passwordTextEdit.text)
+            var email = self.emailTextEdit.text
+            var password = self.passwordTextEdit.text
+            var result = service.getUser(email, password: password)
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.activityIndicator.stopAnimating()
@@ -64,10 +42,15 @@ class AuthCredentialsController: UIViewController {
                 if result.error != nil {
                     
                 } else {
+                    Keychain.set("email", value: email)
+                    Keychain.set("password", value: password)
                     var viewDevices = DomainsViewController(user: result.user!)
                     self.navigationController!.replaceViewController(viewDevices, animated: true)
-//                    self.presentViewController(viewDevices, animated: true, completion: nil)
                     
+                    var e = Keychain.get("email")
+                    var p = Keychain.get("password")
+                    println(e)
+                    println(p)
                 }
             }
         }
