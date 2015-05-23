@@ -24,6 +24,7 @@
 		FB099FF81AFA54FE00AE22F2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF11AFA54FE00AE22F2 /* UserService.swift */; };
 		FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF21AFA54FE00AE22F2 /* WebService.swift */; };
 		FB0BB5271B0FD6110063080A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB5261B0FD6110063080A /* Keychain.swift */; };
+		FB155C861B102A32005F0A05 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB155C851B102A32005F0A05 /* Storage.swift */; };
 		FB47D5301B05A6F300910F2D /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Ssh.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
 		FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */; };
@@ -52,6 +53,7 @@
 		FB099FF11AFA54FE00AE22F2 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Platform/UserService.swift; sourceTree = "<group>"; };
 		FB099FF21AFA54FE00AE22F2 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebService.swift; path = Platform/WebService.swift; sourceTree = "<group>"; };
 		FB0BB5261B0FD6110063080A /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FB155C851B102A32005F0A05 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FB47D52F1B05A6F300910F2D /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
 		FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */,
 				FBE093C91B0EC19800D0C1FE /* Helpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
+				FB155C851B102A32005F0A05 /* Storage.swift */,
 			);
 			path = Syncloud;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
+				FB155C861B102A32005F0A05 /* Storage.swift in Sources */,
 				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,12 @@ class AuthCredentialsController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Sign in"
+        
+        var credentials = Storage.getCredentials()
+        
+        if let theEmail = credentials.email {
+            self.signIn(theEmail, credentials.password!)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,12 +34,17 @@ class AuthCredentialsController: UIViewController {
     @IBAction func signIn(sender: UIButton) {
         self.activityIndicator.startAnimating()
         
+        var email = self.emailTextEdit.text
+        var password = self.passwordTextEdit.text
+        
+        self.signIn(email, password)
+    }
+    
+    func signIn(email: String, _ password: String) {
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
-            var email = self.emailTextEdit.text
-            var password = self.passwordTextEdit.text
             var result = service.getUser(email, password: password)
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
@@ -42,15 +53,9 @@ class AuthCredentialsController: UIViewController {
                 if result.error != nil {
                     
                 } else {
-                    Keychain.set("email", value: email)
-                    Keychain.set("password", value: password)
+                    Storage.saveCredentials(email: email, password: password)
                     var viewDevices = DomainsViewController(user: result.user!)
                     self.navigationController!.replaceViewController(viewDevices, animated: true)
-                    
-                    var e = Keychain.get("email")
-                    var p = Keychain.get("password")
-                    println(e)
-                    println(p)
                 }
             }
         }
