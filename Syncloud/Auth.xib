@@ -16,18 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-c9-2mH">
-                    <rect key="frame" x="174" y="450" width="208" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-l6-fvV">
-                    <rect key="frame" x="367" y="446" width="60" height="30"/>
-                    <state key="normal" title="Sign in!">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="syncloud_logo" translatesAutoresizingMaskIntoConstraints="NO" id="DhA-nH-aud">
                     <rect key="frame" x="200" y="94" width="200" height="200"/>
                     <constraints>
@@ -35,23 +23,63 @@
                         <constraint firstAttribute="height" constant="200" id="nfD-3C-JDc"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz8-7R-NW3">
-                    <rect key="frame" x="153" y="408" width="295" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz8-7R-NW3">
+                    <rect key="frame" x="259" y="432" width="82" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="DEM-pp-yYf"/>
+                    </constraints>
                     <state key="normal" title="Sign up">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Build your own server." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyv-pr-jBp">
+                    <rect key="frame" x="167" y="359" width="175" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="175" id="Dje-TU-yJy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYc-Fk-Cd2">
+                    <rect key="frame" x="350" y="355" width="84" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="84" id="FR4-Pw-d7T"/>
+                    </constraints>
+                    <state key="normal" title="Learn more!">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnLearnMoreClick:" destination="-1" eventType="touchDown" id="EIg-A9-tnH"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-c9-2mH">
+                    <rect key="frame" x="173" y="474" width="208" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8b-l6-fvV">
+                    <rect key="frame" x="368" y="470" width="60" height="30"/>
+                    <state key="normal" title="Sign in!">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="dgh-c9-2mH" secondAttribute="centerX" constant="22" id="OqJ-ne-hOO"/>
-                <constraint firstAttribute="centerX" secondItem="H8b-l6-fvV" secondAttribute="centerX" constant="-97" id="SSS-Xd-S8u"/>
+                <constraint firstItem="dgh-c9-2mH" firstAttribute="centerY" secondItem="H8b-l6-fvV" secondAttribute="centerY" id="87s-vj-K6X"/>
+                <constraint firstAttribute="centerX" secondItem="dgh-c9-2mH" secondAttribute="centerX" constant="23" id="OqJ-ne-hOO"/>
+                <constraint firstAttribute="centerX" secondItem="H8b-l6-fvV" secondAttribute="centerX" constant="-98" id="SSS-Xd-S8u"/>
                 <constraint firstItem="H8b-l6-fvV" firstAttribute="top" secondItem="Lz8-7R-NW3" secondAttribute="bottom" constant="8" id="TvM-PX-fwk"/>
                 <constraint firstAttribute="centerX" secondItem="Lz8-7R-NW3" secondAttribute="centerX" id="XeB-cR-Ux6"/>
+                <constraint firstAttribute="centerX" secondItem="EYc-Fk-Cd2" secondAttribute="centerX" constant="-92" id="bVS-da-iqT"/>
                 <constraint firstItem="dgh-c9-2mH" firstAttribute="top" secondItem="Lz8-7R-NW3" secondAttribute="bottom" constant="12" id="jx3-wY-agP"/>
-                <constraint firstItem="Lz8-7R-NW3" firstAttribute="top" secondItem="DhA-nH-aud" secondAttribute="bottom" constant="114" id="mbU-fO-xIH"/>
+                <constraint firstItem="Lz8-7R-NW3" firstAttribute="top" secondItem="DhA-nH-aud" secondAttribute="bottom" constant="138" id="mbU-fO-xIH"/>
                 <constraint firstItem="DhA-nH-aud" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="94" id="nBx-YI-NYp"/>
+                <constraint firstAttribute="centerX" secondItem="eyv-pr-jBp" secondAttribute="centerX" constant="45.5" id="sWh-8K-6L7"/>
                 <constraint firstAttribute="centerX" secondItem="DhA-nH-aud" secondAttribute="centerX" id="tV7-m3-W1y"/>
+                <constraint firstItem="eyv-pr-jBp" firstAttribute="centerY" secondItem="EYc-Fk-Cd2" secondAttribute="centerY" id="ta5-zF-yio"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>

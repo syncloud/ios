@@ -17,10 +17,24 @@ class AuthController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var blueColor = self.view.tintColor.CGColor
+        btnSignUp.layer.borderWidth = 1
+        btnSignUp.layer.cornerRadius = 5
+        btnSignUp.layer.borderColor = blueColor
+        btnSignUp.layer.backgroundColor = blueColor
+        btnSignUp.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        
+        self.navigationController?.navigationBar.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func btnLearnMoreClick(sender: AnyObject) {
+        var url = NSURL(string: "http://syncloud.org")
+        UIApplication.sharedApplication().openURL(url!)
     }
     
 }
