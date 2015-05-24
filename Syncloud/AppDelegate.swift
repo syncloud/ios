@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navController: UINavigationController?
-    var authController: AuthCredentialsController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -21,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()
             
-            self.authController = AuthCredentialsController()
-            self.navController = UINavigationController(rootViewController: authController!)
+//            var authController = AuthCredentialsController()
+            var authController = AuthController()
+            self.navController = UINavigationController(rootViewController: authController)
             self.navController?.navigationBar.translucent = false
             window.rootViewController = self.navController
             window.makeKeyAndVisible()

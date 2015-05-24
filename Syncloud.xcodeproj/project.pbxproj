@@ -24,6 +24,8 @@
 		FB099FF81AFA54FE00AE22F2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF11AFA54FE00AE22F2 /* UserService.swift */; };
 		FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FF21AFA54FE00AE22F2 /* WebService.swift */; };
 		FB0BB5271B0FD6110063080A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB5261B0FD6110063080A /* Keychain.swift */; };
+		FB0BB5291B113FD40063080A /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0BB5281B113FD40063080A /* Auth.xib */; };
+		FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB52A1B113FF80063080A /* AuthController.swift */; };
 		FB155C861B102A32005F0A05 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB155C851B102A32005F0A05 /* Storage.swift */; };
 		FB47D5301B05A6F300910F2D /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Ssh.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
@@ -53,6 +55,8 @@
 		FB099FF11AFA54FE00AE22F2 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Platform/UserService.swift; sourceTree = "<group>"; };
 		FB099FF21AFA54FE00AE22F2 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebService.swift; path = Platform/WebService.swift; sourceTree = "<group>"; };
 		FB0BB5261B0FD6110063080A /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FB0BB5281B113FD40063080A /* Auth.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
+		FB0BB52A1B113FF80063080A /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		FB155C851B102A32005F0A05 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FB47D52F1B05A6F300910F2D /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
@@ -112,20 +116,22 @@
 			isa = PBXGroup;
 			children = (
 				FB099FEB1AFA54E700AE22F2 /* Platform */,
+				FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */,
+				FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */,
+				FB0BB5281B113FD40063080A /* Auth.xib */,
+				FB0BB52A1B113FF80063080A /* AuthController.swift */,
 				FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */,
 				FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */,
 				FB099FE31AFA543000AE22F2 /* Domains.xib */,
 				FB099FE41AFA543000AE22F2 /* DomainsViewController.swift */,
 				FBDB63E51B0A13BF004D2964 /* Discovery.xib */,
 				FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */,
-				FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */,
-				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
-				FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */,
-				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
-				FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */,
 				FBE093C91B0EC19800D0C1FE /* Helpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
 				FB155C851B102A32005F0A05 /* Storage.swift */,
+				FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */,
+				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
+				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
 			);
 			path = Syncloud;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB099FE61AFA543000AE22F2 /* AuthCredentials.xib in Resources */,
+				FB0BB5291B113FD40063080A /* Auth.xib in Resources */,
 				FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */,
 				FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */,
 				FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */,
@@ -274,6 +281,7 @@
 				FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */,
 				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
+				FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */,
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
 				FB155C861B102A32005F0A05 /* Storage.swift in Sources */,
 				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
