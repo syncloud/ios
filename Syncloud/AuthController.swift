@@ -5,7 +5,8 @@ class AuthController: UIViewController {
     
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var btnSignIn: UIButton!
-    
+    @IBOutlet weak var viewButtons: UIView!
+    @IBOutlet weak var progressBar: UIActivityIndicatorView!
     
     init() {
         super.init(nibName: "Auth", bundle: nil)
@@ -26,6 +27,10 @@ class AuthController: UIViewController {
         btnSignUp.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
         self.navigationController?.navigationBar.hidden = true
+        
+        viewButtons.hidden = true
+        progressBar.startAnimating()
+        
     }
     
     override func didReceiveMemoryWarning() {
