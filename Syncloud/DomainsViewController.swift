@@ -32,6 +32,8 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.title = "Domains"
         var btnAdd = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("btnAddClick:"))
         self.navigationItem.rightBarButtonItem = btnAdd
+        
+        self.navigationController!.navigationBar.hidden = false
     }
     
     override func didReceiveMemoryWarning() {

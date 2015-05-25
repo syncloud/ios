@@ -19,18 +19,13 @@ class AuthCredentialsController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Sign in"
-        
-        var credentials = Storage.getCredentials()
-        
-        if let theEmail = credentials.email {
-            self.signIn(theEmail, credentials.password!)
-        }
+        self.navigationController?.navigationBar.hidden = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     @IBAction func signIn(sender: UIButton) {
         self.activityIndicator.startAnimating()
         
