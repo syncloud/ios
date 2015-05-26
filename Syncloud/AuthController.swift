@@ -28,29 +28,11 @@ class AuthController: UIViewController {
         
         self.checkCredentials()
         
-        self.navigationController?.navigationBar.hidden = true
+        self.navigationController!.setNavigationBarHidden(true, animated: false)
+//        self.navigationController!.navigationBar.hidden = false
+        
+        self.navigationController!.setToolbarHidden(false, animated: false)
     }
-    
-//    override func viewWillAppear(animated: Bool) {
-//        self.navigationController?.navigationBar.hidden = true
-//        super.viewWillAppear(animated)
-//    }
-//    
-//    override func viewWillDisappear(animated: Bool) {
-//        self.navigationController?.navigationBar.hidden = false
-//        super.viewWillDisappear(animated)
-//    }
-
-//    override func viewWillAppear(animated: Bool) {
-//        navigationController?.navigationBarHidden = true
-//        super.viewWillAppear(animated)
-//    }
-//    
-//    
-//    override func viewWillDisappear(animated: Bool) {
-//        navigationController?.navigationBarHidden = false
-//        super.viewWillDisappear(animated)
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -26,14 +26,19 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.title = "Domains"
+        
         var btnAdd = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("btnAddClick:"))
         self.navigationItem.rightBarButtonItem = btnAdd
+        self.navigationController!.setNavigationBarHidden(false, animated: false)
         
-        self.navigationController!.navigationBar.hidden = false
+        var btnSettings = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
+        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)        
+        self.toolbarItems = [flexibleSpace, btnSettings, flexibleSpace]
+        self.navigationController!.setToolbarHidden(false, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,9 +46,14 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
+    func btnSettingsClick(sender: UIBarButtonItem) {
+        var viewSettings = SettingsController()
+        self.navigationController!.pushViewController(viewSettings, animated: true)
+    }
+    
     func btnAddClick(sender: UIBarButtonItem) {
         var viewDiscovery = DiscoveryController()
-        self.navigationController?.pushViewController(viewDiscovery, animated: true)
+        self.navigationController!.pushViewController(viewDiscovery, animated: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  FirstTest
-//
-//  Created by Vladimir Sapronov on 1/10/15.
-//  Copyright (c) 2015 Vladimir Sapronov. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -20,10 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()
             
-//            var authController = AuthCredentialsController()
             var authController = AuthController()
-            self.navController = UINavigationController(rootViewController: authController)
-            self.navController?.navigationBar.translucent = false
+            self.navController = MainController(rootViewController: authController)
             window.rootViewController = self.navController
             window.makeKeyAndVisible()
         }

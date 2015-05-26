@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsController" customModule="Syncloud" customModuleProvider="target">
+            <connections>
+                <outlet property="cellEmail" destination="W4b-UO-wOi" id="WI3-HX-zCJ"/>
+                <outlet property="labelEmail" destination="UCH-qK-gE7" id="CPm-Q2-Gwo"/>
+                <outlet property="labelEmailValue" destination="j5V-I5-YZH" id="ZjS-ub-JsD"/>
+                <outlet property="tableSettings" destination="obN-LC-iax" id="tjL-JY-XPF"/>
+                <outlet property="view" destination="iN0-l3-epB" id="5vB-52-ZAd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="obN-LC-iax">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="BrM-PI-Den"/>
+                        <outlet property="delegate" destination="-1" id="kwP-S5-68a"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="obN-LC-iax" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AId-0U-e1x"/>
+                <constraint firstItem="obN-LC-iax" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Acj-if-nte"/>
+                <constraint firstAttribute="trailing" secondItem="obN-LC-iax" secondAttribute="trailing" id="Ee0-xu-cwd"/>
+                <constraint firstAttribute="bottom" secondItem="obN-LC-iax" secondAttribute="bottom" id="kbd-oD-87s"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+        </view>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="W4b-UO-wOi">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W4b-UO-wOi" id="Is8-Rd-Qid">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0u-Dh-dDr">
+                        <rect key="frame" x="8" y="11" width="58" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="58" id="bsi-0z-UZv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5V-I5-YZH">
+                        <rect key="frame" x="74" y="11" width="518" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="518" id="LNz-48-J98"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="LNz-48-J98"/>
+                            </mask>
+                        </variation>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="g0u-Dh-dDr" firstAttribute="leading" secondItem="Is8-Rd-Qid" secondAttribute="leadingMargin" id="Da5-MR-mbf"/>
+                    <constraint firstItem="j5V-I5-YZH" firstAttribute="leading" secondItem="g0u-Dh-dDr" secondAttribute="trailing" constant="8" id="Hlf-9h-c44"/>
+                    <constraint firstAttribute="centerY" secondItem="g0u-Dh-dDr" secondAttribute="centerY" id="UCH-qK-gE7"/>
+                    <constraint firstAttribute="centerY" secondItem="j5V-I5-YZH" secondAttribute="centerY" id="aic-a3-fVe"/>
+                    <constraint firstItem="j5V-I5-YZH" firstAttribute="trailing" secondItem="Is8-Rd-Qid" secondAttribute="trailingMargin" id="qJe-YP-67g"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="366" y="-111"/>
+        </tableViewCell>
+    </objects>
+</document>
