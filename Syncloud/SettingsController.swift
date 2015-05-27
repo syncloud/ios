@@ -5,8 +5,11 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableSettings: UITableView!
     @IBOutlet weak var cellEmail: UITableViewCell!
-    @IBOutlet weak var labelEmail: NSLayoutConstraint!
     @IBOutlet weak var labelEmailValue: UILabel!
+    @IBOutlet weak var cellSignOut: UITableViewCell!
+    
+    let sectionAccount = 0
+    var cells = Dictionary<Int, [UITableViewCell]>()
     
     init() {
         super.init(nibName: "Settings", bundle: nil)
@@ -21,6 +24,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.title = "Settings"
 
+        cells[sectionAccount] = [cellEmail, cellSignOut]
+        
         var credentials = Storage.getCredentials()
         
         if let theEmail = credentials.email {
@@ -35,29 +40,29 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 28;
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var accountHeaderLabel = UILabel()
-        accountHeaderLabel.text = "Account"
-        return accountHeaderLabel
+        return cells.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return cells[sectionAccount]!.count
+    }
+
+    func getCell(indexPath: NSIndexPath) -> UITableViewCell {
+        var sectionCells = cells[indexPath.section]!
+        return sectionCells[indexPath.row]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return cellEmail
+        return getCell(indexPath)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        var cell = getCell(indexPath)
+        if cell == cellSignOut {
+            Storage.deleteCredentials()
+            var authController = AuthController()
+            self.navigationController!.replaceAll(authController, animated: true)
+        }
     }
     
 }

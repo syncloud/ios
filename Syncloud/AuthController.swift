@@ -27,11 +27,12 @@ class AuthController: UIViewController {
         btnSignUp.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         
         self.checkCredentials()
-        
-        self.navigationController!.setNavigationBarHidden(true, animated: false)
-//        self.navigationController!.navigationBar.hidden = false
-        
-        self.navigationController!.setToolbarHidden(false, animated: false)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
+        self.navigationController!.setToolbarHidden(true, animated: true)
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,6 +42,11 @@ class AuthController: UIViewController {
     @IBAction func btnLearnMoreClick(sender: AnyObject) {
         var url = NSURL(string: "http://syncloud.org")
         UIApplication.sharedApplication().openURL(url!)
+    }
+    
+    @IBAction func btnSignInClick(sender: AnyObject) {
+        var authCredentials = AuthCredentialsController()
+        self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
     func checkCredentials() {
@@ -69,7 +75,7 @@ class AuthController: UIViewController {
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
                     var viewDevices = DomainsViewController(user: result.user!)
-                    self.navigationController!.replaceViewController(viewDevices, animated: true)
+                    self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }
         }

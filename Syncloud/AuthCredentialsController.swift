@@ -19,7 +19,12 @@ class AuthCredentialsController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Sign in"
-        self.navigationController?.navigationBar.hidden = false
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.setNavigationBarHidden(false, animated: true)
+        self.navigationController!.setToolbarHidden(false, animated: true)
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +55,7 @@ class AuthCredentialsController: UIViewController {
                 } else {
                     Storage.saveCredentials(email: email, password: password)
                     var viewDevices = DomainsViewController(user: result.user!)
-                    self.navigationController!.replaceViewController(viewDevices, animated: true)
+                    self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }
         }

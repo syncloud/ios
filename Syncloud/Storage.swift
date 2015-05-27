@@ -17,4 +17,9 @@ public class Storage {
         Keychain.set(StorageKeys.Email, value: email)
         Keychain.set(StorageKeys.Password, value: password)
     }
+    
+    public class func deleteCredentials() {
+        Keychain.delete(StorageKeys.Email)
+        Keychain.delete(StorageKeys.Password)
+    }
 }

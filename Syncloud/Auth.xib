@@ -63,6 +63,9 @@
                             <state key="normal" title="Sign in!">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="btnSignInClick:" destination="-1" eventType="touchDown" id="PCC-ms-Hav"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCP-ss-EZj">
                             <rect key="frame" x="173" y="146" width="187" height="21"/>

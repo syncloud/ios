@@ -8,4 +8,8 @@ extension UINavigationController {
         controllers.append(viewController)
         self.setViewControllers(controllers, animated: animated)
     }
+    
+    func replaceAll(viewController: UIViewController, animated: Bool) {
+        self.setViewControllers([viewController], animated: true)
+    }
 }
