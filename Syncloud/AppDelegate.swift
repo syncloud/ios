@@ -6,8 +6,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: UINavigationController?
 
+    
+    func log2File() {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+        let logPath = documentsPath.stringByAppendingPathComponent("console.log")
+        freopen(logPath.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+",stderr)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        log2File()
+        NSLog("Starting application")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()

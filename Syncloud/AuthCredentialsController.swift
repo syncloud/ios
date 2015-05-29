@@ -6,13 +6,14 @@ enum AuthMode {
     case SignUp
 }
 
-
 class AuthCredentialsController: UIViewController {
     @IBOutlet weak var emailTextEdit: UITextField!
     @IBOutlet weak var passwordTextEdit: UITextField!
     @IBOutlet weak var btnSignIn: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    var redirectService = RedirectService(apiUrl: "http://api.syncloud.info:81")
     
     var mode: AuthMode
     
@@ -49,15 +50,6 @@ class AuthCredentialsController: UIViewController {
     }
 
     @IBAction func btnSignInClick(sender: UIButton) {
-        switch self.mode {
-        case .SignIn:
-            self.signIn()
-        case .SignUp:
-            self.signUp()
-        }
-    }
-    
-    func signIn() {
         self.activityIndicator.startAnimating()
         
         var email = self.emailTextEdit.text
@@ -66,8 +58,13 @@ class AuthCredentialsController: UIViewController {
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
-            var service = RedirectService(apiUrl: "http://api.syncloud.it")
-            var result = service.getUser(email, password: password)
+            var result: UserResult!
+            switch self.mode {
+            case .SignIn:
+                result = self.redirectService.getUser(email, password: password)
+            case .SignUp:
+                result = self.redirectService.createUser(email, password: password)
+            }
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.activityIndicator.stopAnimating()
@@ -81,9 +78,5 @@ class AuthCredentialsController: UIViewController {
                 }
             }
         }
-    }
-    
-    func signUp() {
-        
     }
 }
