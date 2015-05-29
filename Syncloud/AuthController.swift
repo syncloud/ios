@@ -44,8 +44,13 @@ class AuthController: UIViewController {
         UIApplication.sharedApplication().openURL(url!)
     }
     
+    @IBAction func btnSignUpClick(sender: AnyObject) {
+        var authCredentials = AuthCredentialsController(mode: AuthMode.SignUp)
+        self.navigationController!.pushViewController(authCredentials, animated: true)
+    }
+    
     @IBAction func btnSignInClick(sender: AnyObject) {
-        var authCredentials = AuthCredentialsController()
+        var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
         self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
@@ -71,7 +76,7 @@ class AuthController: UIViewController {
                 self.progressBar.stopAnimating()
                 
                 if result.error != nil {
-                    var authCredentials = AuthCredentialsController()
+                    var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
                     var viewDevices = DomainsViewController(user: result.user!)

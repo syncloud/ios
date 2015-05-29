@@ -1,13 +1,23 @@
 import Foundation
 import UIKit
 
+enum AuthMode {
+    case SignIn
+    case SignUp
+}
+
+
 class AuthCredentialsController: UIViewController {
     @IBOutlet weak var emailTextEdit: UITextField!
     @IBOutlet weak var passwordTextEdit: UITextField!
+    @IBOutlet weak var btnSignIn: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    init() {
+    var mode: AuthMode
+    
+    init(mode: AuthMode) {
+        self.mode = mode
         super.init(nibName: "AuthCredentials", bundle: nil)
     }
     
@@ -18,7 +28,14 @@ class AuthCredentialsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Sign in"
+        switch self.mode {
+        case .SignIn:
+            self.title = "Sign In"
+            self.btnSignIn.setTitle("Sign In", forState: UIControlState.Normal)
+        case .SignUp:
+            self.title = "Sign Up"
+            self.btnSignIn.setTitle("Sign Up", forState: UIControlState.Normal)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,16 +48,21 @@ class AuthCredentialsController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func signIn(sender: UIButton) {
+    @IBAction func btnSignInClick(sender: UIButton) {
+        switch self.mode {
+        case .SignIn:
+            self.signIn()
+        case .SignUp:
+            self.signUp()
+        }
+    }
+    
+    func signIn() {
         self.activityIndicator.startAnimating()
         
         var email = self.emailTextEdit.text
         var password = self.passwordTextEdit.text
         
-        self.signIn(email, password)
-    }
-    
-    func signIn(email: String, _ password: String) {
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
@@ -59,5 +81,9 @@ class AuthCredentialsController: UIViewController {
                 }
             }
         }
+    }
+    
+    func signUp() {
+        
     }
 }
