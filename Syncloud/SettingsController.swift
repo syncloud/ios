@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import MessageUI
 
 class SettingsController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
@@ -38,6 +39,15 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+//    func sendEmail() {
+//        var picker = MFMailComposeViewController()
+//        picker.mailComposeDelegate = self
+//        picker.setSubject(subject.text)
+//        picker.setMessageBody(body.text, isHTML: true)
+//        
+//        presentViewController(picker, animated: true, completion: nil)
+//    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return cells.count

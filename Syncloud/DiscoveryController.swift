@@ -52,7 +52,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             var timeout = 20
             var count = 0
             while (count < timeout) {
-                usleep(1000)
+                sleep(1000)
                 count++
             }
             

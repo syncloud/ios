@@ -10,7 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func log2File() {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
         let logPath = documentsPath.stringByAppendingPathComponent("console.log")
-        freopen(logPath.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+",stderr)
+        println(logPath)
+        freopen(logPath.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

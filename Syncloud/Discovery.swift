@@ -28,20 +28,19 @@ class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDeleg
     }
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didFindDomain domainName: String, moreComing moreDomainsComing: Bool) {
-        println("netServiceDidFindDomain")
+        NSLog("BrowserDelegate.netServiceBrowser.didFindDomain")
     }
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didRemoveDomain domainName: String, moreComing moreDomainsComing: Bool) {
-        println("netServiceDidRemoveDomain")
+        NSLog("BrowserDelegate.netServiceBrowser.didRemoveDomain")
     }
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didFindService netService: NSNetService, moreComing moreServicesComing: Bool) {
-        println("netServiceDidFindService")
+        NSLog("BrowserDelegate.netServiceBrowser.didFindService")
         netService.delegate = self
         resolving.append(netService)
         netService.resolveWithTimeout(0.0)
         var serviceName = netService.name
-        println(serviceName)
     }
 
     func netServiceDidResolveAddress(sender: NSNetService) {
@@ -55,19 +54,19 @@ class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDeleg
     
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didRemoveService netService: NSNetService, moreComing moreServicesComing: Bool) {
-        println("netServiceDidRemoveService")
+        NSLog("BrowserDelegate.netServiceBrowser.didRemoveService")
     }
     
     func netServiceBrowserWillSearch(aNetServiceBrowser: NSNetServiceBrowser){
-        println("netServiceBrowserWillSearch")
+        NSLog("BrowserDelegate.netServiceBrowserWillSearch")
     }
     
     func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didNotSearch errorInfo: [NSObject : AnyObject]) {
-        println("netServiceDidNotSearch")
+        NSLog("BrowserDelegate.netServiceBrowser.didNotSearch")
     }
     
     func netServiceBrowserDidStopSearch(netServiceBrowser: NSNetServiceBrowser) {
-        println("netServiceDidStopSearch")
+        NSLog("BrowserDelegate.netServiceBrowserDidStopSearch")
     }
     
 }
