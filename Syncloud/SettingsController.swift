@@ -2,14 +2,16 @@ import Foundation
 import UIKit
 import MessageUI
 
-class SettingsController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+class SettingsController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate  {
     
     @IBOutlet weak var tableSettings: UITableView!
     @IBOutlet weak var cellEmail: UITableViewCell!
     @IBOutlet weak var labelEmailValue: UILabel!
     @IBOutlet weak var cellSignOut: UITableViewCell!
+    @IBOutlet weak var cellSendLog: UITableViewCell!
     
     let sectionAccount = 0
+    let sectionLog = 1
     var cells = Dictionary<Int, [UITableViewCell]>()
     
     init() {
@@ -26,6 +28,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "Settings"
 
         cells[sectionAccount] = [cellEmail, cellSignOut]
+        cells[sectionLog] = [cellSendLog]
         
         var credentials = Storage.getCredentials()
         
@@ -40,21 +43,35 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         super.didReceiveMemoryWarning()
     }
     
-//    func sendEmail() {
-//        var picker = MFMailComposeViewController()
-//        picker.mailComposeDelegate = self
-//        picker.setSubject(subject.text)
-//        picker.setMessageBody(body.text, isHTML: true)
+    func sendLog() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.sendLog()
+        
+//        let logPath = appDelegate.logPath!
 //        
-//        presentViewController(picker, animated: true, completion: nil)
-//    }
+//        var composer = MFMailComposeViewController()
+//        composer.mailComposeDelegate = self
+//        composer.setToRecipients(["support@syncloud.it"])
+//        composer.setSubject("Syncloud Report")
+//        composer.setMessageBody("Provide additional information here", isHTML: false)
+//        var logData = NSFileManager.defaultManager().contentsAtPath(logPath)
+//        composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
+//        
+//        presentViewController(composer, animated: true, completion: nil)
+    }
+    
+    func signOut() {
+        Storage.deleteCredentials()
+        var authController = AuthController()
+        self.navigationController!.replaceAll(authController, animated: true)
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return cells.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells[sectionAccount]!.count
+        return cells[section]!.count
     }
 
     func getCell(indexPath: NSIndexPath) -> UITableViewCell {
@@ -69,9 +86,10 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var cell = getCell(indexPath)
         if cell == cellSignOut {
-            Storage.deleteCredentials()
-            var authController = AuthController()
-            self.navigationController!.replaceAll(authController, animated: true)
+            signOut()
+        }
+        if cell == cellSendLog {
+            sendLog()
         }
     }
     

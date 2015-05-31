@@ -1,17 +1,21 @@
 import UIKit
+import MessageUI
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControllerDelegate {
 
     var window: UIWindow?
     var navController: UINavigationController?
 
+    var logPath: String?
     
     func log2File() {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
-        let logPath = documentsPath.stringByAppendingPathComponent("console.log")
-        println(logPath)
-        freopen(logPath.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
+        if UIDevice.currentDevice().model != "iPhone Simulator" {
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+            self.logPath = documentsPath.stringByAppendingPathComponent("Syncloud.log")
+            freopen(logPath!.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
+        }
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -29,6 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func sendLog() {
+        if let theLogPath = logPath {
+            var composer = MFMailComposeViewController()
+            composer.mailComposeDelegate = self
+            composer.setToRecipients(["support@syncloud.it"])
+            composer.setSubject("Syncloud Report")
+            composer.setMessageBody("Provide additional information here", isHTML: false)
+            var logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
+            composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
+            self.navController!.visibleViewController.presentViewController(composer, animated: true, completion: nil)
+        }
+    }
+
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.navController!.visibleViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
