@@ -46,18 +46,6 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     func sendLog() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.sendLog()
-        
-//        let logPath = appDelegate.logPath!
-//        
-//        var composer = MFMailComposeViewController()
-//        composer.mailComposeDelegate = self
-//        composer.setToRecipients(["support@syncloud.it"])
-//        composer.setSubject("Syncloud Report")
-//        composer.setMessageBody("Provide additional information here", isHTML: false)
-//        var logData = NSFileManager.defaultManager().contentsAtPath(logPath)
-//        composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
-//        
-//        presentViewController(composer, animated: true, completion: nil)
     }
     
     func signOut() {

@@ -27,6 +27,9 @@
 		FB0BB5291B113FD40063080A /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0BB5281B113FD40063080A /* Auth.xib */; };
 		FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB52A1B113FF80063080A /* AuthController.swift */; };
 		FB155C861B102A32005F0A05 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB155C851B102A32005F0A05 /* Storage.swift */; };
+		FB1BF0521B1AA7D1000F34D4 /* Uncaught.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */; };
+		FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */; };
+		FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */; };
 		FB47D5301B05A6F300910F2D /* Ssh.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Ssh.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
 		FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */; };
@@ -61,11 +64,15 @@
 		FB0BB5281B113FD40063080A /* Auth.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
 		FB0BB52A1B113FF80063080A /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		FB155C851B102A32005F0A05 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		FB1BF04F1B1AA436000F34D4 /* Uncaught.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uncaught.h; sourceTree = "<group>"; };
+		FB1BF0501B1AA7D0000F34D4 /* Syncloud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Syncloud-Bridging-Header.h"; sourceTree = "<group>"; };
+		FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uncaught.m; sourceTree = "<group>"; };
+		FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticHolder.swift; sourceTree = "<group>"; };
+		FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncaughtExceptionHandler.swift; sourceTree = "<group>"; };
 		FB47D52F1B05A6F300910F2D /* Ssh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ssh.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
 		FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryController.swift; sourceTree = "<group>"; };
 		FBE093C91B0EC19800D0C1FE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Syncloud-Bridging.h"; sourceTree = "<group>"; };
 		FBFA4C381B1404910000D42A /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		FBFA4C3C1B14106C0000D42A /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
@@ -138,9 +145,13 @@
 				FBE093C91B0EC19800D0C1FE /* Helpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
 				FB155C851B102A32005F0A05 /* Storage.swift */,
-				FBE2C8401B038408008D5F7B /* Syncloud-Bridging.h */,
+				FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */,
+				FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */,
 				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
 				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
+				FB1BF04F1B1AA436000F34D4 /* Uncaught.h */,
+				FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */,
+				FB1BF0501B1AA7D0000F34D4 /* Syncloud-Bridging-Header.h */,
 			);
 			path = Syncloud;
 			sourceTree = "<group>";
@@ -278,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB1BF0521B1AA7D1000F34D4 /* Uncaught.m in Sources */,
 				FB099FF31AFA54FE00AE22F2 /* Errors.swift in Sources */,
+				FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */,
 				FBE093CA1B0EC19800D0C1FE /* Helpers.swift in Sources */,
 				FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */,
 				FB47D5301B05A6F300910F2D /* Ssh.swift in Sources */,
@@ -289,6 +302,7 @@
 				FB099FF61AFA54FE00AE22F2 /* Results.swift in Sources */,
 				FB099FF71AFA54FE00AE22F2 /* Serializable.swift in Sources */,
 				FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */,
+				FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */,
 				FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */,
 				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
@@ -404,9 +418,12 @@
 			baseConfigurationReference = A57977CAEAA5FF5E7228132D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Syncloud/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Syncloud/Syncloud-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -415,9 +432,11 @@
 			baseConfigurationReference = 9B07E455A56425243B7FF1F9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Syncloud/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Syncloud/Syncloud-Bridging-Header.h";
 			};
 			name = Release;
 		};

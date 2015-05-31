@@ -1,13 +1,23 @@
 import UIKit
 import MessageUI
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControllerDelegate {
 
-    var window: UIWindow?
-    var navController: UINavigationController?
+    class AppUncaughtExceptionHandler: UncaughtExceptionHandler {
+        override func handle(exception: NSException) {
+            NSLog("Uncaught exception happened")
+        }
+    }
 
+    var exceptionHandler: AppUncaughtExceptionHandler?
+    
+    func catchUnhandledExceptions() {
+        self.exceptionHandler = AppUncaughtExceptionHandler()
+        StaticHolder.setUncaughtExceptionHandler(exceptionHandler!)
+        NSSetUncaughtExceptionHandler(exceptionHandlerPtr)
+    }
+    
     var logPath: String?
     
     func log2File() {
@@ -18,8 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
         }
     }
 
+    var window: UIWindow?
+    var navController: UINavigationController?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        NSException(name: "MyException", reason: "Some message", userInfo:nil).raise()
+        catchUnhandledExceptions()
         log2File()
+        
         NSLog("Starting application")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
