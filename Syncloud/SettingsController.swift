@@ -39,6 +39,12 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
+        self.navigationController!.setToolbarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

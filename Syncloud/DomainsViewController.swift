@@ -31,14 +31,17 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.title = "Domains"
         
-        var btnAdd = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("btnAddClick:"))
-        self.navigationItem.rightBarButtonItem = btnAdd
-        self.navigationController!.setNavigationBarHidden(false, animated: false)
+        var btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
+        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        self.toolbarItems = [flexibleSpace, btnAdd, flexibleSpace]
         
-        var btnSettings = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
-        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)        
-        self.toolbarItems = [flexibleSpace, btnSettings, flexibleSpace]
-        self.navigationController!.setToolbarHidden(false, animated: false)
+        (self.navigationController as! MainController).addSettings()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
+        self.navigationController!.setToolbarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -46,11 +49,6 @@ class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
 
-    func btnSettingsClick(sender: UIBarButtonItem) {
-        var viewSettings = SettingsController()
-        self.navigationController!.pushViewController(viewSettings, animated: true)
-    }
-    
     func btnAddClick(sender: UIBarButtonItem) {
         var viewDiscovery = DiscoveryController()
         self.navigationController!.pushViewController(viewDiscovery, animated: true)

@@ -13,7 +13,7 @@ class AuthCredentialsController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var redirectService = RedirectService(apiUrl: "http://api.syncloud.info:81")
+    var redirectService = RedirectService(apiUrl: "http://api.syncloud.it")
     
     var mode: AuthMode
     
@@ -37,11 +37,13 @@ class AuthCredentialsController: UIViewController {
             self.title = "Sign Up"
             self.btnSignIn.setTitle("Sign Up", forState: UIControlState.Normal)
         }
+        
+        (self.navigationController as! MainController).addSettings()
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController!.setNavigationBarHidden(false, animated: true)
-        self.navigationController!.setToolbarHidden(false, animated: true)
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
+        self.navigationController!.setToolbarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
     

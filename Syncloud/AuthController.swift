@@ -30,8 +30,8 @@ class AuthController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController!.setNavigationBarHidden(true, animated: true)
-        self.navigationController!.setToolbarHidden(true, animated: true)
+        self.navigationController!.setNavigationBarHidden(true, animated: animated)
+        self.navigationController!.setToolbarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
     

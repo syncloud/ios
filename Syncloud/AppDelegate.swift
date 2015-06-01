@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
     var logPath: String?
     
     func log2File() {
-//        if UIDevice.currentDevice().model != "iPhone Simulator" {
+        if UIDevice.currentDevice().model != "iPhone Simulator" {
             let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
             self.logPath = documentsPath.stringByAppendingPathComponent("Syncloud.log")
             freopen(logPath!.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
-//        }
+        }
     }
 
     var window: UIWindow?
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
         catchUnhandledExceptions()
         log2File()
 
-        //        NSException(name: "MyException", reason: "Some message", userInfo:nil).raise()
+//        NSException(name: "MyException", reason: "Some message", userInfo:nil).raise()
         
         NSLog("Starting application")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -52,14 +52,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
 
     func sendLog() {
         if let theLogPath = logPath {
-            var composer = MFMailComposeViewController()
-            composer.mailComposeDelegate = self
-            composer.setToRecipients(["support@syncloud.it"])
-            composer.setSubject("Syncloud Report")
-            composer.setMessageBody("Provide additional information here", isHTML: false)
-            var logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
-            composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
-            self.navController!.visibleViewController.presentViewController(composer, animated: true, completion: nil)
+            if MFMailComposeViewController.canSendMail() {
+                var composer = MFMailComposeViewController()
+                composer.mailComposeDelegate = self
+                composer.setToRecipients(["support@syncloud.it"])
+                composer.setSubject("Syncloud Report")
+                composer.setMessageBody("Provide additional information here", isHTML: false)
+                var logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
+                composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
+                self.navController!.visibleViewController.presentViewController(composer, animated: true, completion: nil)
+            }
         }
     }
 

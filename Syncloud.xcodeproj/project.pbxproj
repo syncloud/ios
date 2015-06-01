@@ -147,11 +147,11 @@
 				FB155C851B102A32005F0A05 /* Storage.swift */,
 				FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */,
 				FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */,
-				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
-				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
 				FB1BF04F1B1AA436000F34D4 /* Uncaught.h */,
 				FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */,
 				FB1BF0501B1AA7D0000F34D4 /* Syncloud-Bridging-Header.h */,
+				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
+				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
 			);
 			path = Syncloud;
 			sourceTree = "<group>";
