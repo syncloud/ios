@@ -21,20 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
     var logPath: String?
     
     func log2File() {
-        if UIDevice.currentDevice().model != "iPhone Simulator" {
+//        if UIDevice.currentDevice().model != "iPhone Simulator" {
             let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
             self.logPath = documentsPath.stringByAppendingPathComponent("Syncloud.log")
             freopen(logPath!.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
-        }
+//        }
     }
 
     var window: UIWindow?
     var navController: UINavigationController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        NSException(name: "MyException", reason: "Some message", userInfo:nil).raise()
         catchUnhandledExceptions()
         log2File()
+
+        //        NSException(name: "MyException", reason: "Some message", userInfo:nil).raise()
         
         NSLog("Starting application")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
