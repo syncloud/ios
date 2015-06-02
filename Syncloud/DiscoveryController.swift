@@ -26,10 +26,20 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableEndpoints.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.title = "Discovery"
-        var btnRefresh = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: Selector("btnDiscoveryClick:"))
-        self.navigationItem.rightBarButtonItem = btnRefresh
+        
+        var btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnDiscoveryClick:"))
+        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
+        
+        (self.navigationController as! MainController).addSettings()
         
         discoveryStart()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
+        self.navigationController!.setToolbarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,18 +55,18 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.endpoints.removeAll(keepCapacity: true)
         self.tableEndpoints.reloadData()
         
-        self.discovery.start(serviceName: "syncloud", listener: self)
-        
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            var timeout = 20
-            var count = 0
-            while (count < timeout) {
-                sleep(1000)
-                count++
-            }
+            self.discovery.start(serviceName: "syncloud", listener: self)
             
-            self.discovery.stop()
+//            var timeout = 10
+//            var count = 0
+//            while (count < timeout) {
+//                sleep(1)
+//                count++
+//            }
+//            self.discovery.stop()
+//            NSLog("!!!!! Stopped")
         }
     }
     

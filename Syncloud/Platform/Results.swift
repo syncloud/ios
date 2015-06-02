@@ -11,7 +11,9 @@ func parseJsonResult(data: NSData?) -> JsonResult {
     var jsonResult = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: error) as? NSDictionary
     
     if error != nil {
-        return (result: nil, error: Error("Parsing JSON caused a error"))
+        let message = "Parsing JSON caused a error"
+        NSLog(message)
+        return (result: nil, error: Error(message))
     }
     
     if let theJsonResult = jsonResult {
@@ -19,7 +21,9 @@ func parseJsonResult(data: NSData?) -> JsonResult {
         if baseResult.success {
             return (result: jsonResult, error: nil)
         } else {
-            return (result: nil, error: ResultError("Returned JSON indicates error", result: baseResult))
+            let message = "Returned JSON indicates error"
+            NSLog(message)
+            return (result: nil, error: ResultError(message, result: baseResult))
         }
     }
     
