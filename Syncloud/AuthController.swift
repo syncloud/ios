@@ -79,7 +79,7 @@ class AuthController: UIViewController {
                     var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
-                    var viewDevices = DomainsViewController(user: result.user!)
+                    var viewDevices = DomainsController(user: result.user!)
                     self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }

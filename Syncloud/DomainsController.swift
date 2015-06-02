@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class DomainsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!

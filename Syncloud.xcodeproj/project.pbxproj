@@ -15,7 +15,7 @@
 		FB099FE61AFA543000AE22F2 /* AuthCredentials.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */; };
 		FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */; };
 		FB099FE81AFA543000AE22F2 /* Domains.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FE31AFA543000AE22F2 /* Domains.xib */; };
-		FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FE41AFA543000AE22F2 /* DomainsViewController.swift */; };
+		FB099FE91AFA543000AE22F2 /* DomainsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FE41AFA543000AE22F2 /* DomainsController.swift */; };
 		FB099FF31AFA54FE00AE22F2 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FEC1AFA54FE00AE22F2 /* Errors.swift */; };
 		FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FED1AFA54FE00AE22F2 /* Models.swift */; };
 		FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FEE1AFA54FE00AE22F2 /* RedirectService.swift */; };
@@ -52,7 +52,7 @@
 		FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthCredentials.xib; sourceTree = "<group>"; };
 		FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCredentialsController.swift; sourceTree = "<group>"; };
 		FB099FE31AFA543000AE22F2 /* Domains.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Domains.xib; sourceTree = "<group>"; };
-		FB099FE41AFA543000AE22F2 /* DomainsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainsViewController.swift; sourceTree = "<group>"; };
+		FB099FE41AFA543000AE22F2 /* DomainsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainsController.swift; sourceTree = "<group>"; };
 		FB099FEC1AFA54FE00AE22F2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Platform/Errors.swift; sourceTree = "<group>"; };
 		FB099FED1AFA54FE00AE22F2 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Models.swift; path = Platform/Models.swift; sourceTree = "<group>"; };
 		FB099FEE1AFA54FE00AE22F2 /* RedirectService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RedirectService.swift; path = Platform/RedirectService.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 				FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */,
 				FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */,
 				FB099FE31AFA543000AE22F2 /* Domains.xib */,
-				FB099FE41AFA543000AE22F2 /* DomainsViewController.swift */,
+				FB099FE41AFA543000AE22F2 /* DomainsController.swift */,
 				FBDB63E51B0A13BF004D2964 /* Discovery.xib */,
 				FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */,
 				FBFA4C3C1B14106C0000D42A /* Settings.xib */,
@@ -305,7 +305,7 @@
 				FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */,
 				FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */,
 				FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */,
-				FB099FE91AFA543000AE22F2 /* DomainsViewController.swift in Sources */,
+				FB099FE91AFA543000AE22F2 /* DomainsController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
 				FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */,
 				FBFA4C3B1B140F7D0000D42A /* SettingsController.swift in Sources */,
