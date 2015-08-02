@@ -6,7 +6,6 @@
 #define Syncloud_NMSSH_Bridging_h
 
 #import <Foundation/Foundation.h>
-#import <NMSSH/NMSSH.h>
 #import "Uncaught.h"
 
 #endif

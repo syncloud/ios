@@ -190,6 +190,12 @@ class Identification {
     var title: String
     var mac_address: String
     
+    init(name: String, title: String, mac_address: String) {
+        self.name = name
+        self.title = title
+        self.mac_address = mac_address
+    }
+    
     init(json: NSDictionary) {
         self.name = json.valueForKey("name") as! String
         self.title = json.valueForKey("title") as! String

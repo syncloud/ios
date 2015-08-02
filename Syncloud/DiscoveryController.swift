@@ -6,12 +6,10 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableEndpoints: UITableView!
     
     var discovery: Discovery
-    var ssh: SshRunner
     
     var endpoints = [IdentifiedEndpoint]()
        
     init() {
-        ssh = SshRunner()
         discovery = Discovery()
         super.init(nibName: "Discovery", bundle: nil)
     }
@@ -58,21 +56,12 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
             self.discovery.start(serviceName: "syncloud", listener: self)
-            
-//            var timeout = 10
-//            var count = 0
-//            while (count < timeout) {
-//                sleep(1)
-//                count++
-//            }
-//            self.discovery.stop()
-//            NSLog("!!!!! Stopped")
         }
     }
     
     func found(endpoint: Endpoint) {
         var connection = ConnectionPoint(endpoint: endpoint, credentials: standardCredentials())
-        var tools = Tools(ssh: self.ssh)
+        var tools = Tools()
         var (id, error) = tools.id(connection)
         
         if error != nil {
