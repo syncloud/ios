@@ -38,7 +38,7 @@ class Request {
             paramsString += param
             paramsString += "="
             paramsString += value
-        }{}
+        }
         return paramsString
     }
     
@@ -68,7 +68,7 @@ func createRequest(request: Request, rootUrl: String) -> NSURLRequest {
 
 class WebService {
     var apiUrl: String
-    {}
+
     init(apiUrl: String) {
         self.apiUrl = apiUrl
     }
