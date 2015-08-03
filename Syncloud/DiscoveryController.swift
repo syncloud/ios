@@ -60,9 +60,10 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func found(endpoint: Endpoint) {
-        var connection = ConnectionPoint(endpoint: endpoint, credentials: standardCredentials())
-        var tools = Tools()
-        var (id, error) = tools.id(connection)
+        let host = endpoint.host
+        let serverUrl = "http://\(host):81/server/rest"
+        var tools = Tools(webService: WebService(apiUrl: serverUrl))
+        var (id, error) = tools.id()
         
         if error != nil {
             return

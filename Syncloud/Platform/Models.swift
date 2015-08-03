@@ -163,28 +163,6 @@ class Endpoint {
     
 }
 
-class Credentials {
-    var login: String
-    var password: String?
-    var key: String?
-    
-    init(login: String, password: String?, key: String?) {
-        self.login = login
-        self.password = password
-        self.key = key
-    }
-}
-
-class ConnectionPoint {
-    var endpoint: Endpoint
-    var credentials: Credentials
-    
-    init(endpoint: Endpoint, credentials: Credentials) {
-        self.endpoint = endpoint
-        self.credentials = credentials
-    }
-}
-
 class Identification {
     var name: String
     var title: String

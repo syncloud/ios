@@ -24,7 +24,11 @@ class Request {
         self.type = type
         self.params = params
     }
-    
+
+    convenience init(_ type: RequestType, _ url: String) {
+        self.init(type, url, [:])
+    }
+
     func paramsToString() -> String {
         var paramsString = ""
         for (param, value) in self.params {
@@ -34,7 +38,7 @@ class Request {
             paramsString += param
             paramsString += "="
             paramsString += value
-        }
+        }{}
         return paramsString
     }
     
@@ -64,11 +68,11 @@ func createRequest(request: Request, rootUrl: String) -> NSURLRequest {
 
 class WebService {
     var apiUrl: String
-    
+    {}
     init(apiUrl: String) {
         self.apiUrl = apiUrl
     }
-    
+
     func execute(request: Request) -> (result: NSDictionary?, error: Error?) {
         var nsRequest = createRequest(request, self.apiUrl)
         
