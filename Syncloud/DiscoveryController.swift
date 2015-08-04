@@ -93,6 +93,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var endpoint = self.endpoints[indexPath.row]
+        var viewActivate = ActivateController(endpoint: endpoint)
+        self.navigationController!.pushViewController(viewActivate, animated: true)
         
     }
 
