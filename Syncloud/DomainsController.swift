@@ -8,16 +8,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var domains = [String]()
     
-    init(user: User) {
+    init() {
         super.init(nibName: "Domains", bundle: nil)
-        self.update(user)
-    }
-    
-    func update(user: User) {
-        domains.removeAll()
-        for domain in user.domains {
-            domains.append(domain.user_domain)
-        }
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -42,8 +34,33 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(false, animated: animated)
         super.viewWillAppear(animated)
+
+        self.loadDomains()
     }
-    
+
+    func loadDomains() {
+        var credentials = Storage.getCredentials()
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        dispatch_async(queue) { () -> Void in
+            var service = RedirectService(apiUrl: "http://api.syncloud.it")
+            var result = service.getUser(credentials.email!, password: credentials.password!)
+
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                if result.error == nil {
+                    self.updateDomains(result.user!)
+                }
+            }
+        }
+    }
+
+    func updateDomains(user: User) {
+        domains.removeAll()
+        for domain in user.domains {
+            domains.append(domain.user_domain)
+        }
+        self.tableView.reloadData()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

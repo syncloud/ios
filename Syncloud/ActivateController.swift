@@ -3,13 +3,20 @@ import UIKit
 
 class ActivateController: UIViewController {
     
-    @IBOutlet weak var webView: UIWebView!
-    
-    var endpoint: IdentifiedEndpoint
+    @IBOutlet weak var textDomain: UITextField!
+    @IBOutlet weak var textLogin: UITextField!
+    @IBOutlet weak var textPassword: UITextField!
+    @IBOutlet weak var btnActivate: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    init(endpoint: IdentifiedEndpoint) {
-        self.endpoint = endpoint
-        
+    var device: DeviceInternal
+    var idEndpoint: IdentifiedEndpoint
+
+    init(idEndpoint: IdentifiedEndpoint) {
+        self.idEndpoint = idEndpoint
+        let serverUrl = "http://\(idEndpoint.endpoint.host):81/server/rest"
+        self.device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
+
         super.init(nibName: "Activate", bundle: nil)
     }
     
@@ -22,11 +29,6 @@ class ActivateController: UIViewController {
         
         self.title = "Activate"
         (self.navigationController as! MainController).addSettings()
-
-        let host = self.endpoint.endpoint.host;
-        let url = NSURL(string: "http://\(host):81/server/html/activate.html?release=0.9")
-        let requestObj = NSURLRequest(URL: url!)
-        webView.loadRequest(requestObj)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,4 +37,35 @@ class ActivateController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    @IBAction func btnActivateClick(sender: UIButton) {
+        self.activityIndicator.startAnimating()
+        
+        var domain = self.textDomain.text
+        var deviceLogin = self.textLogin.text
+        var devicePassword = self.textPassword.text
+
+        var credentials = Storage.getCredentials()
+
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+
+        dispatch_async(queue) { () -> Void in
+            var result = self.device.activate(
+                domain,
+                email: credentials.email!,
+                password: credentials.password!,
+                deviceLogin: deviceLogin,
+                devicePassword: devicePassword)
+
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                self.activityIndicator.stopAnimating()
+
+                if result.error != nil {
+
+                } else {
+                    self.navigationController!.popToRootViewControllerAnimated(true)
+                }
+            }
+
+        }
+    }
 }

@@ -67,7 +67,6 @@ class AuthController: UIViewController {
         progressBar.startAnimating()
         
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-        
         dispatch_async(queue) { () -> Void in
             var service = RedirectService(apiUrl: "http://api.syncloud.it")
             var result = service.getUser(email, password: password)
@@ -79,7 +78,7 @@ class AuthController: UIViewController {
                     var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
-                    var viewDevices = DomainsController(user: result.user!)
+                    var viewDevices = DomainsController()
                     self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }

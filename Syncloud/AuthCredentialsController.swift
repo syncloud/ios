@@ -75,7 +75,7 @@ class AuthCredentialsController: UIViewController {
                     
                 } else {
                     Storage.saveCredentials(email: email, password: password)
-                    var viewDevices = DomainsController(user: result.user!)
+                    var viewDevices = DomainsController()
                     self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }

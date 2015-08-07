@@ -60,10 +60,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func found(endpoint: Endpoint) {
-        let host = endpoint.host
-        let serverUrl = "http://\(host):81/server/rest"
-        var tools = Tools(webService: WebService(apiUrl: serverUrl))
-        var (id, error) = tools.id()
+        let serverUrl = "http://\(endpoint.host):81/server/rest"
+        var device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
+        var (id, error) = device.id()
         
         if error != nil {
             return
@@ -94,7 +93,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var endpoint = self.endpoints[indexPath.row]
-        var viewActivate = ActivateController(endpoint: endpoint)
+        var viewActivate = ActivateController(idEndpoint: endpoint)
         self.navigationController!.pushViewController(viewActivate, animated: true)
         
     }

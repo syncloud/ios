@@ -29,7 +29,7 @@
 		FB1BF0521B1AA7D1000F34D4 /* Uncaught.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */; };
 		FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */; };
 		FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */; };
-		FB47D5301B05A6F300910F2D /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Tools.swift */; };
+		FB47D5301B05A6F300910F2D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Device.swift */; };
 		FB74D1431B6F19CB00BA06DC /* Activate.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB74D1421B6F19CB00BA06DC /* Activate.xib */; };
 		FB74D1451B6F1F7900BA06DC /* ActivateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74D1441B6F1F7900BA06DC /* ActivateController.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
@@ -67,7 +67,7 @@
 		FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uncaught.m; sourceTree = "<group>"; };
 		FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticHolder.swift; sourceTree = "<group>"; };
 		FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncaughtExceptionHandler.swift; sourceTree = "<group>"; };
-		FB47D52F1B05A6F300910F2D /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		FB47D52F1B05A6F300910F2D /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		FB74D1421B6F19CB00BA06DC /* Activate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activate.xib; sourceTree = "<group>"; };
 		FB74D1441B6F1F7900BA06DC /* ActivateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivateController.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				FB099FF11AFA54FE00AE22F2 /* UserService.swift */,
 				FB099FF21AFA54FE00AE22F2 /* WebService.swift */,
 				FB0757ED1B043AA800BE741F /* Discovery.swift */,
-				FB47D52F1B05A6F300910F2D /* Tools.swift */,
+				FB47D52F1B05A6F300910F2D /* Device.swift */,
 			);
 			name = Platform;
 			sourceTree = "<group>";
@@ -244,7 +244,7 @@
 				FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */,
 				FBE093CA1B0EC19800D0C1FE /* Helpers.swift in Sources */,
 				FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */,
-				FB47D5301B05A6F300910F2D /* Tools.swift in Sources */,
+				FB47D5301B05A6F300910F2D /* Device.swift in Sources */,
 				FBFA4C391B1404910000D42A /* MainController.swift in Sources */,
 				FB099FF81AFA54FE00AE22F2 /* UserService.swift in Sources */,
 				FB0BB5271B0FD6110063080A /* Keychain.swift in Sources */,
