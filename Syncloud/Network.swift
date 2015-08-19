@@ -4,7 +4,6 @@ func checkUrl(url: String) -> Int? {
     NSLog("Request: \(url)")
     
     var nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-    nsRequest.addValue("false", forHTTPHeaderField: "http.protocol.handle-redirects")
     
     var response: NSURLResponse? = nil
     var error: NSErrorPointer = nil
@@ -36,7 +35,7 @@ func findAccessibleUrl(domain: Domain) -> String? {
         
         let urlPublic = "http://\(domain.ip):\(theServer.port)"
         if checkUrl(urlPublic) == 200 {
-            return urlLocal;
+            return urlPublic;
         }
         
     }
