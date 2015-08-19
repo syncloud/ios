@@ -79,6 +79,15 @@ class Domain {
         }
 
     }
+
+    func service(name: String) -> Service? {
+        for service in self.services {
+            if service.name == name {
+                return service
+            }
+        }
+        return nil
+    }
 }
 
 extension Domain: Serializable {

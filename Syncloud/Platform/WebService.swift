@@ -96,33 +96,3 @@ class WebService {
         return parseJsonResult(responseData)
     }
 }
-
-func checkUrl(url: String) -> Int? {
-    NSLog("Request: \(url)")
-    
-    var nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-    
-    var response: NSURLResponse? = nil
-    var error: NSErrorPointer = nil
-    var responseData: NSData? =  NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response, error: error)
-    
-    if error != nil {
-        let message = "Request failed with error: \(error.debugDescription)"
-        NSLog(message)
-        return nil
-    }
-    
-    if let httpResponse = response as? NSHTTPURLResponse {
-        let message = "Response has status code: \(httpResponse.statusCode)"
-        NSLog(message)
-        return httpResponse.statusCode
-    }
-    
-    return nil
-}
-
-//func findAccessibleUrl(device: Domain) -> String? {
-//    
-//    
-//    let urlLocal = "http://\(device.local_ip)"
-//}

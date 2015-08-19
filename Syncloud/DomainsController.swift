@@ -6,7 +6,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var domains = [String]()
+    var domains = [Domain]()
     
     init() {
         super.init(nibName: "Domains", bundle: nil)
@@ -56,7 +56,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func updateDomains(user: User) {
         domains.removeAll()
         for domain in user.domains {
-            domains.append(domain.user_domain)
+            domains.append(domain)
         }
         self.tableView.reloadData()
     }
@@ -77,11 +77,23 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-        cell.textLabel?.text = self.domains[indexPath.row]
+        cell.textLabel?.text = self.domains[indexPath.row].user_domain
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let domain = self.domains[indexPath.row]
+
+        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        dispatch_async(queue) { () -> Void in
+            let url = findAccessibleUrl(domain)
+
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                if let theUrl = url {
+                    UIApplication.sharedApplication().openURL(NSURL(string: theUrl)!)
+                }
+            }
+        }
 
     }
 }
