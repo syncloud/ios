@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>FFC6C4D2-F03B-4782-B556-013A1A47B6EB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Syncloud</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>FD94E489077A4FDB6C2A079FF0C03AC4BE4B9E5F</key>
 		<string>https://github.com/syncloud/ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Syncloud.xcodeproj/project.xcworkspace</string>
+	<string>Syncloud.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>FD94E489077A4FDB6C2A079FF0C03AC4BE4B9E5F</key>

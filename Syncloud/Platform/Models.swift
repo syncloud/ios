@@ -11,7 +11,7 @@ func nullToNil(value : AnyObject?) -> AnyObject? {
 class Service {
     var local_port: Int
     var name: String
-    var port: Int
+    var port: Int?
     var protocol_: String
     var type: String
     var url: String?
@@ -19,7 +19,7 @@ class Service {
     init(json: NSDictionary) {
         self.local_port = json.valueForKey("local_port") as! Int
         self.name = json.valueForKey("name") as! String
-        self.port = json.valueForKey("port") as! Int
+        self.port = nullToNil(json.valueForKey("port")) as! Int?
         self.protocol_ = json.valueForKey("protocol") as! String
         self.type = json.valueForKey("type") as! String
         self.url = nullToNil(json.valueForKey("url")) as! String?
