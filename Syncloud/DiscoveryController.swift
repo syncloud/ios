@@ -30,8 +30,6 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
         
         (self.navigationController as! MainController).addSettings()
-        
-        discoveryStart()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +73,18 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
+            NSLog("Starting discovery")
+            self.discovery.stop()
             self.discovery.start(serviceName: "syncloud", listener: self)
+            
+            var timeout = 10
+            var count = 0
+            while (count < timeout) {
+                sleep(1)
+                count++
+            }
+            NSLog("Stopping discovery")
+            self.discovery.stop()
         }
     }
     

@@ -111,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				FB099FEB1AFA54E700AE22F2 /* Platform */,
+				FB0757ED1B043AA800BE741F /* Discovery.swift */,
 				FB1281831B843DF000DF80C6 /* Network.swift */,
 				FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */,
 				FBFA4C381B1404910000D42A /* MainController.swift */,
@@ -159,7 +160,6 @@
 				FB099FF01AFA54FE00AE22F2 /* Serializable.swift */,
 				FB099FF11AFA54FE00AE22F2 /* UserService.swift */,
 				FB099FF21AFA54FE00AE22F2 /* WebService.swift */,
-				FB0757ED1B043AA800BE741F /* Discovery.swift */,
 				FB47D52F1B05A6F300910F2D /* Device.swift */,
 			);
 			name = Platform;
