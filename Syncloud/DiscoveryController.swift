@@ -38,6 +38,26 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(false, animated: animated)
         super.viewWillAppear(animated)
+        
+        checkWiFi()
+    }
+    
+    func checkWiFi() {
+        let ssid = getSSID()
+        
+        if ssid == nil {
+            let alertMessage = "You are not connected to Wi-Fi network. Discovery is possible only in the same Wi-Fi network where you have Syncloud device connected."
+            var alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { action in
+                self.checkWiFi()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
+                self.navigationController!.popViewControllerAnimated(true)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            discoveryStart()
+        }
     }
     
     override func didReceiveMemoryWarning() {

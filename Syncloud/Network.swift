@@ -1,4 +1,5 @@
 import Foundation
+import SystemConfiguration.CaptiveNetwork
 
 func checkUrl(url: String) -> Int? {
     NSLog("Request: \(url)")
@@ -38,6 +39,17 @@ func findAccessibleUrl(domain: Domain) -> String? {
             return urlPublic;
         }
         
+    }
+    return nil
+}
+
+func getSSID() -> String? {
+    if let interfaces = CNCopySupportedInterfaces() {
+        let interfacesArray = interfaces.takeRetainedValue() as! [String]
+        if let unsafeInterfaceData = CNCopyCurrentNetworkInfo(interfacesArray[0]) {
+            let interfaceData = unsafeInterfaceData.takeRetainedValue() as Dictionary
+            return interfaceData["SSID"] as? String
+        }
     }
     return nil
 }
