@@ -7,7 +7,11 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     
     var domains = [Domain]()
-    
+
+    func mainController() -> MainController {
+        return self.navigationController as! MainController
+    }
+
     init() {
         super.init(nibName: "Domains", bundle: nil)
     }
@@ -42,8 +46,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         var credentials = Storage.getCredentials()
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            var service = RedirectService(apiUrl: "http://api.syncloud.it")
-            var result = service.getUser(credentials.email!, password: credentials.password!)
+            var result = self.mainController().userService.getUser(credentials.email!, password: credentials.password!)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 if result.error == nil {

@@ -11,7 +11,11 @@ class AuthController: UIViewController {
     init() {
         super.init(nibName: "Auth", bundle: nil)
     }
-    
+
+    func mainController() -> MainController {
+        return self.navigationController as! MainController
+    }
+
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -68,7 +72,7 @@ class AuthController: UIViewController {
         
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            var service = RedirectService(apiUrl: "http://api.syncloud.it")
+            var service = self.mainController().userService
             var result = service.getUser(email, password: password)
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in

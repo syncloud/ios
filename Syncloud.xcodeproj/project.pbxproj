@@ -26,6 +26,9 @@
 		FB0BB5291B113FD40063080A /* Auth.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0BB5281B113FD40063080A /* Auth.xib */; };
 		FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BB52A1B113FF80063080A /* AuthController.swift */; };
 		FB1281841B843DF000DF80C6 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1281831B843DF000DF80C6 /* Network.swift */; };
+		FB1281861B87630500DF80C6 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1281851B87630500DF80C6 /* UserStorage.swift */; };
+		FB1281881B88229F00DF80C6 /* CachedUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1281871B88229F00DF80C6 /* CachedUserService.swift */; };
+		FB12818A1B882B2700DF80C6 /* OpenInChromeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1281891B882B2700DF80C6 /* OpenInChromeController.swift */; };
 		FB155C861B102A32005F0A05 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB155C851B102A32005F0A05 /* Storage.swift */; };
 		FB1BF0521B1AA7D1000F34D4 /* Uncaught.m in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */; };
 		FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */; };
@@ -63,6 +66,9 @@
 		FB0BB5281B113FD40063080A /* Auth.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Auth.xib; sourceTree = "<group>"; };
 		FB0BB52A1B113FF80063080A /* AuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		FB1281831B843DF000DF80C6 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		FB1281851B87630500DF80C6 /* UserStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		FB1281871B88229F00DF80C6 /* CachedUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedUserService.swift; sourceTree = "<group>"; };
+		FB1281891B882B2700DF80C6 /* OpenInChromeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenInChromeController.swift; sourceTree = "<group>"; };
 		FB155C851B102A32005F0A05 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		FB1BF04F1B1AA436000F34D4 /* Uncaught.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uncaught.h; sourceTree = "<group>"; };
 		FB1BF0501B1AA7D0000F34D4 /* Syncloud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Syncloud-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 				FB1BF04F1B1AA436000F34D4 /* Uncaught.h */,
 				FB1BF0511B1AA7D1000F34D4 /* Uncaught.m */,
 				FB1BF0501B1AA7D0000F34D4 /* Syncloud-Bridging-Header.h */,
+				FB1281891B882B2700DF80C6 /* OpenInChromeController.swift */,
 				FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */,
 				FB099FBF1AFA4DAE00AE22F2 /* Supporting Files */,
 			);
@@ -161,6 +168,8 @@
 				FB099FF11AFA54FE00AE22F2 /* UserService.swift */,
 				FB099FF21AFA54FE00AE22F2 /* WebService.swift */,
 				FB47D52F1B05A6F300910F2D /* Device.swift */,
+				FB1281851B87630500DF80C6 /* UserStorage.swift */,
+				FB1281871B88229F00DF80C6 /* CachedUserService.swift */,
 			);
 			name = Platform;
 			sourceTree = "<group>";
@@ -247,14 +256,17 @@
 				FB099FF31AFA54FE00AE22F2 /* Errors.swift in Sources */,
 				FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */,
 				FBE093CA1B0EC19800D0C1FE /* Helpers.swift in Sources */,
+				FB1281881B88229F00DF80C6 /* CachedUserService.swift in Sources */,
 				FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */,
 				FB47D5301B05A6F300910F2D /* Device.swift in Sources */,
 				FBFA4C391B1404910000D42A /* MainController.swift in Sources */,
+				FB1281861B87630500DF80C6 /* UserStorage.swift in Sources */,
 				FB099FF81AFA54FE00AE22F2 /* UserService.swift in Sources */,
 				FB0BB5271B0FD6110063080A /* Keychain.swift in Sources */,
 				FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */,
 				FB099FF61AFA54FE00AE22F2 /* Results.swift in Sources */,
 				FB099FF71AFA54FE00AE22F2 /* Serializable.swift in Sources */,
+				FB12818A1B882B2700DF80C6 /* OpenInChromeController.swift in Sources */,
 				FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */,
 				FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */,
 				FB099FF51AFA54FE00AE22F2 /* RedirectService.swift in Sources */,

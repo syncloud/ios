@@ -87,9 +87,9 @@ class WebService {
             NSLog(message)
             return (result: nil, error: Error(message))
         }
-        
-        if let theResponseData = responseData {
-            var responseString = NSString(data: theResponseData, encoding: NSUTF8StringEncoding)!
+
+        if let responseData = responseData {
+            var responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
             NSLog("Response:\n\(responseString)")
         }
         

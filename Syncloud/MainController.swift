@@ -4,7 +4,9 @@ import UIKit
 class MainController: UINavigationController {
     
     var startController: UIViewController?
-    
+
+    var userService = CachedUserService(service: RedirectService(apiUrl: "http://api.syncloud.it"))
+
     override init(rootViewController: UIViewController) {
         self.startController = rootViewController
         super.init(rootViewController: rootViewController)
