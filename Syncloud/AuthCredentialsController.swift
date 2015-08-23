@@ -76,7 +76,9 @@ class AuthCredentialsController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 
                 if result.error != nil {
-                    
+                    var alert = UIAlertController(title: "Login failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 } else {
                     Storage.saveCredentials(email: email, password: password)
                     var viewDevices = DomainsController()
