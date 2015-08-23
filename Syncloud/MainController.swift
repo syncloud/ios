@@ -37,4 +37,12 @@ class MainController: UINavigationController {
         self.pushViewController(viewSettings, animated: true)
     }
     
+    func openUrl(url: String) {
+        let nsUrl = NSURL(string: url)!
+        if OpenInChromeController.sharedInstance.isChromeInstalled() {
+            OpenInChromeController.sharedInstance.openInChrome(nsUrl, callbackURL: nil, createNewTab: true)
+        } else {
+            UIApplication.sharedApplication().openURL(nsUrl)
+        }
+    }
 }

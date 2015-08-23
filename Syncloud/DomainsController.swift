@@ -92,12 +92,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let url = findAccessibleUrl(domain)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                if let theUrl = url {
-                    if OpenInChromeController.sharedInstance.isChromeInstalled() {
-                        OpenInChromeController.sharedInstance.openInChrome(NSURL(string: theUrl)!, callbackURL: nil, createNewTab: true)
-                    } else {
-                        UIApplication.sharedApplication().openURL(NSURL(string: theUrl)!)
-                    }
+                if let url = url {
+                    self.mainController().openUrl(url)
                 }
             }
         }

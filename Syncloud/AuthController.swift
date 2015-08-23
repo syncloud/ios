@@ -44,8 +44,7 @@ class AuthController: UIViewController {
     }
     
     @IBAction func btnLearnMoreClick(sender: AnyObject) {
-        var url = NSURL(string: "http://syncloud.org")
-        UIApplication.sharedApplication().openURL(url!)
+        self.mainController().openUrl("http://syncloud.org")
     }
     
     @IBAction func btnSignUpClick(sender: AnyObject) {
