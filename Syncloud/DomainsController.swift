@@ -23,9 +23,10 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        self.title = "Domains"
+        var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
+
+        self.title = "Devices"
         
         var btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
         var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
@@ -64,11 +65,6 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func btnAddClick(sender: UIBarButtonItem) {
         var viewDiscovery = DiscoveryController()
         self.navigationController!.pushViewController(viewDiscovery, animated: true)
@@ -79,24 +75,39 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-        cell.textLabel?.text = self.domains[indexPath.row].user_domain
+        let domain = self.domains[indexPath.row]
+        
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        cell.load(domain)
+        
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         let domain = self.domains[indexPath.row]
 
         var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        
+        var progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(progress, animated: true, completion: nil)
+        
         dispatch_async(queue) { () -> Void in
             let url = findAccessibleUrl(domain)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                if let url = url {
-                    self.mainController().openUrl(url)
-                }
+                progress.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    if let url = url {
+                        self.mainController().openUrl(url)
+                    } else {
+                        var alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                })
             }
         }
-
     }
+    
 }

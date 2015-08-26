@@ -60,7 +60,9 @@ class ActivateController: UIViewController {
                 self.activityIndicator.stopAnimating()
 
                 if result.error != nil {
-
+                    var alert = UIAlertController(title: "Activation failed", message: "Something went wrong and device activation failed.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 } else {
                     self.navigationController!.popToRootViewControllerAnimated(true)
                 }

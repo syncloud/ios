@@ -20,8 +20,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.tableEndpoints.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
+        self.tableEndpoints.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
         
         self.title = "Discovery"
         
@@ -57,12 +58,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             discoveryStart()
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+        
     @IBAction func btnDiscoveryClick(sender: AnyObject) {
         discoveryStart()
     }
@@ -114,13 +110,16 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = self.tableEndpoints.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         var endpoint = self.endpoints[indexPath.row]
-        cell.textLabel?.text = endpoint.id.title
+        
+        var cell = self.tableEndpoints.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        cell.load(endpoint)
+        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableEndpoints.deselectRowAtIndexPath(indexPath, animated: true)
         var endpoint = self.endpoints[indexPath.row]
         var viewActivate = ActivateController(idEndpoint: endpoint)
         self.navigationController!.pushViewController(viewActivate, animated: true)
