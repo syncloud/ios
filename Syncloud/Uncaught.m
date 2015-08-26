@@ -7,4 +7,4 @@ volatile void exceptionHandler(NSException *exception) {
     [[StaticHolder uncaughtExceptionHandler] handle:exception];
 }
 
-NSUncaughtExceptionHandler* exceptionHandlerPtr = &exceptionHandler;
+NSUncaughtExceptionHandler* exceptionHandlerPtr = (NSUncaughtExceptionHandler*)&exceptionHandler;
