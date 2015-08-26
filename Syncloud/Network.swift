@@ -5,6 +5,8 @@ func checkUrl(url: String) -> Int? {
     NSLog("Request: \(url)")
     
     var nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+    nsRequest.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+    nsRequest.timeoutInterval = 5
     
     var response: NSURLResponse? = nil
     var error: NSErrorPointer = nil
