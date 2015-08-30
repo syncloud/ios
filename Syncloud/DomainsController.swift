@@ -5,6 +5,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewNoDevices: UIView!
     
     var domains = [Domain]()
 
@@ -26,6 +27,9 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
 
+        self.tableView.hidden = false
+        self.viewNoDevices.hidden = true
+        
         self.title = "Devices"
         
         var btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
@@ -58,6 +62,14 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func updateDomains(user: User) {
+        if user.domains.isEmpty {
+            tableView.hidden = true
+            viewNoDevices.hidden = false
+        } else {
+            tableView.hidden = false
+            viewNoDevices.hidden = true
+        }
+        
         domains.removeAll()
         for domain in user.domains {
             domains.append(domain)

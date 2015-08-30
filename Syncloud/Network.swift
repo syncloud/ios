@@ -1,5 +1,6 @@
 import Foundation
 import SystemConfiguration.CaptiveNetwork
+import MessageUI
 
 func checkUrl(url: String) -> Int? {
     NSLog("Request: \(url)")
@@ -61,6 +62,10 @@ func findAccessibleUrl(domain: Domain) -> String? {
 }
 
 func getSSID() -> String? {
+    if UIDevice.currentDevice().model == "iPhone Simulator" {
+        return "Simulator"
+    }
+    
     if let interfaces = CNCopySupportedInterfaces() {
         let interfacesArray = interfaces.takeRetainedValue() as! [String]
         if let unsafeInterfaceData = CNCopyCurrentNetworkInfo(interfacesArray[0]) {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiscoveryController" customModule="Syncloud" customModuleProvider="target">
             <connections>
+                <outlet property="indicator" destination="BZh-j8-OiS" id="2fY-DA-Lll"/>
                 <outlet property="tableEndpoints" destination="KfE-8L-fCW" id="WiL-Eb-gLn"/>
                 <outlet property="view" destination="iN0-l3-epB" id="G0i-42-BLU"/>
+                <outlet property="viewNoDevices" destination="Kra-ln-0Qn" id="emU-0s-nNM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,13 +26,74 @@
                         <outlet property="delegate" destination="-1" id="exK-nc-ohr"/>
                     </connections>
                 </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BZh-j8-OiS">
+                    <rect key="frame" x="281" y="242" width="37" height="37"/>
+                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kra-ln-0Qn">
+                    <rect key="frame" x="150" y="160" width="300" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure that Syncloud device is on and connected to the same network." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aj5-Bl-sHB">
+                            <rect key="frame" x="25" y="69" width="250" height="65"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="65" id="evf-fk-z9c"/>
+                                <constraint firstAttribute="width" constant="250" id="hgL-WU-uKo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agX-Hf-Sis">
+                            <rect key="frame" x="55" y="142" width="190" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="190" id="dWE-Mo-ecP"/>
+                            </constraints>
+                            <state key="normal" title="Learn how to get device">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnLearnMoreClicked:" destination="-1" eventType="touchDown" id="AAn-UG-6fF"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Devices Discovered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmQ-d9-VxD">
+                            <rect key="frame" x="0.0" y="32" width="300" height="21"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="agX-Hf-Sis" secondAttribute="centerX" id="3Be-13-fvS"/>
+                        <constraint firstAttribute="centerX" secondItem="aj5-Bl-sHB" secondAttribute="centerX" id="4os-aI-ay3"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="ITA-hf-nqM"/>
+                        <constraint firstItem="agX-Hf-Sis" firstAttribute="top" secondItem="aj5-Bl-sHB" secondAttribute="bottom" constant="8" id="Jkc-Di-TLL"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="Pbs-cS-p7C"/>
+                        <constraint firstItem="UmQ-d9-VxD" firstAttribute="top" secondItem="Kra-ln-0Qn" secondAttribute="top" constant="32" id="a5t-gM-b5c"/>
+                        <constraint firstItem="UmQ-d9-VxD" firstAttribute="leading" secondItem="Kra-ln-0Qn" secondAttribute="leading" id="bSD-DF-TIf"/>
+                        <constraint firstItem="aj5-Bl-sHB" firstAttribute="top" secondItem="UmQ-d9-VxD" secondAttribute="bottom" constant="16" id="dvY-gu-9Zg"/>
+                        <constraint firstAttribute="width" constant="300" id="hpS-qa-3Hd"/>
+                        <constraint firstAttribute="centerX" secondItem="UmQ-d9-VxD" secondAttribute="centerX" id="oGs-0w-dqI"/>
+                        <constraint firstAttribute="height" constant="200" id="t9r-mA-fKw"/>
+                        <constraint firstAttribute="trailing" secondItem="UmQ-d9-VxD" secondAttribute="trailing" id="vUr-GC-Yna"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Pbs-cS-p7C"/>
+                        </mask>
+                    </variation>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="BZh-j8-OiS" secondAttribute="centerY" constant="40" id="4fi-HM-Mj7"/>
                 <constraint firstItem="KfE-8L-fCW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ew2-9N-8d5"/>
                 <constraint firstAttribute="trailing" secondItem="KfE-8L-fCW" secondAttribute="trailing" id="NHP-Xd-32P"/>
                 <constraint firstAttribute="bottom" secondItem="KfE-8L-fCW" secondAttribute="bottom" id="Tdf-Wi-7Ae"/>
+                <constraint firstAttribute="centerX" secondItem="BZh-j8-OiS" secondAttribute="centerX" id="WwT-zs-pEm"/>
                 <constraint firstItem="KfE-8L-fCW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cqE-Tq-H98"/>
+                <constraint firstAttribute="centerX" secondItem="Kra-ln-0Qn" secondAttribute="centerX" id="lTN-18-dDW"/>
+                <constraint firstAttribute="centerY" secondItem="Kra-ln-0Qn" secondAttribute="centerY" constant="40" id="lmm-dq-YAZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>

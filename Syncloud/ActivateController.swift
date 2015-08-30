@@ -38,6 +38,7 @@ class ActivateController: UIViewController {
     }
     
     @IBAction func btnActivateClick(sender: UIButton) {
+        self.view.endEditing(true)
         self.activityIndicator.startAnimating()
         
         var domain = self.textDomain.text

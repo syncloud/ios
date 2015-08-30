@@ -4,11 +4,17 @@ import UIKit
 class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDataSource, EndpointListener {
     
     @IBOutlet weak var tableEndpoints: UITableView!
+    @IBOutlet weak var viewNoDevices: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var discovery: Discovery
     
     var endpoints = [IdentifiedEndpoint]()
-       
+
+    func mainController() -> MainController {
+        return self.navigationController as! MainController
+    }
+    
     init() {
         discovery = Discovery()
         super.init(nibName: "Discovery", bundle: nil)
@@ -33,12 +39,20 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         (self.navigationController as! MainController).addSettings()
     }
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(false, animated: animated)
         super.viewWillAppear(animated)
         
         checkWiFi()
+    }
+    
+    @IBAction func btnLearnMoreClicked(sender: AnyObject) {
+        self.mainController().openUrl("http://syncloud.org")
     }
     
     func checkWiFi() {
@@ -58,12 +72,15 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             discoveryStart()
         }
     }
-        
+    
     @IBAction func btnDiscoveryClick(sender: AnyObject) {
         discoveryStart()
     }
     
     func discoveryStart() {
+        self.tableEndpoints.hidden = false
+        self.viewNoDevices.hidden = true
+        self.indicator.startAnimating()
         self.endpoints.removeAll(keepCapacity: true)
         self.tableEndpoints.reloadData()
         
@@ -72,15 +89,17 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             NSLog("Starting discovery")
             self.discovery.stop()
             self.discovery.start(serviceName: "syncloud", listener: self)
-            
-            var timeout = 10
-            var count = 0
-            while (count < timeout) {
-                sleep(1)
-                count++
-            }
+            sleep(10)
             NSLog("Stopping discovery")
             self.discovery.stop()
+            
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                self.indicator.stopAnimating()
+                if self.endpoints.isEmpty {
+                    self.tableEndpoints.hidden = true
+                    self.viewNoDevices.hidden = false
+                }
+            }
         }
     }
     
