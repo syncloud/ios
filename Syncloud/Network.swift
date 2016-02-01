@@ -34,7 +34,7 @@ func getUrl(address: String, _ port: Int) -> String {
 }
 
 func findAccessibleUrl(domain: Domain) -> String? {
-    let server = domain.service("server")
+    let server: Service? = nil
     
     if let theServer = server {
         if let externalPort = theServer.port {
@@ -43,15 +43,19 @@ func findAccessibleUrl(domain: Domain) -> String? {
                 return urlDomain;
             }
             
-            let urlPublicIp = getUrl(domain.ip, externalPort)
-            if checkUrl(urlPublicIp) == 200 {
-                return urlPublicIp;
+            if let external_ip = domain.ip {
+                let urlPublicIp = getUrl(external_ip, externalPort)
+                if checkUrl(urlPublicIp) == 200 {
+                    return urlPublicIp;
+                }
             }
         }
         
-        let urlLocal = getUrl(domain.local_ip, theServer.local_port)
-        if checkUrl(urlLocal) == 200 {
-            return urlLocal;
+        if let local_ip = domain.local_ip {
+            let urlLocal = getUrl(local_ip, theServer.local_port)
+            if checkUrl(urlLocal) == 200 {
+                return urlLocal;
+            }
         }
         
     }

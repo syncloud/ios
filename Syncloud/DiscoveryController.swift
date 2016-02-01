@@ -24,7 +24,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {ª
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         var cellNib = UINib(nibName: "DeviceCell", bundle: nil)

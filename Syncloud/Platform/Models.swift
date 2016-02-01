@@ -56,37 +56,16 @@ class Domain {
     var device_mac_address: String
     var device_name: String
     var device_title: String
-    var ip: String
-    var local_ip: String
-    var last_update: String
-    var services = [Service]()
+    var ip: String?
+    var local_ip: String?
     
     init(json: NSDictionary) {
         self.user_domain = json.valueForKey("user_domain") as! String
         self.device_mac_address = json.valueForKey("device_mac_address") as! String
         self.device_name = json.valueForKey("device_name") as! String
         self.device_title = json.valueForKey("device_title") as! String
-        self.ip = json.valueForKey("ip") as! String
-        self.local_ip = json.valueForKey("local_ip") as! String
-        self.last_update = json.valueForKey("last_update") as! String
-        
-        var itemsJson = json.objectForKey("services") as! NSArray?
-        if let theItemsJson = itemsJson {
-            for item in theItemsJson {
-                var itemJson = item as! NSDictionary
-                self.services.append(Service(json: itemJson))
-            }
-        }
-
-    }
-
-    func service(name: String) -> Service? {
-        for service in self.services {
-            if service.name == name {
-                return service
-            }
-        }
-        return nil
+        self.ip = nullToNil(json.valueForKey("ip")) as! String?
+        self.local_ip = nullToNil(json.valueForKey("local_ip")) as! String?
     }
 }
 
@@ -109,10 +88,6 @@ extension Domain: Serializable {
             return self.ip
         case "local_ip":
             return self.local_ip
-        case "last_update":
-            return self.last_update
-        case "services":
-            return self.services
         default:
             return NSNull()
         }
