@@ -11,8 +11,8 @@ func ipv4Enpoint(data: NSData) -> Endpoint? {
     if address.sa_family == sa_family_t(AF_INET) {
         var addressIPv4 = sockaddr_in()
         data.getBytes(&addressIPv4, length: sizeof(sockaddr))
-        var host = String.fromCString(inet_ntoa(addressIPv4.sin_addr))
-        var port = Int(CFSwapInt16(addressIPv4.sin_port))
+        let host = String.fromCString(inet_ntoa(addressIPv4.sin_addr))
+        let port = Int(CFSwapInt16(addressIPv4.sin_port))
         return Endpoint(host: host!, port: port)
     }
     return nil
@@ -40,12 +40,11 @@ class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDeleg
         netService.delegate = self
         resolving.append(netService)
         netService.resolveWithTimeout(0.0)
-        var serviceName = netService.name
     }
 
     func netServiceDidResolveAddress(sender: NSNetService) {
         for addressData in sender.addresses! {
-            var endpoint = ipv4Enpoint(addressData as! NSData)
+            let endpoint = ipv4Enpoint(addressData)
             if let theEndpoint = endpoint {
                 self.listener.found(theEndpoint)
             }
@@ -61,7 +60,7 @@ class BrowserDelegate : NSObject, NSNetServiceBrowserDelegate, NSNetServiceDeleg
         NSLog("BrowserDelegate.netServiceBrowserWillSearch")
     }
     
-    func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didNotSearch errorInfo: [NSObject : AnyObject]) {
+    func netServiceBrowser(netServiceBrowser: NSNetServiceBrowser, didNotSearch errorInfo: [String : NSNumber]) {
         NSLog("BrowserDelegate.netServiceBrowser.didNotSearch")
     }
     
@@ -83,7 +82,7 @@ class Discovery {
         self.nsb = NSNetServiceBrowser()
     }
     
-    func start(# serviceName: String, listener: EndpointListener) {
+    func start(serviceName: String, listener: EndpointListener) {
         self.nsbdel = BrowserDelegate(listener: listener)
         nsb.delegate = nsbdel
         nsb.searchForServicesOfType(BM_TYPE, inDomain: BM_DOMAIN)

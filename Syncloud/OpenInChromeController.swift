@@ -57,7 +57,7 @@ public class OpenInChromeController {
             if appName == nil {
                 appName = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String
             }
-            let scheme = url.scheme!.lowercaseString
+            let scheme = url.scheme.lowercaseString
             if scheme == "http" || scheme == "https" {
                 var chromeURLString = String(format: "%@//x-callback-url/open/?x-source=%@&url=%@", googleChromeCallbackScheme, encodeByAddingPercentEscapes(appName), encodeByAddingPercentEscapes(url.absoluteString))
                 if callbackURL != nil {
@@ -69,7 +69,7 @@ public class OpenInChromeController {
                 return UIApplication.sharedApplication().openURL(NSURL(string: chromeURLString)!)
             }
         } else if UIApplication.sharedApplication().canOpenURL(chromeSimpleURL) {
-            let scheme = url.scheme!.lowercaseString
+            let scheme = url.scheme.lowercaseString
             var chromeScheme: String? = nil
             if scheme == "http" {
                 chromeScheme = googleChromeHTTPScheme
@@ -78,7 +78,7 @@ public class OpenInChromeController {
             }
             if let chromeScheme = chromeScheme {
                 let absoluteURLString = url.absoluteString
-                let chromeURLString = chromeScheme + absoluteURLString!.substringFromIndex(absoluteURLString!.rangeOfString(":")!.startIndex)
+                let chromeURLString = chromeScheme + absoluteURLString.substringFromIndex(absoluteURLString.rangeOfString(":")!.startIndex)
                 return UIApplication.sharedApplication().openURL(NSURL(string: chromeURLString)!)
             }
         }

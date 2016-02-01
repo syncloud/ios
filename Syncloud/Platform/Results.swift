@@ -8,9 +8,11 @@ func parseJsonResult(data: NSData?) -> JsonResult {
     }
     
     var error: NSErrorPointer = nil
-    var jsonResult = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: error) as? NSDictionary
+    var jsonResult: NSDictionary? = nil
     
-    if error != nil {
+    do {
+        var jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
+    } catch let error as NSError {
         let message = "Parsing JSON caused a error"
         NSLog(message)
         return (result: nil, error: Error(message))

@@ -41,16 +41,16 @@ class ActivateController: UIViewController {
         self.view.endEditing(true)
         self.activityIndicator.startAnimating()
         
-        var domain = self.textDomain.text
-        var deviceLogin = self.textLogin.text
-        var devicePassword = self.textPassword.text
+        let domain = self.textDomain.text!
+        let deviceLogin = self.textLogin.text!
+        let devicePassword = self.textPassword.text!
 
-        var credentials = Storage.getCredentials()
+        let credentials = Storage.getCredentials()
 
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
 
         dispatch_async(queue) { () -> Void in
-            var result = self.device.activate(
+            let result = self.device.activate(
                 domain,
                 email: credentials.email!,
                 password: credentials.password!,
@@ -61,7 +61,7 @@ class ActivateController: UIViewController {
                 self.activityIndicator.stopAnimating()
 
                 if result.error != nil {
-                    var alert = UIAlertController(title: "Activation failed", message: "Something went wrong and device activation failed.", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Activation failed", message: "Something went wrong and device activation failed.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 } else {

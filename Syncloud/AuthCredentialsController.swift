@@ -56,13 +56,13 @@ class AuthCredentialsController: UIViewController {
     @IBAction func btnSignInClick(sender: UIButton) {
         self.activityIndicator.startAnimating()
         
-        var email = self.emailTextEdit.text
-        var password = self.passwordTextEdit.text
+        let email = self.emailTextEdit.text!
+        let password = self.passwordTextEdit.text!
         
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
-            var redirectService = self.mainController().userService
+            let redirectService = self.mainController().userService
 
             var result: UserResult!
             switch self.mode {
@@ -76,12 +76,12 @@ class AuthCredentialsController: UIViewController {
                 self.activityIndicator.stopAnimating()
                 
                 if result.error != nil {
-                    var alert = UIAlertController(title: "Login failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Login failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 } else {
                     Storage.saveCredentials(email: email, password: password)
-                    var viewDevices = DomainsController()
+                    let viewDevices = DomainsController()
                     self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }

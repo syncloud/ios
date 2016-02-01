@@ -8,12 +8,12 @@ class StorageKeys {
 public class Storage {
     
     public class func getCredentials() -> (email: String?, password: String?) {
-        var email = Keychain.get(StorageKeys.Email)
-        var password = Keychain.get(StorageKeys.Password)
+        let email = Keychain.get(StorageKeys.Email)
+        let password = Keychain.get(StorageKeys.Password)
         return (email: email, password: password)
     }
     
-    public class func saveCredentials(# email: String, password: String) {
+    public class func saveCredentials(email  email: String, password: String) {
         Keychain.set(StorageKeys.Email, value: email)
         Keychain.set(StorageKeys.Password, value: password)
     }

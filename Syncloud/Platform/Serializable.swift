@@ -13,7 +13,7 @@ struct Serialize {
 
         // add values
         for prop in obj.jsonProperties {
-            var val:AnyObject! = obj.valueForKey(prop)
+            let val: AnyObject! = obj.valueForKey(prop)
 
             if (val is String)
             {
@@ -54,23 +54,21 @@ struct Serialize {
 
     static func toJSON(obj: Serializable) -> String? {
         // get dict
-        var dict = toDictionary(obj)
+        let dict = toDictionary(obj)
 
         // make JSON
-        var error:NSError?
-        var data = NSJSONSerialization.dataWithJSONObject(dict, options:NSJSONWritingOptions(0), error: &error)
+        let data = try! NSJSONSerialization.dataWithJSONObject(dict, options:NSJSONWritingOptions())
 
         // return result
-        return NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+        return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
     }
     
     static func toJSON(dictionary: NSDictionary) -> String? {
         // make JSON
-        var error:NSError?
-        var data = NSJSONSerialization.dataWithJSONObject(dictionary, options:NSJSONWritingOptions(0), error: &error)
+        let data = try! NSJSONSerialization.dataWithJSONObject(dictionary, options:NSJSONWritingOptions())
         
         // return result
-        return NSString(data: data!, encoding: NSUTF8StringEncoding) as? String
+        return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
     }
     
 }

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
     
     func log2File() {
         if UIDevice.currentDevice().model != "iPhone Simulator" {
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! NSString
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
             self.logPath = documentsPath.stringByAppendingPathComponent("Syncloud.log")
             freopen(logPath!.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
         }
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()
             
-            var authController = AuthController()
+            let authController = AuthController()
             self.navController = MainController(rootViewController: authController)
             window.rootViewController = self.navController
             window.makeKeyAndVisible()
@@ -53,20 +53,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
     func sendLog() {
         if let theLogPath = logPath {
             if MFMailComposeViewController.canSendMail() {
-                var composer = MFMailComposeViewController()
+                let composer = MFMailComposeViewController()
                 composer.mailComposeDelegate = self
                 composer.setToRecipients(["support@syncloud.it"])
                 composer.setSubject("Syncloud Report")
                 composer.setMessageBody("Provide additional information here", isHTML: false)
-                var logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
-                composer.addAttachmentData(logData, mimeType: "Text/XML", fileName: "Syncloud.log")
-                self.navController!.visibleViewController.presentViewController(composer, animated: true, completion: nil)
+                let logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
+                composer.addAttachmentData(logData!, mimeType: "Text/XML", fileName: "Syncloud.log")
+                self.navController!.visibleViewController!.presentViewController(composer, animated: true, completion: nil)
             }
         }
     }
 
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-        self.navController!.visibleViewController.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.navController!.visibleViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func applicationWillResignActive(application: UIApplication) {

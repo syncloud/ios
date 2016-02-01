@@ -4,32 +4,34 @@ class UserStorage {
     let cacheFileUrl: NSURL
     
     init() {
-        let documentDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first as! NSURL
+        let documentDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
         self.cacheFileUrl = documentDirectoryURL.URLByAppendingPathComponent("user.json")
     }
     
     func load() -> User? {
-        var error: NSErrorPointer = nil
-        let json = String(contentsOfURL: self.cacheFileUrl, encoding: NSUTF8StringEncoding, error: error)
-        if let json = json {
+        do {
+            let json = try String(contentsOfURL: self.cacheFileUrl, encoding: NSUTF8StringEncoding)
             let jsonData = json.dataUsingEncoding(NSUTF8StringEncoding)
             if let jsonData = jsonData {
-                var jsonDict = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: error) as? NSDictionary
-                if let jsonDict = jsonDict {
-                    return User(json: jsonDict)
-                }
+                let jsonDict = try NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? NSDictionary
+                return User(json: jsonDict!)
             }
+        } catch {
         }
         return nil
     }
     
     func save(user: User) {
         let json = Serialize.toJSON(user)
-        json!.writeToURL(self.cacheFileUrl, atomically: true, encoding: NSUTF8StringEncoding, error: nil)
+        do {
+            try json!.writeToURL(self.cacheFileUrl, atomically: true, encoding: NSUTF8StringEncoding)
+        } catch {}
     }
     
     func erase() {
-        var manager = NSFileManager.defaultManager()
-        manager.removeItemAtURL(self.cacheFileUrl, error: nil)
+        let manager = NSFileManager.defaultManager()
+        do {
+            try manager.removeItemAtURL(self.cacheFileUrl)
+        } catch {}
     }
 }

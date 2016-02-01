@@ -3,7 +3,7 @@ import UIKit
 
 extension UINavigationController {
     func replaceViewController(viewController: UIViewController, animated: Bool) {
-        var controllers = self.viewControllers as! [UIViewController]
+        var controllers = self.viewControllers 
         controllers.removeLast()
         controllers.append(viewController)
         self.setViewControllers(controllers, animated: animated)

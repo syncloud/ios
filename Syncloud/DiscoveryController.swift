@@ -24,7 +24,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidLoad() {ª
         super.viewDidLoad()
         
         var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
@@ -88,7 +88,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         dispatch_async(queue) { () -> Void in
             NSLog("Starting discovery")
             self.discovery.stop()
-            self.discovery.start(serviceName: "syncloud", listener: self)
+            self.discovery.start("syncloud", listener: self)
             sleep(10)
             NSLog("Stopping discovery")
             self.discovery.stop()

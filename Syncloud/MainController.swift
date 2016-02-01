@@ -24,8 +24,8 @@ class MainController: UINavigationController {
     }
     
     func addSettings() {
-        var viewController = self.visibleViewController!
-        var btnSettings = UIBarButtonItem(title: "\u{2699}", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
+        let viewController = self.visibleViewController!
+        let btnSettings = UIBarButtonItem(title: "\u{2699}", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
         btnSettings.setTitleTextAttributes(
             [NSFontAttributeName: UIFont(name: "Arial", size: 26)!, NSForegroundColorAttributeName : viewController.view.tintColor],
             forState: UIControlState.Normal)
@@ -33,7 +33,7 @@ class MainController: UINavigationController {
     }
 
     func btnSettingsClick(sender: UIBarButtonItem) {
-        var viewSettings = SettingsController()
+        let viewSettings = SettingsController()
         self.pushViewController(viewSettings, animated: true)
     }
     

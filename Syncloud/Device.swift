@@ -10,7 +10,7 @@ class DeviceInternal {
     }
     
     func id() -> (result: Identification?, error: Error?) {
-        var request = Request(RequestType.GET, "/id")
+        let request = Request(RequestType.GET, "/id")
 
         let (response, error) = webService.execute(request)
 
@@ -22,14 +22,14 @@ class DeviceInternal {
     }
 
     func activate(domain: String, email: String, password: String, deviceLogin: String, devicePassword: String) -> (result: Identification?, error: Error?) {
-        var parameters = [
+        let parameters = [
             "redirect-email": email,
             "redirect-password": password,
             "redirect-domain": domain,
             "name": deviceLogin,
             "password": devicePassword
         ]
-        var request = Request(RequestType.POST, "/activate", parameters)
+        let request = Request(RequestType.POST, "/activate", parameters)
 
         let (response, error) = webService.execute(request)
 

@@ -47,7 +47,7 @@ class Request {
     }
 }
 
-func createRequest(request: Request, rootUrl: String) -> NSURLRequest {
+func createRequest(request: Request, _ rootUrl: String) -> NSURLRequest {
     var paramsString = request.paramsToString()
     var url = rootUrl+request.url
 
@@ -77,12 +77,12 @@ class WebService {
         var nsRequest = createRequest(request, self.apiUrl)
         
         NSLog("Request: \(request.toString())")
-        
-        var response: NSURLResponse? = nil
-        var error: NSErrorPointer = nil
-        var responseData: NSData? =  NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response, error: error)
-        
-        if error != nil {
+
+        var responseData: NSData? = nil
+        do {
+            var response: NSURLResponse? = nil
+            responseData = try NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response)
+        } catch let error as NSError {
             let message = "Request failed with error: \(error.debugDescription)"
             NSLog(message)
             return (result: nil, error: Error(message))
