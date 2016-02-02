@@ -103,10 +103,10 @@ class User {
         self.active = json.valueForKey("active") as! Bool
         self.email = json.valueForKey("email") as! String
         
-        var itemsJson = json.objectForKey("domains") as! NSArray?
+        let itemsJson = json.objectForKey("domains") as! NSArray?
         if let theItemsJson = itemsJson {
             for item in theItemsJson {
-                var itemJson = item as! NSDictionary
+                let itemJson = item as! NSDictionary
                 self.domains.append(Domain(json: itemJson))
             }
         }

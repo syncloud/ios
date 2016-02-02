@@ -23,7 +23,7 @@ class AuthController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var blueColor = self.view.tintColor.CGColor
+        let blueColor = self.view.tintColor.CGColor
         btnSignUp.layer.borderWidth = 1
         btnSignUp.layer.cornerRadius = 5
         btnSignUp.layer.borderColor = blueColor
@@ -48,17 +48,17 @@ class AuthController: UIViewController {
     }
     
     @IBAction func btnSignUpClick(sender: AnyObject) {
-        var authCredentials = AuthCredentialsController(mode: AuthMode.SignUp)
+        let authCredentials = AuthCredentialsController(mode: AuthMode.SignUp)
         self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
     @IBAction func btnSignInClick(sender: AnyObject) {
-        var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
+        let authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
         self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
     func checkCredentials() {
-        var credentials = Storage.getCredentials()
+        let credentials = Storage.getCredentials()
         
         if let theEmail = credentials.email {
             self.signIn(theEmail, credentials.password!)
@@ -69,19 +69,19 @@ class AuthController: UIViewController {
         viewButtons.hidden = true
         progressBar.startAnimating()
         
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            var service = self.mainController().userService
-            var result = service.getUser(email, password: password)
+            let service = self.mainController().userService
+            let result = service.getUser(email, password: password)
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.progressBar.stopAnimating()
                 
                 if result.error != nil {
-                    var authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
+                    let authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
-                    var viewDevices = DomainsController()
+                    let viewDevices = DomainsController()
                     self.navigationController!.replaceAll(viewDevices, animated: true)
                 }
             }

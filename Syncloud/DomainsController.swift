@@ -24,7 +24,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
+        let cellNib = UINib(nibName: "DeviceCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
 
         self.tableView.hidden = false
@@ -32,8 +32,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.title = "Devices"
         
-        var btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
-        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        let btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnAdd, flexibleSpace]
         
         (self.navigationController as! MainController).addSettings()
@@ -48,10 +48,10 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func loadDomains() {
-        var credentials = Storage.getCredentials()
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let credentials = Storage.getCredentials()
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            var result = self.mainController().userService.getUser(credentials.email!, password: credentials.password!)
+            let result = self.mainController().userService.getUser(credentials.email!, password: credentials.password!)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 if result.error == nil {
@@ -78,7 +78,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func btnAddClick(sender: UIBarButtonItem) {
-        var viewDiscovery = DiscoveryController()
+        let viewDiscovery = DiscoveryController()
         self.navigationController!.pushViewController(viewDiscovery, animated: true)
     }
     
@@ -89,7 +89,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let domain = self.domains[indexPath.row]
         
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
         cell.load(domain)
         
         return cell
@@ -100,9 +100,9 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let domain = self.domains[indexPath.row]
 
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
-        var progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.Alert)
+        let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(progress, animated: true, completion: nil)
         
         dispatch_async(queue) { () -> Void in
@@ -113,7 +113,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
                     if let url = url {
                         self.mainController().openUrl(url)
                     } else {
-                        var alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }

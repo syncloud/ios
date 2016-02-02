@@ -30,7 +30,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         cells[sectionAccount] = [cellEmail, cellSignOut]
         cells[sectionLog] = [cellSendLog]
         
-        var credentials = Storage.getCredentials()
+        let credentials = Storage.getCredentials()
         
         if let theEmail = credentials.email {
             self.labelEmailValue.text = theEmail
@@ -56,7 +56,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     func signOut() {
         Storage.deleteCredentials()
-        var authController = AuthController()
+        let authController = AuthController()
         self.navigationController!.replaceAll(authController, animated: true)
     }
     
@@ -78,7 +78,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell = getCell(indexPath)
+        let cell = getCell(indexPath)
         if cell == cellSignOut {
             signOut()
         }

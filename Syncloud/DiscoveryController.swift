@@ -27,13 +27,13 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var cellNib = UINib(nibName: "DeviceCell", bundle: nil)
+        let cellNib = UINib(nibName: "DeviceCell", bundle: nil)
         self.tableEndpoints.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
         
         self.title = "Discovery"
         
-        var btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnDiscoveryClick:"))
-        var flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnDiscoveryClick:"))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
         
         (self.navigationController as! MainController).addSettings()
@@ -60,7 +60,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if ssid == nil {
             let alertMessage = "You are not connected to Wi-Fi network. Discovery is possible only in the same Wi-Fi network where you have Syncloud device connected."
-            var alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { action in
                 self.checkWiFi()
             }))
@@ -84,7 +84,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         self.endpoints.removeAll(keepCapacity: true)
         self.tableEndpoints.reloadData()
         
-        var queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
             NSLog("Starting discovery")
             self.discovery.stop()
@@ -105,14 +105,14 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func found(endpoint: Endpoint) {
         let serverUrl = "http://\(endpoint.host):81/server/rest"
-        var device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
-        var (id, error) = device.id()
+        let device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
+        let (id, error) = device.id()
         
         if error != nil {
             return
         }
         
-        var identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
+        let identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.endpoints.append(identifiedEndpoint)
@@ -129,9 +129,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var endpoint = self.endpoints[indexPath.row]
+        let endpoint = self.endpoints[indexPath.row]
         
-        var cell = self.tableEndpoints.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        let cell = self.tableEndpoints.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
         cell.load(endpoint)
         
         return cell
@@ -139,8 +139,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableEndpoints.deselectRowAtIndexPath(indexPath, animated: true)
-        var endpoint = self.endpoints[indexPath.row]
-        var viewActivate = ActivateController(idEndpoint: endpoint)
+        let endpoint = self.endpoints[indexPath.row]
+        let viewActivate = ActivateController(idEndpoint: endpoint)
         self.navigationController!.pushViewController(viewActivate, animated: true)
         
     }

@@ -11,14 +11,14 @@ func parseJsonResult(data: NSData?) -> JsonResult {
     
     do {
         jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
-    } catch let error as NSError {
+    } catch {
         let message = "Parsing JSON caused a error"
         NSLog(message)
         return (result: nil, error: Error(message))
     }
     
     if let theJsonResult = jsonResult {
-        var baseResult = BaseResult(json: theJsonResult)
+        let baseResult = BaseResult(json: theJsonResult)
         if baseResult.success {
             return (result: jsonResult, error: nil)
         } else {
@@ -39,10 +39,10 @@ class ParameterMessages {
     init(json: NSDictionary) {
         self.parameter = json.valueForKey("parameter") as! String
         
-        var itemsJson = json.objectForKey("messages") as! NSArray?
+        let itemsJson = json.objectForKey("messages") as! NSArray?
         if let theItemsJson = itemsJson {
             for item in theItemsJson {
-                var itemString = item as! String
+                let itemString = item as! String
                 self.messages.append(itemString)
             }
         }
@@ -58,11 +58,11 @@ class BaseResult {
         self.success = json.valueForKey("success") as! Bool
         self.message = json.valueForKey("message") as? String
         
-        var itemsJson = json.objectForKey("parameters_messages") as! NSArray?
+        let itemsJson = json.objectForKey("parameters_messages") as! NSArray?
         if let theItemsJson = itemsJson {
             self.parameters_messages = [ParameterMessages]()
             for item in theItemsJson {
-                var itemJson = item as! NSDictionary
+                let itemJson = item as! NSDictionary
                 self.parameters_messages!.append(ParameterMessages(json: itemJson))
             }
         }

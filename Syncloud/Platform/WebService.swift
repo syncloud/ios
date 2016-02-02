@@ -48,7 +48,7 @@ class Request {
 }
 
 func createRequest(request: Request, _ rootUrl: String) -> NSURLRequest {
-    var paramsString = request.paramsToString()
+    let paramsString = request.paramsToString()
     var url = rootUrl+request.url
 
     switch request.type {
@@ -59,7 +59,7 @@ func createRequest(request: Request, _ rootUrl: String) -> NSURLRequest {
         }
         return NSURLRequest(URL: NSURL(string: url)!)
     case RequestType.POST:
-        var nsRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+        let nsRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
         nsRequest.HTTPMethod = "POST"
         nsRequest.HTTPBody = paramsString.dataUsingEncoding(NSUTF8StringEncoding)
         return nsRequest
@@ -74,7 +74,7 @@ class WebService {
     }
 
     func execute(request: Request) -> (result: NSDictionary?, error: Error?) {
-        var nsRequest = createRequest(request, self.apiUrl)
+        let nsRequest = createRequest(request, self.apiUrl)
         
         NSLog("Request: \(request.toString())")
 
@@ -89,7 +89,7 @@ class WebService {
         }
 
         if let responseData = responseData {
-            var responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
+            let responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
             NSLog("Response:\n\(responseString)")
         }
         
