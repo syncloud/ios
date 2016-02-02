@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D28824F1C026F930208CA668 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28823876B821B8859A71101 /* Helpers.swift */; };
 		FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0757ED1B043AA800BE741F /* Discovery.swift */; };
 		FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */; };
 		FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */; };
@@ -40,13 +41,14 @@
 		FBD8E57F1B8D565400CD978F /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD8E57E1B8D565400CD978F /* DeviceCell.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
 		FBDB63E81B0A13E8004D2964 /* DiscoveryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */; };
-		FBE093CA1B0EC19800D0C1FE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE093C91B0EC19800D0C1FE /* Helpers.swift */; };
+		FBE093CA1B0EC19800D0C1FE /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE093C91B0EC19800D0C1FE /* UIHelpers.swift */; };
 		FBFA4C391B1404910000D42A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFA4C381B1404910000D42A /* MainController.swift */; };
 		FBFA4C3B1B140F7D0000D42A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */; };
 		FBFA4C3D1B14106C0000D42A /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBFA4C3C1B14106C0000D42A /* Settings.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D28823876B821B8859A71101 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		FB0757ED1B043AA800BE741F /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
 		FB099FBC1AFA4DAE00AE22F2 /* Syncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB099FC01AFA4DAE00AE22F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +86,7 @@
 		FBD8E57E1B8D565400CD978F /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
 		FBDB63E71B0A13E8004D2964 /* DiscoveryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryController.swift; sourceTree = "<group>"; };
-		FBE093C91B0EC19800D0C1FE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		FBE093C91B0EC19800D0C1FE /* UIHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
 		FBFA4C381B1404910000D42A /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		FBFA4C3C1B14106C0000D42A /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 				FB74D1441B6F1F7900BA06DC /* ActivateController.swift */,
 				FBFA4C3C1B14106C0000D42A /* Settings.xib */,
 				FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */,
-				FBE093C91B0EC19800D0C1FE /* Helpers.swift */,
+				FBE093C91B0EC19800D0C1FE /* UIHelpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
 				FB155C851B102A32005F0A05 /* Storage.swift */,
 				FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */,
@@ -176,6 +178,7 @@
 				FB47D52F1B05A6F300910F2D /* Device.swift */,
 				FB1281851B87630500DF80C6 /* UserStorage.swift */,
 				FB1281871B88229F00DF80C6 /* CachedUserService.swift */,
+				D28823876B821B8859A71101 /* Helpers.swift */,
 			);
 			name = Platform;
 			sourceTree = "<group>";
@@ -263,7 +266,7 @@
 				FBD8E57F1B8D565400CD978F /* DeviceCell.swift in Sources */,
 				FB099FF31AFA54FE00AE22F2 /* Errors.swift in Sources */,
 				FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */,
-				FBE093CA1B0EC19800D0C1FE /* Helpers.swift in Sources */,
+				FBE093CA1B0EC19800D0C1FE /* UIHelpers.swift in Sources */,
 				FB1281881B88229F00DF80C6 /* CachedUserService.swift in Sources */,
 				FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */,
 				FB47D5301B05A6F300910F2D /* Device.swift in Sources */,
@@ -285,6 +288,7 @@
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
 				FB155C861B102A32005F0A05 /* Storage.swift in Sources */,
 				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
+				D28824F1C026F930208CA668 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@ import Foundation
 import SystemConfiguration.CaptiveNetwork
 import MessageUI
 
-func checkUrl(url: String) -> Int? {
+func checkUrl(url: String) -> Bool {
     NSLog("Request: \(url)")
     
     let nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -15,50 +15,35 @@ func checkUrl(url: String) -> Int? {
         if let httpResponse = response as? NSHTTPURLResponse {
             let message = "Response has status code: \(httpResponse.statusCode)"
             NSLog(message)
-            return httpResponse.statusCode
+            return httpResponse.statusCode == 200
         }
-        return nil
+        return false
     } catch (let error) {
         let message = "Request failed with error: \(error)"
         NSLog(message)
-        return nil
+        return false
     }
 }
 
-func getUrl(address: String, _ port: Int) -> String {
-    var url = "http://\(address)"
-    if port != 80 {
-        url = url+":\(port)"
+func findAccessibleUrl(mainDomain: String, _ domain: Domain) -> String? {
+    if let theDnsUrl = domain.getDnsUrl(mainDomain) {
+        if checkUrl(theDnsUrl) {
+            return theDnsUrl
+        }
     }
-    return url
-}
 
-func findAccessibleUrl(domain: Domain) -> String? {
-    let server: Service? = nil
-    
-    if let theServer = server {
-        if let externalPort = theServer.port {
-            let urlDomain = getUrl("\(domain.user_domain).syncloud.it", externalPort)
-            if checkUrl(urlDomain) == 200 {
-                return urlDomain;
-            }
-            
-            if let external_ip = domain.ip {
-                let urlPublicIp = getUrl(external_ip, externalPort)
-                if checkUrl(urlPublicIp) == 200 {
-                    return urlPublicIp;
-                }
-            }
+    if let theExternalUrl = domain.getExternalUrl() {
+        if checkUrl(theExternalUrl) {
+            return theExternalUrl
         }
-        
-        if let local_ip = domain.local_ip {
-            let urlLocal = getUrl(local_ip, theServer.local_port)
-            if checkUrl(urlLocal) == 200 {
-                return urlLocal;
-            }
-        }
-        
     }
+
+    if let theInternalUrl = domain.getInternalUrl() {
+        if checkUrl(theInternalUrl) {
+            return theInternalUrl
+        }
+    }
+
     return nil
 }
 

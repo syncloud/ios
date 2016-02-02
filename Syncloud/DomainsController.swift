@@ -106,7 +106,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.presentViewController(progress, animated: true, completion: nil)
         
         dispatch_async(queue) { () -> Void in
-            let url = findAccessibleUrl(domain)
+            let url = findAccessibleUrl("syncloud.it", domain)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 progress.dismissViewControllerAnimated(true, completion: { () -> Void in

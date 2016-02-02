@@ -1,15 +1,9 @@
 import Foundation
-import UIKit
 
-extension UINavigationController {
-    func replaceViewController(viewController: UIViewController, animated: Bool) {
-        var controllers = self.viewControllers 
-        controllers.removeLast()
-        controllers.append(viewController)
-        self.setViewControllers(controllers, animated: animated)
+func getUrl(theProtocol: String, _ address: String, _ port: Int) -> String {
+    var url = "\(theProtocol)://\(address)"
+    if port != 80 {
+        url = url+":\(port)"
     }
-    
-    func replaceAll(viewController: UIViewController, animated: Bool) {
-        self.setViewControllers([viewController], animated: true)
-    }
+    return url
 }

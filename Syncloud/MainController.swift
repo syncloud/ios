@@ -27,8 +27,9 @@ class MainController: UINavigationController {
         let viewController = self.visibleViewController!
         let btnSettings = UIBarButtonItem(title: "\u{2699}", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
         btnSettings.setTitleTextAttributes(
-            [NSFontAttributeName: UIFont(name: "Arial", size: 26)!, NSForegroundColorAttributeName : viewController.view.tintColor],
+            [NSFontAttributeName: UIFont(name: "Arial", size: 26)!, NSForegroundColorAttributeName : UIColor.redColor()],
             forState: UIControlState.Normal)
+        btnSettings.tintColor = UIColor.redColor()
         viewController.navigationItem.rightBarButtonItem = btnSettings
     }
 
