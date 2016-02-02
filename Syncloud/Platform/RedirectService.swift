@@ -3,8 +3,8 @@ import Foundation
 class RedirectService: IUserService {
     var webService: WebService
     
-    init(apiUrl: String) {
-        self.webService = WebService(apiUrl: apiUrl)
+    init(webService: WebService) {
+        self.webService = webService
     }
     
     func getUser(email: String, password: String) -> UserResult {

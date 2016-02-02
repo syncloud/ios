@@ -62,14 +62,14 @@ class AuthCredentialsController: UIViewController {
         let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
-            let redirectService = self.mainController().userService
+            let service = self.mainController().getUserService()
 
             var result: UserResult!
             switch self.mode {
             case .SignIn:
-                result = redirectService.getUser(email, password: password)
+                result = service.getUser(email, password: password)
             case .SignUp:
-                result = redirectService.createUser(email, password: password)
+                result = service.createUser(email, password: password)
             }
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in

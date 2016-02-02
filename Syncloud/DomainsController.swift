@@ -6,7 +6,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var btnDiscover: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewNoDevices: UIView!
-    
+
+    let mainDomain = Storage.getMainDomain()
     var domains = [Domain]()
 
     func mainController() -> MainController {
@@ -51,7 +52,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let credentials = Storage.getCredentials()
         let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            let result = self.mainController().userService.getUser(credentials.email!, password: credentials.password!)
+            let result = self.mainController().getUserService().getUser(credentials.email!, password: credentials.password!)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 if result.error == nil {
@@ -90,7 +91,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let domain = self.domains[indexPath.row]
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
-        cell.load(domain)
+        cell.load(mainDomain, domain)
         
         return cell
     }
@@ -104,9 +105,9 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(progress, animated: true, completion: nil)
-        
+
         dispatch_async(queue) { () -> Void in
-            let url = findAccessibleUrl("syncloud.it", domain)
+            let url = findAccessibleUrl(Storage.getMainDomain(), domain)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 progress.dismissViewControllerAnimated(true, completion: { () -> Void in

@@ -7,3 +7,7 @@ func getUrl(theProtocol: String, _ address: String, _ port: Int) -> String {
     }
     return url
 }
+
+func getRedirectApiUrl(mainDomain: String) -> String{
+    return "http://api.\(mainDomain)"
+}

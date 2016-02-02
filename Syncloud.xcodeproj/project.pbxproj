@@ -37,6 +37,8 @@
 		FB47D5301B05A6F300910F2D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Device.swift */; };
 		FB74D1431B6F19CB00BA06DC /* Activate.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB74D1421B6F19CB00BA06DC /* Activate.xib */; };
 		FB74D1451B6F1F7900BA06DC /* ActivateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74D1441B6F1F7900BA06DC /* ActivateController.swift */; };
+		FBD450EB1C61301F005444E7 /* DnsSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD450EA1C61301F005444E7 /* DnsSelector.xib */; };
+		FBD450ED1C613040005444E7 /* DnsSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD450EC1C613040005444E7 /* DnsSelectorController.swift */; };
 		FBD8E57D1B8D533500CD978F /* DeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD8E57C1B8D533500CD978F /* DeviceCell.xib */; };
 		FBD8E57F1B8D565400CD978F /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD8E57E1B8D565400CD978F /* DeviceCell.swift */; };
 		FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDB63E51B0A13BF004D2964 /* Discovery.xib */; };
@@ -82,6 +84,8 @@
 		FB47D52F1B05A6F300910F2D /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		FB74D1421B6F19CB00BA06DC /* Activate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activate.xib; sourceTree = "<group>"; };
 		FB74D1441B6F1F7900BA06DC /* ActivateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivateController.swift; sourceTree = "<group>"; };
+		FBD450EA1C61301F005444E7 /* DnsSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DnsSelector.xib; sourceTree = "<group>"; };
+		FBD450EC1C613040005444E7 /* DnsSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnsSelectorController.swift; sourceTree = "<group>"; };
 		FBD8E57C1B8D533500CD978F /* DeviceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
 		FBD8E57E1B8D565400CD978F /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 		FBDB63E51B0A13BF004D2964 /* Discovery.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Discovery.xib; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				FB74D1441B6F1F7900BA06DC /* ActivateController.swift */,
 				FBFA4C3C1B14106C0000D42A /* Settings.xib */,
 				FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */,
+				FBD450EA1C61301F005444E7 /* DnsSelector.xib */,
+				FBD450EC1C613040005444E7 /* DnsSelectorController.swift */,
 				FBE093C91B0EC19800D0C1FE /* UIHelpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
 				FB155C851B102A32005F0A05 /* Storage.swift */,
@@ -249,6 +255,7 @@
 				FBD8E57D1B8D533500CD978F /* DeviceCell.xib in Resources */,
 				FBDB63E61B0A13BF004D2964 /* Discovery.xib in Resources */,
 				FB74D1431B6F19CB00BA06DC /* Activate.xib in Resources */,
+				FBD450EB1C61301F005444E7 /* DnsSelector.xib in Resources */,
 				FB099FE81AFA543000AE22F2 /* Domains.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
 				FB155C861B102A32005F0A05 /* Storage.swift in Sources */,
 				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
+				FBD450ED1C613040005444E7 /* DnsSelectorController.swift in Sources */,
 				D28824F1C026F930208CA668 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

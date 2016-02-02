@@ -8,9 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsController" customModule="Syncloud" customModuleProvider="target">
             <connections>
+                <outlet property="cellDomainNameService" destination="bSM-Vw-jlE" id="9Rl-ox-dc3"/>
                 <outlet property="cellEmail" destination="W4b-UO-wOi" id="WI3-HX-zCJ"/>
                 <outlet property="cellSendLog" destination="7ni-bW-00E" id="JAN-xK-whD"/>
                 <outlet property="cellSignOut" destination="egd-aS-vaH" id="Xxi-JK-r6f"/>
+                <outlet property="labelDomainNameService" destination="Nov-mQ-orS" id="0VR-yd-Bp1"/>
                 <outlet property="labelEmailValue" destination="j5V-I5-YZH" id="ZjS-ub-JsD"/>
                 <outlet property="tableSettings" destination="obN-LC-iax" id="tjL-JY-XPF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5vB-52-ZAd"/>
@@ -116,6 +118,24 @@
                 </subviews>
             </tableViewCellContentView>
             <point key="canvasLocation" x="346" y="90"/>
+        </tableViewCell>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Nov-mQ-orS" style="IBUITableViewCellStyleDefault" id="bSM-Vw-jlE">
+            <rect key="frame" x="0.0" y="0.0" width="599" height="46"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSM-Vw-jlE" id="trx-Mu-NAx">
+                <rect key="frame" x="0.0" y="0.0" width="599" height="45"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Domain Name Service: Syncloud DNS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nov-mQ-orS">
+                        <rect key="frame" x="15" y="0.0" width="569" height="45"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="346.5" y="188"/>
         </tableViewCell>
     </objects>
 </document>

@@ -8,7 +8,8 @@ class ActivateController: UIViewController {
     @IBOutlet weak var textPassword: UITextField!
     @IBOutlet weak var btnActivate: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    @IBOutlet weak var labelMainDomain: UILabel!
+    
     var device: DeviceInternal
     var idEndpoint: IdentifiedEndpoint
 
@@ -28,6 +29,10 @@ class ActivateController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Activate"
+        
+        let mainDomain = Storage.getMainDomain()
+        self.labelMainDomain.text = ".\(mainDomain)"
+        
         (self.navigationController as! MainController).addSettings()
     }
     
@@ -51,7 +56,8 @@ class ActivateController: UIViewController {
 
         dispatch_async(queue) { () -> Void in
             let result = self.device.activate(
-                domain,
+                Storage.getMainDomain(),
+                domain: domain,
                 email: credentials.email!,
                 password: credentials.password!,
                 deviceLogin: deviceLogin,

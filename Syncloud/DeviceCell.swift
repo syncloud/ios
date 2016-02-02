@@ -6,8 +6,8 @@ class DeviceCell: UITableViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelSubtitle: UILabel!
     
-    func load(domain: Domain) {
-        labelTitle.text = "\(domain.user_domain).syncloud.it"
+    func load(mainDomain: String, _ domain: Domain) {
+        labelTitle.text = "\(domain.user_domain).\(mainDomain)"
         labelSubtitle.text = domain.device_title
     }
     

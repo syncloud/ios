@@ -5,8 +5,6 @@ class MainController: UINavigationController {
     
     var startController: UIViewController?
 
-    var userService = CachedUserService(service: RedirectService(apiUrl: "http://api.syncloud.it"))
-
     override init(rootViewController: UIViewController) {
         self.startController = rootViewController
         super.init(rootViewController: rootViewController)
@@ -22,20 +20,38 @@ class MainController: UINavigationController {
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    func getUserService() -> IUserService {
+        return CachedUserService(service: RedirectService(webService: WebService(apiUrl: getRedirectApiUrl(Storage.getMainDomain()))))
+    }
+
     func addSettings() {
         let viewController = self.visibleViewController!
         let btnSettings = UIBarButtonItem(title: "\u{2699}", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
         btnSettings.setTitleTextAttributes(
             [NSFontAttributeName: UIFont(name: "Arial", size: 26)!, NSForegroundColorAttributeName : UIColor.redColor()],
             forState: UIControlState.Normal)
-        btnSettings.tintColor = UIColor.redColor()
         viewController.navigationItem.rightBarButtonItem = btnSettings
     }
 
     func btnSettingsClick(sender: UIBarButtonItem) {
         let viewSettings = SettingsController()
         self.pushViewController(viewSettings, animated: true)
+    }
+
+    func startOver() {
+        Storage.deleteCredentials()
+        UserStorage().erase()
+        let authController = AuthController()
+        self.replaceAll(authController, animated: true)
+    }
+    
+    func addSaveCancel() {
+        let viewController = self.visibleViewController!
+        let btnSave = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: nil)
+        let btnCancel = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: nil)
+        viewController.navigationItem.rightBarButtonItem = btnSave
+        viewController.navigationItem.leftBarButtonItem = btnCancel
     }
     
     func openUrl(url: String) {

@@ -21,8 +21,10 @@ class DeviceInternal {
         return (result: Identification(json: response!["data"] as! NSDictionary), error: nil)
     }
 
-    func activate(domain: String, email: String, password: String, deviceLogin: String, devicePassword: String) -> (result: Identification?, error: Error?) {
+    func activate(mainDomain: String, domain: String, email: String, password: String, deviceLogin: String, devicePassword: String) -> (result: Identification?, error: Error?) {
         let parameters = [
+            "api-url": getRedirectApiUrl(mainDomain),
+            "domain": mainDomain,
             "redirect-email": email,
             "redirect-password": password,
             "redirect-domain": domain,

@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="activityIndicator" destination="UKu-pf-koN" id="N5m-8h-tvx"/>
                 <outlet property="btnActivate" destination="oDi-Sh-uWK" id="nhb-RO-kmO"/>
+                <outlet property="labelMainDomain" destination="Lvs-ct-HO5" id="c13-kF-rqP"/>
                 <outlet property="textDomain" destination="2Gn-ym-fbb" id="TC7-yy-9nU"/>
                 <outlet property="textLogin" destination="gIC-RP-qkg" id="dUp-b1-AGv"/>
                 <outlet property="textPassword" destination="5qr-SA-w2A" id="4KE-IY-arW"/>
@@ -20,15 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your domain" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Gn-ym-fbb">
-                    <rect key="frame" x="16" y="73" width="469" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".syncloud.it" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvs-ct-HO5">
-                    <rect key="frame" x="493" y="78" width="91" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=".syncloud.domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvs-ct-HO5">
+                    <rect key="frame" x="444" y="78" width="140" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="91" id="vGX-WE-raa"/>
+                        <constraint firstAttribute="width" constant="140" id="vGX-WE-raa"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -57,11 +53,16 @@
                     <rect key="frame" x="282" y="324" width="37" height="37"/>
                     <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </activityIndicatorView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your domain" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Gn-ym-fbb">
+                    <rect key="frame" x="16" y="73" width="423" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UKu-pf-koN" firstAttribute="centerX" secondItem="oDi-Sh-uWK" secondAttribute="centerX" id="3pm-dM-wix"/>
-                <constraint firstItem="Lvs-ct-HO5" firstAttribute="leading" secondItem="2Gn-ym-fbb" secondAttribute="trailing" constant="8" id="9j6-Cl-8Cz"/>
+                <constraint firstItem="Lvs-ct-HO5" firstAttribute="leading" secondItem="2Gn-ym-fbb" secondAttribute="trailing" constant="5" id="9j6-Cl-8Cz"/>
                 <constraint firstItem="2Gn-ym-fbb" firstAttribute="centerY" secondItem="Lvs-ct-HO5" secondAttribute="centerY" id="A3p-ka-htx"/>
                 <constraint firstItem="gIC-RP-qkg" firstAttribute="leading" secondItem="2Gn-ym-fbb" secondAttribute="leading" id="F0P-eW-aes"/>
                 <constraint firstItem="oDi-Sh-uWK" firstAttribute="top" secondItem="5qr-SA-w2A" secondAttribute="bottom" constant="32" id="HxR-JP-NXo"/>

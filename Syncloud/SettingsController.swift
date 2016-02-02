@@ -9,9 +9,12 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var labelEmailValue: UILabel!
     @IBOutlet weak var cellSignOut: UITableViewCell!
     @IBOutlet weak var cellSendLog: UITableViewCell!
+    @IBOutlet weak var cellDomainNameService: UITableViewCell!
+    @IBOutlet weak var labelDomainNameService: UILabel!
     
     let sectionAccount = 0
-    let sectionLog = 1
+    let sectionFeedback = 1
+    let sectionAdvanced = 2
     var cells = Dictionary<Int, [UITableViewCell]>()
     
     init() {
@@ -28,7 +31,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "Settings"
 
         cells[sectionAccount] = [cellEmail, cellSignOut]
-        cells[sectionLog] = [cellSendLog]
+        cells[sectionFeedback] = [cellSendLog]
+        cells[sectionAdvanced] = [cellDomainNameService]
         
         let credentials = Storage.getCredentials()
         
@@ -42,6 +46,10 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
+        
+        let mainDomain = Storage.getMainDomain()
+        self.labelDomainNameService.text = "Domain Name Service: \(mainDomain)"
+        
         super.viewWillAppear(animated)
     }
     
@@ -55,9 +63,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func signOut() {
-        Storage.deleteCredentials()
-        let authController = AuthController()
-        self.navigationController!.replaceAll(authController, animated: true)
+        (self.navigationController as! MainController).startOver()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -72,7 +78,20 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         var sectionCells = cells[indexPath.section]!
         return sectionCells[indexPath.row]
     }
-    
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == sectionAccount {
+            return "ACCOUNT"
+        }
+        if section == sectionFeedback {
+            return "FEEDBACK"
+        }
+        if section == sectionAdvanced {
+            return "ADVANCED"
+        }
+        return nil
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return getCell(indexPath)
     }
@@ -85,6 +104,11 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         if cell == cellSendLog {
             sendLog()
         }
+        if cell == cellDomainNameService {
+            let viewDnsSelector = DnsSelectorController()
+            self.navigationController!.pushViewController(viewDnsSelector, animated: true)
+        }
+        self.tableSettings.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 }

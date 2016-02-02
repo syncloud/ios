@@ -71,7 +71,7 @@ class AuthController: UIViewController {
         
         let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in
-            let service = self.mainController().userService
+            let service = self.mainController().getUserService()
             let result = service.getUser(email, password: password)
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
