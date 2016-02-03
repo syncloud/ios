@@ -46,7 +46,7 @@ class ActivateController: UIViewController {
         self.view.endEditing(true)
         self.activityIndicator.startAnimating()
         
-        let domain = self.textDomain.text!
+        let domain = self.textDomain.text!.lowercaseString
         let deviceLogin = self.textLogin.text!
         let devicePassword = self.textPassword.text!
 
