@@ -15,7 +15,7 @@ public class Storage {
     }
 
     public class func hasCredentials() -> Bool {
-        let (email, password) = getCredentials()
+        let (email, _) = getCredentials()
         return email != nil
     }
 
