@@ -47,7 +47,7 @@ class ActivateController: UIViewController {
         self.activityIndicator.startAnimating()
         
         let domain = self.textDomain.text!.lowercaseString
-        let deviceLogin = self.textLogin.text!
+        let deviceUsername = self.textLogin.text!
         let devicePassword = self.textPassword.text!
 
         let credentials = Storage.getCredentials()
@@ -57,10 +57,10 @@ class ActivateController: UIViewController {
         dispatch_async(queue) { () -> Void in
             let result = self.device.activate(
                 Storage.getMainDomain(),
-                domain: domain,
+                userDomain: domain,
                 email: credentials.email!,
                 password: credentials.password!,
-                deviceLogin: deviceLogin,
+                deviceUsername: deviceUsername,
                 devicePassword: devicePassword)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
