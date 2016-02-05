@@ -12,8 +12,9 @@
                 <outlet property="cellEmail" destination="W4b-UO-wOi" id="WI3-HX-zCJ"/>
                 <outlet property="cellSendLog" destination="7ni-bW-00E" id="JAN-xK-whD"/>
                 <outlet property="cellSignOut" destination="egd-aS-vaH" id="Xxi-JK-r6f"/>
-                <outlet property="labelDomainNameService" destination="Nov-mQ-orS" id="0VR-yd-Bp1"/>
+                <outlet property="labelDomainNameService" destination="rjr-Ty-t6F" id="vv5-gf-bvR"/>
                 <outlet property="labelEmailValue" destination="j5V-I5-YZH" id="ZjS-ub-JsD"/>
+                <outlet property="labelSignOut" destination="oGR-U6-k5B" id="AjX-QR-NI4"/>
                 <outlet property="tableSettings" destination="obN-LC-iax" id="tjL-JY-XPF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5vB-52-ZAd"/>
             </connections>
@@ -49,7 +50,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0u-Dh-dDr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0u-Dh-dDr">
                         <rect key="frame" x="19" y="11" width="58" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="58" id="bsi-0z-UZv"/>
@@ -58,13 +59,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5V-I5-YZH">
-                        <rect key="frame" x="85" y="11" width="491" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5V-I5-YZH">
+                        <rect key="frame" x="85" y="11" width="475" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="518" id="LNz-48-J98"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -78,7 +79,7 @@
                     <constraint firstItem="j5V-I5-YZH" firstAttribute="leading" secondItem="g0u-Dh-dDr" secondAttribute="trailing" constant="8" id="Hlf-9h-c44"/>
                     <constraint firstAttribute="centerY" secondItem="g0u-Dh-dDr" secondAttribute="centerY" id="UCH-qK-gE7"/>
                     <constraint firstAttribute="centerY" secondItem="j5V-I5-YZH" secondAttribute="centerY" id="aic-a3-fVe"/>
-                    <constraint firstItem="j5V-I5-YZH" firstAttribute="trailing" secondItem="Is8-Rd-Qid" secondAttribute="trailingMargin" constant="-16" id="qJe-YP-67g"/>
+                    <constraint firstItem="j5V-I5-YZH" firstAttribute="trailing" secondItem="Is8-Rd-Qid" secondAttribute="trailingMargin" constant="-32" id="qJe-YP-67g"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="346" y="-111"/>
@@ -90,16 +91,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sign out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oGR-U6-k5B">
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sign out from Syncloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oGR-U6-k5B">
                         <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="346" y="-26"/>
+            <point key="canvasLocation" x="346" y="-10"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="AmU-yu-ZfO" style="IBUITableViewCellStyleDefault" id="7ni-bW-00E">
             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -108,7 +108,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AmU-yu-ZfO">
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send report and logs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AmU-yu-ZfO">
                         <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -117,25 +117,40 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="346" y="90"/>
+            <point key="canvasLocation" x="346" y="94"/>
         </tableViewCell>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Nov-mQ-orS" style="IBUITableViewCellStyleDefault" id="bSM-Vw-jlE">
-            <rect key="frame" x="0.0" y="0.0" width="599" height="46"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bSM-Vw-jlE">
+            <rect key="frame" x="0.0" y="0.0" width="599" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSM-Vw-jlE" id="trx-Mu-NAx">
-                <rect key="frame" x="0.0" y="0.0" width="599" height="45"/>
+                <rect key="frame" x="0.0" y="0.0" width="566" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Domain Name Service: Syncloud DNS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nov-mQ-orS">
-                        <rect key="frame" x="15" y="0.0" width="569" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Domain Name Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUc-2Z-2e3">
+                        <rect key="frame" x="19" y="11" width="175" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="175" id="Fxt-WZ-XKC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="syncloud DNS" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-Ty-t6F">
+                        <rect key="frame" x="202" y="11" width="356" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="rUc-2Z-2e3" firstAttribute="centerY" secondItem="trx-Mu-NAx" secondAttribute="centerY" id="JD3-KI-SrS"/>
+                    <constraint firstItem="rjr-Ty-t6F" firstAttribute="leading" secondItem="rUc-2Z-2e3" secondAttribute="trailing" constant="8" id="OLJ-3V-M0X"/>
+                    <constraint firstItem="rUc-2Z-2e3" firstAttribute="leading" secondItem="trx-Mu-NAx" secondAttribute="leadingMargin" constant="11" id="UaD-fq-zVM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rjr-Ty-t6F" secondAttribute="trailing" id="dda-g4-MO1"/>
+                    <constraint firstItem="rjr-Ty-t6F" firstAttribute="centerY" secondItem="trx-Mu-NAx" secondAttribute="centerY" id="oiM-vO-RxW"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="346.5" y="188"/>
+            <point key="canvasLocation" x="346.5" y="199"/>
         </tableViewCell>
     </objects>
 </document>

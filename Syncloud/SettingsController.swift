@@ -11,6 +11,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var cellSendLog: UITableViewCell!
     @IBOutlet weak var cellDomainNameService: UITableViewCell!
     @IBOutlet weak var labelDomainNameService: UILabel!
+    @IBOutlet weak var labelSignOut: UILabel!
     
     let sectionAccount = 0
     let sectionFeedback = 1
@@ -38,8 +39,15 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let theEmail = credentials.email {
             self.labelEmailValue.text = theEmail
+            
+            cellSignOut.userInteractionEnabled = true;
+            labelSignOut.enabled = true;
+            
         } else {
             self.labelEmailValue.text = "Not signed in yet"
+            
+            cellSignOut.userInteractionEnabled = false;
+            labelSignOut.enabled = false;
         }
     }
     
@@ -48,7 +56,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController!.setToolbarHidden(true, animated: animated)
         
         let mainDomain = Storage.getMainDomain()
-        self.labelDomainNameService.text = "Domain Name Service: \(mainDomain)"
+        self.labelDomainNameService.text = mainDomain
         
         super.viewWillAppear(animated)
     }
