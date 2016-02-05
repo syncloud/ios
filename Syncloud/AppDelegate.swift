@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
                 let composer = MFMailComposeViewController()
                 composer.mailComposeDelegate = self
                 composer.setToRecipients(["support@syncloud.it"])
-                composer.setSubject("Syncloud Report")
+                composer.setSubject("Syncloud iOS Report")
                 composer.setMessageBody("Provide additional information here", isHTML: false)
                 let logData = NSFileManager.defaultManager().contentsAtPath(theLogPath)
                 composer.addAttachmentData(logData!, mimeType: "Text/XML", fileName: "Syncloud.log")
