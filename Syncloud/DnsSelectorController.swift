@@ -47,23 +47,8 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     func btnSaveClick(sender: UIBarButtonItem) {
         let newMainDomain = self.domainsValues[self.pickerDns.selectedRowInComponent(self.pickerDomainComponent)]
-        if newMainDomain != self.mainDomain {
-            if Storage.hasCredentials() {
-                let alert = UIAlertController(title: "Change DNS", message: "You will need to login again after changing Domain Name Service", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
-                    action in
-                    Storage.setMainDomain(newMainDomain)
-                    (self.navigationController as! MainController).startOver()
-                }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                Storage.setMainDomain(newMainDomain)
-                self.navigationController!.popViewControllerAnimated(true)
-            }
-        } else {
-            self.navigationController!.popViewControllerAnimated(true)
-        }
+        Storage.setMainDomain(newMainDomain)
+        self.navigationController!.popViewControllerAnimated(true)
     }
 
     func btnCancelClick(sender: UIBarButtonItem) {

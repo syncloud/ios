@@ -7,7 +7,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewNoDevices: UIView!
 
-    let mainDomain = Storage.getMainDomain()
+    var mainDomain = Storage.getMainDomain()
     var domains = [Domain]()
 
     func mainController() -> MainController {
@@ -49,6 +49,11 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
 
     func loadDomains() {
+        domains.removeAll()
+        tableView.reloadData()
+
+        mainDomain = Storage.getMainDomain()
+
         let credentials = Storage.getCredentials()
         let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         dispatch_async(queue) { () -> Void in

@@ -30,15 +30,16 @@ class ActivateController: UIViewController {
         
         self.title = "Activate"
         
-        let mainDomain = Storage.getMainDomain()
-        self.labelMainDomain.text = ".\(mainDomain)"
-        
         (self.navigationController as! MainController).addSettings()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
+
+        let mainDomain = Storage.getMainDomain()
+        self.labelMainDomain.text = ".\(mainDomain)"
+
         super.viewWillAppear(animated)
     }
     
