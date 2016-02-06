@@ -26,12 +26,16 @@ class MainController: UINavigationController {
     }
 
     func addSettings() {
+        let button: UIButton = UIButton(type: UIButtonType.Custom)
+        button.setImage(UIImage(named: "settings"), forState: UIControlState.Normal)
+        button.addTarget(self, action: Selector("btnSettingsClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+        button.frame = CGRectMake(0, 0, 24, 24)
+        
+        let btnSettings = UIBarButtonItem(customView: button)
+
         let viewController = self.visibleViewController!
-        let btnSettings = UIBarButtonItem(title: "\u{2699}", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnSettingsClick:"))
-        btnSettings.setTitleTextAttributes(
-            [NSFontAttributeName: UIFont(name: "Arial", size: 26)!, NSForegroundColorAttributeName : UIColor.redColor()],
-            forState: UIControlState.Normal)
         viewController.navigationItem.rightBarButtonItem = btnSettings
+        
     }
 
     func btnSettingsClick(sender: UIBarButtonItem) {
