@@ -64,6 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
             }
         }
     }
+    
+    func clearLog() {
+        let fileManager = NSFileManager.defaultManager()
+        if let theLogPath = logPath {
+            if fileManager.fileExistsAtPath(theLogPath) {
+                try! fileManager.removeItemAtPath(theLogPath)
+                log2File()
+            }
+        }
+    }
 
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.navController!.visibleViewController!.dismissViewControllerAnimated(true, completion: nil)

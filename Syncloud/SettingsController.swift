@@ -12,9 +12,10 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var cellDomainNameService: UITableViewCell!
     @IBOutlet weak var labelDomainNameService: UILabel!
     @IBOutlet weak var labelSignOut: UILabel!
+    @IBOutlet weak var cellClearLog: UITableViewCell!
     
     let sectionAccount = 0
-    let sectionFeedback = 1
+    let sectionReport = 1
     let sectionAdvanced = 2
     var cells = Dictionary<Int, [UITableViewCell]>()
     
@@ -32,7 +33,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "Settings"
 
         cells[sectionAccount] = [cellEmail]
-        cells[sectionFeedback] = [cellSendLog]
+        cells[sectionReport] = [cellSendLog, cellClearLog]
         cells[sectionAdvanced] = [cellDomainNameService]
         
         let credentials = Storage.getCredentials()
@@ -64,6 +65,17 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         appDelegate.sendLog()
     }
     
+    func clearLog() {
+        let alertMessage = "Do you want to erase all logged records?"
+        let alert = UIAlertController(title: "Clear log file", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { action in
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.clearLog()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func signOut() {
         (self.navigationController as! MainController).startOver()
     }
@@ -85,8 +97,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         if section == sectionAccount {
             return "ACCOUNT"
         }
-        if section == sectionFeedback {
-            return "FEEDBACK"
+        if section == sectionReport {
+            return "REPORT"
         }
         if section == sectionAdvanced {
             return "ADVANCED"
@@ -105,6 +117,9 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         }
         if cell == cellSendLog {
             sendLog()
+        }
+        if cell == cellClearLog {
+            clearLog()
         }
         if cell == cellDomainNameService {
             let viewDnsSelector = DnsSelectorController()

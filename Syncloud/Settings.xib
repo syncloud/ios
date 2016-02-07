@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsController" customModule="Syncloud" customModuleProvider="target">
             <connections>
+                <outlet property="cellClearLog" destination="VxG-D1-m3K" id="cto-V5-MhI"/>
                 <outlet property="cellDomainNameService" destination="bSM-Vw-jlE" id="9Rl-ox-dc3"/>
                 <outlet property="cellEmail" destination="W4b-UO-wOi" id="WI3-HX-zCJ"/>
                 <outlet property="cellSendLog" destination="7ni-bW-00E" id="JAN-xK-whD"/>
@@ -108,7 +109,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send report and logs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AmU-yu-ZfO">
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send log file" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AmU-yu-ZfO">
                         <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -150,7 +151,25 @@
                     <constraint firstItem="rjr-Ty-t6F" firstAttribute="centerY" secondItem="trx-Mu-NAx" secondAttribute="centerY" id="oiM-vO-RxW"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="346.5" y="199"/>
+            <point key="canvasLocation" x="345.5" y="295"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="8tB-dh-LbQ" style="IBUITableViewCellStyleDefault" id="VxG-D1-m3K">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VxG-D1-m3K" id="A3w-x5-Ozk">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Clear log file" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8tB-dh-LbQ">
+                        <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="347" y="195"/>
         </tableViewCell>
     </objects>
 </document>
