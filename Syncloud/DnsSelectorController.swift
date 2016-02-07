@@ -23,7 +23,7 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "DNS"
+        self.title = "Server"
 
         let viewController = self.navigationController!.visibleViewController!
         let btnSave = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("btnSaveClick:"))

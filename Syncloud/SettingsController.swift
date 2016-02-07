@@ -31,7 +31,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.title = "Settings"
 
-        cells[sectionAccount] = [cellEmail, cellSignOut]
+        cells[sectionAccount] = [cellEmail]
         cells[sectionFeedback] = [cellSendLog]
         cells[sectionAdvanced] = [cellDomainNameService]
         
@@ -39,15 +39,9 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let theEmail = credentials.email {
             self.labelEmailValue.text = theEmail
-            
-            cellSignOut.userInteractionEnabled = true;
-            labelSignOut.enabled = true;
-            
+            cells[sectionAccount]!.append(cellSignOut)
         } else {
             self.labelEmailValue.text = "Not signed in yet"
-            
-            cellSignOut.userInteractionEnabled = false;
-            labelSignOut.enabled = false;
         }
     }
     
@@ -106,7 +100,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = getCell(indexPath)
-        if cell == cellSignOut {
+        if cellSignOut != nil && cell == cellSignOut {
             signOut()
         }
         if cell == cellSendLog {
