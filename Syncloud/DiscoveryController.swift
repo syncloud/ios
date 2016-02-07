@@ -5,12 +5,13 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableEndpoints: UITableView!
     @IBOutlet weak var viewNoDevices: UIView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var discovery: Discovery
     
     var endpoints = [IdentifiedEndpoint]()
 
+    var refreshEndpoints: UIRefreshControl?
+    
     func mainController() -> MainController {
         return self.navigationController as! MainController
     }
@@ -35,6 +36,14 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnDiscoveryClick:"))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: Selector("btnDiscoveryClick:"), forControlEvents: .ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Discovering devices...")
+        
+        self.tableEndpoints.addSubview(refreshControl)
+
+        self.refreshEndpoints = refreshControl
         
         (self.navigationController as! MainController).addSettings()
     }
@@ -80,7 +89,9 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     func discoveryStart() {
         self.tableEndpoints.hidden = false
         self.viewNoDevices.hidden = true
-        self.indicator.startAnimating()
+        if self.refreshEndpoints!.refreshing == false {
+            self.refreshEndpoints!.beginRefreshing()
+        }
         self.endpoints.removeAll(keepCapacity: true)
         self.tableEndpoints.reloadData()
         
@@ -94,7 +105,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             self.discovery.stop()
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.indicator.stopAnimating()
+                self.refreshEndpoints!.endRefreshing()
                 if self.endpoints.isEmpty {
                     self.tableEndpoints.hidden = true
                     self.viewNoDevices.hidden = false

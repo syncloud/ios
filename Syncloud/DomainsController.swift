@@ -7,6 +7,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewNoDevices: UIView!
 
+    var refreshEndpoints: UIRefreshControl?
+    
     var mainDomain = Storage.getMainDomain()
     var domains = [Domain]()
 
@@ -37,6 +39,14 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnAdd, flexibleSpace]
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: Selector("reload:"), forControlEvents: .ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Loading devices...")
+        self.tableView.addSubview(refreshControl)
+        
+        self.refreshEndpoints = refreshControl
+        
+        
         (self.navigationController as! MainController).addSettings()
     }
     
@@ -48,10 +58,14 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.loadDomains()
     }
 
+    @IBAction func reload(sender: AnyObject) {
+        loadDomains()
+    }
+    
     func loadDomains() {
-        domains.removeAll()
-        tableView.reloadData()
-
+        if self.refreshEndpoints!.refreshing == false {
+           self.refreshEndpoints!.beginRefreshing()
+        }
         mainDomain = Storage.getMainDomain()
 
         let credentials = Storage.getCredentials()
@@ -60,14 +74,15 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let result = self.mainController().getUserService().getUser(credentials.email!, password: credentials.password!)
 
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                self.refreshEndpoints!.endRefreshing()
                 if result.error == nil {
-                    self.updateDomains(result.user!)
+                    self.showDomains(result.user!)
                 }
             }
         }
     }
 
-    func updateDomains(user: User) {
+    func showDomains(user: User) {
         if user.domains.isEmpty {
             tableView.hidden = true
             viewNoDevices.hidden = false
@@ -75,7 +90,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
             tableView.hidden = false
             viewNoDevices.hidden = true
         }
-        
+
         domains.removeAll()
         for domain in user.domains {
             domains.append(domain)
