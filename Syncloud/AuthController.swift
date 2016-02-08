@@ -48,12 +48,12 @@ class AuthController: UIViewController {
     }
     
     @IBAction func btnSignUpClick(sender: AnyObject) {
-        let authCredentials = AuthCredentialsController(mode: AuthMode.SignUp)
+        let authCredentials = CredentialsController(mode: AuthMode.SignUp)
         self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
     @IBAction func btnSignInClick(sender: AnyObject) {
-        let authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
+        let authCredentials = CredentialsController(mode: AuthMode.SignIn)
         self.navigationController!.pushViewController(authCredentials, animated: true)
     }
     
@@ -78,7 +78,7 @@ class AuthController: UIViewController {
                 self.progressBar.stopAnimating()
                 
                 if result.error != nil {
-                    let authCredentials = AuthCredentialsController(mode: AuthMode.SignIn)
+                    let authCredentials = CredentialsController(mode: AuthMode.SignIn)
                     self.navigationController!.pushViewController(authCredentials, animated: true)
                 } else {
                     let viewDevices = DomainsController()

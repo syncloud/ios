@@ -12,8 +12,6 @@
 		FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */; };
 		FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */; };
 		FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */; };
-		FB099FE61AFA543000AE22F2 /* AuthCredentials.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */; };
-		FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */; };
 		FB099FE81AFA543000AE22F2 /* Domains.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB099FE31AFA543000AE22F2 /* Domains.xib */; };
 		FB099FE91AFA543000AE22F2 /* DomainsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FE41AFA543000AE22F2 /* DomainsController.swift */; };
 		FB099FF31AFA54FE00AE22F2 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FEC1AFA54FE00AE22F2 /* Errors.swift */; };
@@ -35,6 +33,8 @@
 		FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */; };
 		FB1BF0561B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */; };
 		FB47D5301B05A6F300910F2D /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47D52F1B05A6F300910F2D /* Device.swift */; };
+		FB5EFAD41C68102600205C37 /* CredentialsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5EFAD31C68102600205C37 /* CredentialsController.swift */; };
+		FB5EFAD61C6812C200205C37 /* Credentials.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB5EFAD51C6812C200205C37 /* Credentials.xib */; };
 		FB74D1431B6F19CB00BA06DC /* Activate.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB74D1421B6F19CB00BA06DC /* Activate.xib */; };
 		FB74D1451B6F1F7900BA06DC /* ActivateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB74D1441B6F1F7900BA06DC /* ActivateController.swift */; };
 		FBD450EB1C61301F005444E7 /* DnsSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBD450EA1C61301F005444E7 /* DnsSelector.xib */; };
@@ -57,8 +57,6 @@
 		FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB099FCB1AFA4DAE00AE22F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthCredentials.xib; sourceTree = "<group>"; };
-		FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCredentialsController.swift; sourceTree = "<group>"; };
 		FB099FE31AFA543000AE22F2 /* Domains.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Domains.xib; sourceTree = "<group>"; };
 		FB099FE41AFA543000AE22F2 /* DomainsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainsController.swift; sourceTree = "<group>"; };
 		FB099FEC1AFA54FE00AE22F2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Platform/Errors.swift; sourceTree = "<group>"; };
@@ -82,6 +80,8 @@
 		FB1BF0531B1AB510000F34D4 /* StaticHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticHolder.swift; sourceTree = "<group>"; };
 		FB1BF0551B1AB6C6000F34D4 /* UncaughtExceptionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncaughtExceptionHandler.swift; sourceTree = "<group>"; };
 		FB47D52F1B05A6F300910F2D /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		FB5EFAD31C68102600205C37 /* CredentialsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
+		FB5EFAD51C6812C200205C37 /* Credentials.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Credentials.xib; sourceTree = "<group>"; };
 		FB74D1421B6F19CB00BA06DC /* Activate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activate.xib; sourceTree = "<group>"; };
 		FB74D1441B6F1F7900BA06DC /* ActivateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivateController.swift; sourceTree = "<group>"; };
 		FBD450EA1C61301F005444E7 /* DnsSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DnsSelector.xib; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 				FB099FCA1AFA4DAE00AE22F2 /* LaunchScreen.xib */,
 				FB0BB5281B113FD40063080A /* Auth.xib */,
 				FB0BB52A1B113FF80063080A /* AuthController.swift */,
-				FB099FE11AFA543000AE22F2 /* AuthCredentials.xib */,
-				FB099FE21AFA543000AE22F2 /* AuthCredentialsController.swift */,
+				FB5EFAD51C6812C200205C37 /* Credentials.xib */,
+				FB5EFAD31C68102600205C37 /* CredentialsController.swift */,
 				FBD8E57C1B8D533500CD978F /* DeviceCell.xib */,
 				FBD8E57E1B8D565400CD978F /* DeviceCell.swift */,
 				FB099FE31AFA543000AE22F2 /* Domains.xib */,
@@ -247,7 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB099FE61AFA543000AE22F2 /* AuthCredentials.xib in Resources */,
+				FB5EFAD61C6812C200205C37 /* Credentials.xib in Resources */,
 				FB0BB5291B113FD40063080A /* Auth.xib in Resources */,
 				FB099FCC1AFA4DAE00AE22F2 /* LaunchScreen.xib in Resources */,
 				FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */,
@@ -275,7 +275,6 @@
 				FB1BF0541B1AB510000F34D4 /* StaticHolder.swift in Sources */,
 				FBE093CA1B0EC19800D0C1FE /* UIHelpers.swift in Sources */,
 				FB1281881B88229F00DF80C6 /* CachedUserService.swift in Sources */,
-				FB099FE71AFA543000AE22F2 /* AuthCredentialsController.swift in Sources */,
 				FB47D5301B05A6F300910F2D /* Device.swift in Sources */,
 				FBFA4C391B1404910000D42A /* MainController.swift in Sources */,
 				FB1281861B87630500DF80C6 /* UserStorage.swift in Sources */,
@@ -291,6 +290,7 @@
 				FB099FE91AFA543000AE22F2 /* DomainsController.swift in Sources */,
 				FB099FF91AFA54FE00AE22F2 /* WebService.swift in Sources */,
 				FB0BB52B1B113FF80063080A /* AuthController.swift in Sources */,
+				FB5EFAD41C68102600205C37 /* CredentialsController.swift in Sources */,
 				FBFA4C3B1B140F7D0000D42A /* SettingsController.swift in Sources */,
 				FB099FF41AFA54FE00AE22F2 /* Models.swift in Sources */,
 				FB155C861B102A32005F0A05 /* Storage.swift in Sources */,
