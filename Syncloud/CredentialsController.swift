@@ -77,6 +77,10 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         let email = self.textEmail.text!
         let password = self.textPassword.text!
         
+        self.textEmail.enabled = false
+        self.textPassword.enabled = false
+        self.buttonSignIn.enabled = false
+        
         let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
         
         dispatch_async(queue) { () -> Void in
@@ -92,6 +96,10 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 self.indicatorActivity.stopAnimating()
+
+                self.textEmail.enabled = true
+                self.textPassword.enabled = true
+                self.buttonSignIn.enabled = true
                 
                 if result.error != nil {
                     let titleText = self.getTitleText()
