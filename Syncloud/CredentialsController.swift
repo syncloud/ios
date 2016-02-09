@@ -60,6 +60,8 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
         
+        self.textEmail.becomeFirstResponder()
+        
         super.viewWillAppear(animated)
     }
     

@@ -50,6 +50,8 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         let mainDomain = Storage.getMainDomain()
         self.labelMainDomain.text = ".\(mainDomain)"
 
+        self.textDomain.becomeFirstResponder()
+        
         super.viewWillAppear(animated)
     }
     
