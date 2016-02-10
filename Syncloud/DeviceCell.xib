@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,24 +16,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user.syncloud.domain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH1-lD-uEv">
-                        <rect key="frame" x="8" y="16" width="354" height="21"/>
+                        <rect key="frame" x="16" y="16" width="346" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="device" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm1-6V-lg2">
-                        <rect key="frame" x="8" y="45" width="354" height="21"/>
+                        <rect key="frame" x="16" y="45" width="346" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Bm1-6V-lg2" firstAttribute="top" secondItem="UH1-lD-uEv" secondAttribute="bottom" constant="8" id="3Yl-t9-EWk"/>
                     <constraint firstItem="UH1-lD-uEv" firstAttribute="top" secondItem="wy4-iZ-Vqf" secondAttribute="topMargin" constant="8" id="8JK-lB-Gva"/>
-                    <constraint firstItem="UH1-lD-uEv" firstAttribute="leading" secondItem="wy4-iZ-Vqf" secondAttribute="leadingMargin" id="FS4-Ui-nAA"/>
+                    <constraint firstItem="UH1-lD-uEv" firstAttribute="leading" secondItem="wy4-iZ-Vqf" secondAttribute="leadingMargin" constant="8" id="FS4-Ui-nAA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UH1-lD-uEv" secondAttribute="trailing" id="aux-fd-BJk"/>
-                    <constraint firstItem="Bm1-6V-lg2" firstAttribute="leading" secondItem="wy4-iZ-Vqf" secondAttribute="leadingMargin" id="eKL-fL-Gzf"/>
+                    <constraint firstItem="Bm1-6V-lg2" firstAttribute="leading" secondItem="wy4-iZ-Vqf" secondAttribute="leadingMargin" constant="8" id="eKL-fL-Gzf"/>
                     <constraint firstItem="Bm1-6V-lg2" firstAttribute="trailing" secondItem="wy4-iZ-Vqf" secondAttribute="trailingMargin" id="lzg-rx-9Jr"/>
                 </constraints>
             </tableViewCellContentView>
