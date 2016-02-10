@@ -40,6 +40,8 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         
         cells[sectionActivate] = [cellDomain, cellLogin, cellPassword]
         
+        self.tableActivate.rowHeight = 44.0
+        
         (self.navigationController as! MainController).addSettings()
     }
     

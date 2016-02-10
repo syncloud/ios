@@ -53,6 +53,8 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         
         cells[sectionCredentials] = [cellEmail, cellPassword]
         
+        self.tableCredentials.rowHeight = 44.0
+        
         (self.navigationController as! MainController).addSettings()
     }
     
