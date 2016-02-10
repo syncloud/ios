@@ -48,7 +48,7 @@ func findAccessibleUrl(mainDomain: String, _ domain: Domain) -> String? {
 }
 
 func getSSID() -> String? {
-    if UIDevice.currentDevice().model == "iPhone Simulator" {
+    if SimulatorUtil.isRunningSimulator {
         return "Simulator"
     }
     

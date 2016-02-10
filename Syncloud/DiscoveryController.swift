@@ -126,8 +126,11 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         let identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.endpoints.append(identifiedEndpoint)
-            self.tableEndpoints.reloadData()
+            
+            if self.endpoints.filter({ e in e.endpoint.host == identifiedEndpoint.endpoint.host }).count == 0 {
+                self.endpoints.append(identifiedEndpoint)
+                self.tableEndpoints.reloadData()
+            }
         }
     }
     
