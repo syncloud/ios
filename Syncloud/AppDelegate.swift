@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MFMailComposeViewControll
     var logPath: String?
     
     func log2File() {
-        if SimulatorUtil.isRunningSimulator {
+        if !SimulatorUtil.isRunningSimulator {
             let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
             self.logPath = documentsPath.stringByAppendingPathComponent("Syncloud.log")
             freopen(logPath!.cStringUsingEncoding(NSASCIIStringEncoding)!, "a+", stderr)
