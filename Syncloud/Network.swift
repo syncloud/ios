@@ -2,16 +2,64 @@ import Foundation
 import SystemConfiguration.CaptiveNetwork
 import MessageUI
 
-func checkUrl(url: String) -> Bool {
-    NSLog("Request: \(url)")
+class UrlCheck : NSObject, NSURLConnectionDelegate {
     
-    let nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-    nsRequest.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
-    nsRequest.timeoutInterval = 5
+    let request: NSURLRequest
     
     var response: NSURLResponse? = nil
+    var error: NSError? = nil
+    
+    init(url: String) {
+        let nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+        nsRequest.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+        nsRequest.timeoutInterval = 5
+        self.request = nsRequest
+    }
+    
+    var connection: NSURLConnection?
+    var finished = false
+    
+    func check() throws -> NSURLResponse? {
+        self.connection = NSURLConnection(request: self.request, delegate: self, startImmediately: false)
+        self.connection!.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        self.connection!.start()
+        while !self.finished {}
+        self.connection?.cancel()
+        if let theError = self.error {
+            throw theError
+        }
+        return self.response
+    }
+    
+    func connection(connection: NSURLConnection, willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            challenge.sender?.useCredential(NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!), forAuthenticationChallenge: challenge)
+        }
+    }
+    
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        self.error = error
+        self.finished = true
+    }
+    
+    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
+        self.response = response
+        self.finished = true
+    }
+    
+    deinit {
+        self.finished = true
+    }
+}
+
+func checkUrl(url: String) -> Bool {
+    
     do {
-        try NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response)
+        NSLog("Request: \(url)")
+        
+        let request = UrlCheck(url: url)
+        let response = try request.check()
+
         if let httpResponse = response as? NSHTTPURLResponse {
             let message = "Response has status code: \(httpResponse.statusCode)"
             NSLog(message)
