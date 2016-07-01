@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D28824F1C026F930208CA668 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28823876B821B8859A71101 /* Helpers.swift */; };
+		D2882D39F5256FF723DCB764 /* Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2882F76C022F6676FC0E333 /* Internal.swift */; };
 		FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0757ED1B043AA800BE741F /* Discovery.swift */; };
 		FB099FC21AFA4DAE00AE22F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB099FC11AFA4DAE00AE22F2 /* AppDelegate.swift */; };
 		FB099FC91AFA4DAE00AE22F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB099FC81AFA4DAE00AE22F2 /* Images.xcassets */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		D28823876B821B8859A71101 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		D2882F76C022F6676FC0E333 /* Internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Internal.swift; sourceTree = "<group>"; };
 		FB0757ED1B043AA800BE741F /* Discovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
 		FB099FBC1AFA4DAE00AE22F2 /* Syncloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB099FC01AFA4DAE00AE22F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				FBFA4C3A1B140F7D0000D42A /* SettingsController.swift */,
 				FBD450EA1C61301F005444E7 /* DnsSelector.xib */,
 				FBD450EC1C613040005444E7 /* DnsSelectorController.swift */,
+				D2882F76C022F6676FC0E333 /* Internal.swift */,
 				FBE093C91B0EC19800D0C1FE /* UIHelpers.swift */,
 				FB0BB5261B0FD6110063080A /* Keychain.swift */,
 				FB155C851B102A32005F0A05 /* Storage.swift */,
@@ -301,6 +304,7 @@
 				FB0757EE1B043AA800BE741F /* Discovery.swift in Sources */,
 				FBD450ED1C613040005444E7 /* DnsSelectorController.swift in Sources */,
 				D28824F1C026F930208CA668 /* Helpers.swift in Sources */,
+				D2882D39F5256FF723DCB764 /* Internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
