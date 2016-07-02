@@ -42,8 +42,8 @@ class Request {
         return paramsString
     }
     
-    func toString() -> String {
-        return "\(self.type.toString()) URL: \(self.url) Parameters: \(self.paramsToString())"
+    func toString(baseUrl: String) -> String {
+        return "\(self.type.toString()) URL: \(baseUrl)\(self.url) Parameters: \(self.paramsToString())"
     }
 }
 
@@ -76,7 +76,7 @@ class WebService {
     func execute(request: Request) -> (result: NSDictionary?, error: Error?) {
         let nsRequest = createRequest(request, self.apiUrl)
         
-        NSLog("Request: \(request.toString())")
+        NSLog("Request: \(request.toString(self.apiUrl))")
 
         var responseData: NSData? = nil
         do {
