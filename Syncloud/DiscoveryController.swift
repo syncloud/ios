@@ -115,21 +115,25 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func found(endpoint: Endpoint) {
-        let serverUrl = "http://\(endpoint.host):81/server/rest"
-        let device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
-        let (id, error) = device.id()
-        
-        if error != nil {
-            return
-        }
-        
-        let identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            
-            if self.endpoints.filter({ e in e.endpoint.host == identifiedEndpoint.endpoint.host }).count == 0 {
-                self.endpoints.append(identifiedEndpoint)
-                self.tableEndpoints.reloadData()
+        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+
+        dispatch_async(queue) { () -> Void in
+            let device = DeviceInternal(host: endpoint.host)
+            let (id, error) = device.id()
+
+            if error != nil {
+                return
+            }
+
+            let identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
+
+            dispatch_async(dispatch_get_main_queue()) {
+                () -> Void in
+
+                if self.endpoints.filter({ e in e.endpoint.host == identifiedEndpoint.endpoint.host }).count == 0 {
+                    self.endpoints.append(identifiedEndpoint)
+                    self.tableEndpoints.reloadData()
+                }
             }
         }
     }

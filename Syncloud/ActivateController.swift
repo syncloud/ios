@@ -23,8 +23,7 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
     
     init(idEndpoint: IdentifiedEndpoint) {
         self.idEndpoint = idEndpoint
-        let serverUrl = "http://\(idEndpoint.endpoint.host):81/server/rest"
-        self.device = DeviceInternal(webService: WebService(apiUrl: serverUrl))
+        self.device = DeviceInternal(host: idEndpoint.endpoint.host)
 
         super.init(nibName: "Activate", bundle: nil)
     }
