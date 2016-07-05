@@ -12,7 +12,7 @@ class UrlCheck : NSObject, NSURLConnectionDelegate {
     init(url: String) {
         let nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
         nsRequest.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
-        nsRequest.timeoutInterval = 5
+        nsRequest.timeoutInterval = 10
         self.request = nsRequest
     }
     
