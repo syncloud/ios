@@ -1,14 +1,14 @@
 import Foundation
 
 enum RequestType {
-    case GET
-    case POST
+    case get
+    case post
     
     func toString() -> String {
         switch self {
-        case .GET:
+        case .get:
             return "GET"
-        case .POST:
+        case .post:
             return "POST"
         }
     }
@@ -42,27 +42,27 @@ class Request {
         return paramsString
     }
     
-    func toString(baseUrl: String) -> String {
+    func toString(_ baseUrl: String) -> String {
         return "\(self.type.toString()) URL: \(baseUrl)\(self.url) Parameters: \(self.paramsToString())"
     }
 }
 
-func createRequest(request: Request, _ rootUrl: String) -> NSURLRequest {
+func createRequest(_ request: Request, _ rootUrl: String) -> URLRequest {
     let paramsString = request.paramsToString()
     var url = rootUrl+request.url
 
     switch request.type {
-    case RequestType.GET:
+    case RequestType.get:
         if !paramsString.isEmpty {
             url += "?"
             url += paramsString
         }
-        return NSURLRequest(URL: NSURL(string: url)!)
-    case RequestType.POST:
-        let nsRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-        nsRequest.HTTPMethod = "POST"
-        nsRequest.HTTPBody = paramsString.dataUsingEncoding(NSUTF8StringEncoding)
-        return nsRequest
+        return URLRequest(url: URL(string: url)!)
+    case RequestType.post:
+        let nsRequest = NSMutableURLRequest(url: URL(string: url)!)
+        nsRequest.httpMethod = "POST"
+        nsRequest.httpBody = paramsString.data(using: String.Encoding.utf8)
+        return nsRequest as URLRequest
     }
 }
 
@@ -73,15 +73,15 @@ class WebService {
         self.apiUrl = apiUrl
     }
 
-    func execute(request: Request) -> (result: NSDictionary?, error: Error?) {
+    func execute(_ request: Request) -> (result: NSDictionary?, error: Error?) {
         let nsRequest = createRequest(request, self.apiUrl)
         
         NSLog("Request: \(request.toString(self.apiUrl))")
 
-        var responseData: NSData? = nil
+        var responseData: Data? = nil
         do {
-            var response: NSURLResponse? = nil
-            responseData = try NSURLConnection.sendSynchronousRequest(nsRequest, returningResponse: &response)
+            var response: URLResponse? = nil
+            responseData = try NSURLConnection.sendSynchronousRequest(nsRequest, returning: &response)
         } catch let error as NSError {
             let message = "Request failed with error: \(error.debugDescription)"
             NSLog(message)
@@ -89,7 +89,7 @@ class WebService {
         }
 
         if let responseData = responseData {
-            let responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding)!
+            let responseString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)!
             NSLog("Response:\n\(responseString)")
         }
         

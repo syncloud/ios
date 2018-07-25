@@ -44,7 +44,7 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         (self.navigationController as! MainController).addSettings()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
 
@@ -56,7 +56,7 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
     }
     
-    @IBAction func btnActivateClick(sender: UIButton) {
+    @IBAction func btnActivateClick(_ sender: UIButton) {
         self.activate()
     }
     
@@ -64,20 +64,20 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.endEditing(true)
         self.activityIndicator.startAnimating()
         
-        let domain = self.textDomain.text!.lowercaseString
+        let domain = self.textDomain.text!.lowercased()
         let deviceUsername = self.textLogin.text!
         let devicePassword = self.textPassword.text!
         
         let credentials = Storage.getCredentials()
         
-        self.textDomain.enabled = false
-        self.textLogin.enabled = false
-        self.textPassword.enabled = false
-        self.btnActivate.enabled = false
+        self.textDomain.isEnabled = false
+        self.textLogin.isEnabled = false
+        self.textPassword.isEnabled = false
+        self.btnActivate.isEnabled = false
         
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
         
-        dispatch_async(queue) { () -> Void in
+        queue.async { () -> Void in
             let result = self.device.activate(
                 Storage.getMainDomain(),
                 userDomain: domain,
@@ -86,27 +86,27 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
                 deviceUsername: deviceUsername,
                 devicePassword: devicePassword)
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                self.textDomain.enabled = true
-                self.textLogin.enabled = true
-                self.textPassword.enabled = true
-                self.btnActivate.enabled = true
+            DispatchQueue.main.async { () -> Void in
+                self.textDomain.isEnabled = true
+                self.textLogin.isEnabled = true
+                self.textPassword.isEnabled = true
+                self.btnActivate.isEnabled = true
                 
                 self.activityIndicator.stopAnimating()
                 
                 if result.error != nil {
-                    let alert = UIAlertController(title: "Activation failed", message: "Something went wrong and device activation failed.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "Activation failed", message: "Something went wrong and device activation failed.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 } else {
-                    self.navigationController!.popToRootViewControllerAnimated(true)
+                    self.navigationController!.popToRootViewController(animated: true)
                 }
             }
             
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textPassword {
             activate()
         }
@@ -121,30 +121,30 @@ class ActivateController: UIViewController, UITableViewDelegate, UITableViewData
         return true
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return cells.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells[section]!.count
     }
     
-    func getCell(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCell(_ indexPath: IndexPath) -> UITableViewCell {
         var sectionCells = cells[indexPath.section]!
         let cell = sectionCells[indexPath.row]
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = getCell(indexPath)
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
 }

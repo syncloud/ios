@@ -26,8 +26,8 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.title = "Server"
 
         let viewController = self.navigationController!.visibleViewController!
-        let btnSave = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("btnSaveClick:"))
-        let btnCancel = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("btnCancelClick:"))
+        let btnSave = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DnsSelectorController.btnSaveClick(_:)))
+        let btnCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(DnsSelectorController.btnCancelClick(_:)))
         viewController.navigationItem.rightBarButtonItem = btnSave
         viewController.navigationItem.leftBarButtonItem = btnCancel
         
@@ -36,34 +36,34 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
         self.mainDomain = Storage.getMainDomain()
 
-        self.pickerDns.selectRow(domainsValues.indexOf(self.mainDomain)!, inComponent: self.pickerDomainComponent, animated: false)
+        self.pickerDns.selectRow(domainsValues.index(of: self.mainDomain)!, inComponent: self.pickerDomainComponent, animated: false)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
 
-    func btnSaveClick(sender: UIBarButtonItem) {
-        let newMainDomain = self.domainsValues[self.pickerDns.selectedRowInComponent(self.pickerDomainComponent)]
+    func btnSaveClick(_ sender: UIBarButtonItem) {
+        let newMainDomain = self.domainsValues[self.pickerDns.selectedRow(inComponent: self.pickerDomainComponent)]
         Storage.setMainDomain(newMainDomain)
-        self.navigationController!.popViewControllerAnimated(true)
+        self.navigationController!.popViewController(animated: true)
     }
 
-    func btnCancelClick(sender: UIBarButtonItem) {
-        self.navigationController!.popViewControllerAnimated(true)
+    func btnCancelClick(_ sender: UIBarButtonItem) {
+        self.navigationController!.popViewController(animated: true)
     }
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.domainsValues.count
     }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.domainsTitles[row]
     }
 }

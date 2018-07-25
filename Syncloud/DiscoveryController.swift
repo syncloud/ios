@@ -29,16 +29,16 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         let cellNib = UINib(nibName: "DeviceCell", bundle: nil)
-        self.tableEndpoints.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
+        self.tableEndpoints.register(cellNib, forCellReuseIdentifier: "deviceCell")
         
         self.title = "Discovery"
         
-        let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnDiscoveryClick:"))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DiscoveryController.btnDiscoveryClick(_:)))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("btnDiscoveryClick:"), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(DiscoveryController.btnDiscoveryClick(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Discovering devices...")
         
         self.tableEndpoints.addSubview(refreshControl)
@@ -48,11 +48,11 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         (self.navigationController as! MainController).addSettings()
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(false, animated: animated)
         super.viewWillAppear(animated)
@@ -60,7 +60,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         checkWiFi()
     }
     
-    @IBAction func btnLearnMoreClicked(sender: AnyObject) {
+    @IBAction func btnLearnMoreClicked(_ sender: AnyObject) {
         self.mainController().openUrl("http://syncloud.org")
     }
     
@@ -69,34 +69,34 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if ssid == nil {
             let alertMessage = "You are not connected to Wi-Fi network. Discovery is possible only in the same Wi-Fi network where you have Syncloud device connected."
-            let alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Try Again", style: .Default, handler: { action in
+            let alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                 self.checkWiFi()
             }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { action in
-                self.navigationController!.popViewControllerAnimated(true)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+                self.navigationController!.popViewController(animated: true)
             }))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
             discoveryStart()
         }
     }
     
-    @IBAction func btnDiscoveryClick(sender: AnyObject) {
+    @IBAction func btnDiscoveryClick(_ sender: AnyObject) {
         discoveryStart()
     }
     
     func discoveryStart() {
-        self.tableEndpoints.hidden = false
-        self.viewNoDevices.hidden = true
-        if self.refreshEndpoints!.refreshing == false {
+        self.tableEndpoints.isHidden = false
+        self.viewNoDevices.isHidden = true
+        if self.refreshEndpoints!.isRefreshing == false {
             self.refreshEndpoints!.beginRefreshing()
         }
-        self.endpoints.removeAll(keepCapacity: true)
+        self.endpoints.removeAll(keepingCapacity: true)
         self.tableEndpoints.reloadData()
         
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-        dispatch_async(queue) { () -> Void in
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
+        queue.async { () -> Void in
             NSLog("Starting discovery")
             self.discovery.stop()
             self.discovery.start("syncloud", listener: self)
@@ -104,20 +104,20 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
             NSLog("Stopping discovery")
             self.discovery.stop()
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.refreshEndpoints!.endRefreshing()
                 if self.endpoints.isEmpty {
-                    self.tableEndpoints.hidden = true
-                    self.viewNoDevices.hidden = false
+                    self.tableEndpoints.isHidden = true
+                    self.viewNoDevices.isHidden = false
                 }
             }
         }
     }
     
-    func found(endpoint: Endpoint) {
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+    func found(_ endpoint: Endpoint) {
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
 
-        dispatch_async(queue) { () -> Void in
+        queue.async { () -> Void in
             let device = DeviceInternal(host: endpoint.host)
             let (id, error) = device.id()
 
@@ -127,7 +127,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
 
             let identifiedEndpoint = IdentifiedEndpoint(endpoint: endpoint, id: id!)
 
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 () -> Void in
 
                 if self.endpoints.filter({ e in e.endpoint.host == identifiedEndpoint.endpoint.host }).count == 0 {
@@ -138,25 +138,25 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func error(error: Error) {
+    func error(_ error: Error) {
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return endpoints.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let endpoint = self.endpoints[indexPath.row]
         
-        let cell = self.tableEndpoints.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        let cell = self.tableEndpoints.dequeueReusableCell(withIdentifier: "deviceCell") as! DeviceCell
         cell.load(endpoint)
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.tableEndpoints.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableEndpoints.deselectRow(at: indexPath, animated: true)
         let endpoint = self.endpoints[indexPath.row]
         let viewActivate = ActivateController(idEndpoint: endpoint)
         self.navigationController!.pushViewController(viewActivate, animated: true)

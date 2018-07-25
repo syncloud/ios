@@ -2,18 +2,18 @@ import Foundation
 
 private var _uncaughtExceptionHandler: UncaughtExceptionHandler?
 
-public class StaticHolder: NSObject {
+open class StaticHolder: NSObject {
     
-    public class var uncaughtExceptionHandler : UncaughtExceptionHandler? {
+    open class var uncaughtExceptionHandler : UncaughtExceptionHandler? {
         return _uncaughtExceptionHandler
     }
 
-    public class func getUncaughtExceptionHandler() -> UncaughtExceptionHandler {
+    open class func getUncaughtExceptionHandler() -> UncaughtExceptionHandler {
         return _uncaughtExceptionHandler!
     }
     
     
-    public class func setUncaughtExceptionHandler(handler: UncaughtExceptionHandler) {
+    open class func setUncaughtExceptionHandler(_ handler: UncaughtExceptionHandler) {
         return _uncaughtExceptionHandler = handler
     }
     

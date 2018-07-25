@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 
 enum AuthMode {
-    case SignIn
-    case SignUp
+    case signIn
+    case signUp
 }
 
 class CredentialsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -37,9 +37,9 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getTitleText() -> String {
         switch self.mode {
-        case .SignIn:
+        case .signIn:
             return "Sign In"
-        case .SignUp:
+        case .signUp:
             return "Sign Up"
         }
     }
@@ -49,7 +49,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         
         let titleText = self.getTitleText()
         self.title = titleText
-        self.buttonSignIn.setTitle(titleText, forState: UIControlState.Normal)
+        self.buttonSignIn.setTitle(titleText, for: UIControlState())
         
         cells[sectionCredentials] = [cellEmail, cellPassword]
         
@@ -58,7 +58,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         (self.navigationController as! MainController).addSettings()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
         
@@ -71,7 +71,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func btnSignInClick(sender: UIButton) {
+    @IBAction func btnSignInClick(_ sender: UIButton) {
         self.signIn()
     }
     
@@ -81,35 +81,35 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         let email = self.textEmail.text!
         let password = self.textPassword.text!
         
-        self.textEmail.enabled = false
-        self.textPassword.enabled = false
-        self.buttonSignIn.enabled = false
+        self.textEmail.isEnabled = false
+        self.textPassword.isEnabled = false
+        self.buttonSignIn.isEnabled = false
         
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
         
-        dispatch_async(queue) { () -> Void in
+        queue.async { () -> Void in
             let service = self.mainController().getUserService()
             
             var result: UserResult!
             switch self.mode {
-            case .SignIn:
+            case .signIn:
                 result = service.getUser(email, password: password)
-            case .SignUp:
+            case .signUp:
                 result = service.createUser(email, password: password)
             }
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.indicatorActivity.stopAnimating()
 
-                self.textEmail.enabled = true
-                self.textPassword.enabled = true
-                self.buttonSignIn.enabled = true
+                self.textEmail.isEnabled = true
+                self.textPassword.isEnabled = true
+                self.buttonSignIn.isEnabled = true
                 
                 if result.error != nil {
                     let titleText = self.getTitleText()
-                    let alert = UIAlertController(title: "\(titleText) Failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "\(titleText) Failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                     Storage.saveCredentials(email: email, password: password)
                     let viewDevices = DomainsController()
@@ -119,7 +119,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textPassword {
             signIn()
         }
@@ -130,29 +130,29 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         return true
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return cells.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells[section]!.count
     }
     
-    func getCell(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCell(_ indexPath: IndexPath) -> UITableViewCell {
         var sectionCells = cells[indexPath.section]!
         let cell = sectionCells[indexPath.row]
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = getCell(indexPath)
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }

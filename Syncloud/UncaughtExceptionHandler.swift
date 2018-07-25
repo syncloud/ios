@@ -1,7 +1,7 @@
 import Foundation
 
-public class UncaughtExceptionHandler: NSObject {
-    func handle(exception: NSException) {
+open class UncaughtExceptionHandler: NSObject {
+    func handle(_ exception: NSException) {
         
     }
 }

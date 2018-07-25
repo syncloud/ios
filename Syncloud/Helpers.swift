@@ -1,6 +1,6 @@
 import Foundation
 
-func getUrl(theProtocol: String, _ address: String, _ port: Int) -> String {
+func getUrl(_ theProtocol: String, _ address: String, _ port: Int) -> String {
     var url = "\(theProtocol)://\(address)"
     if needAddPort(theProtocol, port) {
         url = url+":\(port)"
@@ -8,7 +8,7 @@ func getUrl(theProtocol: String, _ address: String, _ port: Int) -> String {
     return url
 }
 
-func needAddPort(theProtocol: String, _ port: Int) -> Bool {
+func needAddPort(_ theProtocol: String, _ port: Int) -> Bool {
     if (theProtocol == "http" && port == 80) {
         return false
     }
@@ -18,6 +18,6 @@ func needAddPort(theProtocol: String, _ port: Int) -> Bool {
     return true
 }
 
-func getRedirectApiUrl(mainDomain: String) -> String{
+func getRedirectApiUrl(_ mainDomain: String) -> String{
     return "http://api.\(mainDomain)"
 }

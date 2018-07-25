@@ -10,7 +10,7 @@ class CachedUserService: IUserService {
         self.storage = UserStorage()
     }
     
-    func getUser(email: String, password: String) -> UserResult {
+    func getUser(_ email: String, password: String) -> UserResult {
         let (user, error) = self.service.getUser(email, password: password)
         if user != nil {
             self.storage.save(user!)
@@ -28,7 +28,7 @@ class CachedUserService: IUserService {
         return (user: user, error: error)
     }
     
-    func createUser(email: String, password: String) -> UserResult {
+    func createUser(_ email: String, password: String) -> UserResult {
         let (user, error) = self.service.createUser(email, password: password)
         if user != nil {
             self.storage.save(user!)

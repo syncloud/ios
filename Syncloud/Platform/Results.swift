@@ -2,7 +2,7 @@ import Foundation
 
 typealias JsonResult = (result: NSDictionary?, error: Error?)
 
-func parseJsonResult(data: NSData?) -> JsonResult {
+func parseJsonResult(_ data: Data?) -> JsonResult {
     if data == nil {
         return (result: nil, error: Error("There's no JSON"))
     }
@@ -10,7 +10,7 @@ func parseJsonResult(data: NSData?) -> JsonResult {
     var jsonResult: NSDictionary? = nil
     
     do {
-        jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary
+        jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
     } catch {
         let message = "Parsing JSON caused a error"
         NSLog(message)
@@ -37,9 +37,9 @@ class ParameterMessages {
     var messages = [String]()
     
     init(json: NSDictionary) {
-        self.parameter = json.valueForKey("parameter") as! String
+        self.parameter = json.value(forKey: "parameter") as! String
         
-        let itemsJson = json.objectForKey("messages") as! NSArray?
+        let itemsJson = json.object(forKey: "messages") as! NSArray?
         if let theItemsJson = itemsJson {
             for item in theItemsJson {
                 let itemString = item as! String
@@ -55,10 +55,10 @@ class BaseResult {
     var parameters_messages: [ParameterMessages]?
     
     init(json: NSDictionary) {
-        self.success = json.valueForKey("success") as! Bool
-        self.message = json.valueForKey("message") as? String
+        self.success = json.value(forKey: "success") as! Bool
+        self.message = json.value(forKey: "message") as? String
         
-        let itemsJson = json.objectForKey("parameters_messages") as! NSArray?
+        let itemsJson = json.object(forKey: "parameters_messages") as! NSArray?
         if let theItemsJson = itemsJson {
             self.parameters_messages = [ParameterMessages]()
             for item in theItemsJson {
