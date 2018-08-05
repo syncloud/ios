@@ -12,37 +12,37 @@ struct KeychainConstants {
     static var returnData: String { return toString(kSecReturnData) }
     static var matchLimit: String { return toString(kSecMatchLimit) }
     
-    private static func toString(value: CFStringRef) -> String {
+    fileprivate static func toString(_ value: CFString) -> String {
         return (value as String) ?? ""
     }
 }
 
-public class Keychain {
+open class Keychain {
     
-    public class func set(key: String, value: String) -> Bool {
-        if let data = value.dataUsingEncoding(NSUTF8StringEncoding) {
+    open class func set(_ key: String, value: String) -> Bool {
+        if let data = value.data(using: String.Encoding.utf8) {
             return set(key, value: data)
         }
         
         return false
     }
     
-    public class func set(key: String, value: NSData) -> Bool {
+    open class func set(_ key: String, value: Data) -> Bool {
         let query = [
             KeychainConstants.klass       : KeychainConstants.classGenericPassword,
             KeychainConstants.attrAccount : key,
-            KeychainConstants.valueData   : value ]
+            KeychainConstants.valueData   : value ] as [String : Any]
         
-        SecItemDelete(query as CFDictionaryRef)
+        SecItemDelete(query as CFDictionary)
         
-        let status: OSStatus = SecItemAdd(query as CFDictionaryRef, nil)
+        let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
         
         return status == noErr
     }
     
-    public class func get(key: String) -> String? {
+    open class func get(_ key: String) -> String? {
         if let data = getData(key),
-            let currentString = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
+            let currentString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
                 
                 return currentString
         }
@@ -50,38 +50,38 @@ public class Keychain {
         return nil
     }
     
-    public class func getData(key: String) -> NSData? {
+    open class func getData(_ key: String) -> Data? {
         let query = [
             KeychainConstants.klass       : kSecClassGenericPassword,
             KeychainConstants.attrAccount : key,
             KeychainConstants.returnData  : kCFBooleanTrue,
-            KeychainConstants.matchLimit  : kSecMatchLimitOne ]
+            KeychainConstants.matchLimit  : kSecMatchLimitOne ] as [String : Any]
         
         var result: AnyObject?
         
-        let status = withUnsafeMutablePointer(&result) {
-            SecItemCopyMatching(query, UnsafeMutablePointer($0))
+        let status = withUnsafeMutablePointer(to: &result) {
+            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0))
         }
         
-        if status == noErr { return result as? NSData }
+        if status == noErr { return result as? Data }
         
         return nil
     }
     
-    public class func delete(key: String) -> Bool {
+    open class func delete(_ key: String) -> Bool {
         let query = [
             KeychainConstants.klass       : kSecClassGenericPassword,
-            KeychainConstants.attrAccount : key ]
+            KeychainConstants.attrAccount : key ] as [String : Any]
         
-        let status: OSStatus = SecItemDelete(query as CFDictionaryRef)
+        let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         return status == noErr
     }
     
-    public class func clear() -> Bool {
+    open class func clear() -> Bool {
         let query = [ kSecClass as String : kSecClassGenericPassword ]
         
-        let status: OSStatus = SecItemDelete(query as CFDictionaryRef)
+        let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         return status == noErr
     }

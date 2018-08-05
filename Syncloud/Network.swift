@@ -4,24 +4,24 @@ import MessageUI
 
 class UrlCheck : NSObject, NSURLConnectionDelegate {
     
-    let request: NSURLRequest
+    let request: URLRequest
     
-    var response: NSURLResponse? = nil
+    var response: URLResponse? = nil
     var error: NSError? = nil
     
     init(url: String) {
-        let nsRequest: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-        nsRequest.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData
+        let nsRequest: NSMutableURLRequest = NSMutableURLRequest(url: URL(string: url)!)
+        nsRequest.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
         nsRequest.timeoutInterval = 10
-        self.request = nsRequest
+        self.request = nsRequest as URLRequest
     }
     
     var connection: NSURLConnection?
     var finished = false
     
-    func check() throws -> NSURLResponse? {
+    func check() throws -> URLResponse? {
         self.connection = NSURLConnection(request: self.request, delegate: self, startImmediately: false)
-        self.connection!.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        self.connection!.schedule(in: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
         self.connection!.start()
         while !self.finished {}
         self.connection?.cancel()
@@ -31,18 +31,18 @@ class UrlCheck : NSObject, NSURLConnectionDelegate {
         return self.response
     }
     
-    func connection(connection: NSURLConnection, willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
+    func connection(_ connection: NSURLConnection, willSendRequestFor challenge: URLAuthenticationChallenge) {
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            challenge.sender?.useCredential(NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!), forAuthenticationChallenge: challenge)
+            challenge.sender?.use(URLCredential(trust: challenge.protectionSpace.serverTrust!), for: challenge)
         }
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: NSError) {
         self.error = error
         self.finished = true
     }
     
-    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
+    func connection(_ didReceiveResponse: NSURLConnection!, didReceiveResponse response: URLResponse!) {
         self.response = response
         self.finished = true
     }
@@ -52,7 +52,7 @@ class UrlCheck : NSObject, NSURLConnectionDelegate {
     }
 }
 
-func checkUrl(url: String) -> Bool {
+func checkUrl(_ url: String) -> Bool {
     
     do {
         NSLog("Request: \(url)")
@@ -60,7 +60,7 @@ func checkUrl(url: String) -> Bool {
         let request = UrlCheck(url: url)
         let response = try request.check()
 
-        if let httpResponse = response as? NSHTTPURLResponse {
+        if let httpResponse = response as? HTTPURLResponse {
             let message = "Response has status code: \(httpResponse.statusCode)"
             NSLog(message)
             return httpResponse.statusCode == 200
@@ -73,7 +73,7 @@ func checkUrl(url: String) -> Bool {
     }
 }
 
-func findAccessibleUrl(mainDomain: String, _ domain: Domain) -> String? {
+func findAccessibleUrl(_ mainDomain: String, _ domain: Domain) -> String? {
     if let theDnsUrl = domain.getDnsUrl(mainDomain) {
         if checkUrl(theDnsUrl) {
             return theDnsUrl
@@ -101,13 +101,13 @@ func getSSID() -> String? {
     }
     
     var currentSSID: String? = nil
-    if let interfaces:CFArray! = CNCopySupportedInterfaces() {
+    if let interfaces:CFArray? = CNCopySupportedInterfaces() {
         for i in 0..<CFArrayGetCount(interfaces){
-            let interfaceName: UnsafePointer<Void> = CFArrayGetValueAtIndex(interfaces, i)
-            let rec = unsafeBitCast(interfaceName, AnyObject.self)
-            let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)")
+            let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interfaces, i)
+            let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
+            let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString)
             if unsafeInterfaceData != nil {
-                let interfaceData = unsafeInterfaceData! as Dictionary!
+                let interfaceData = unsafeInterfaceData! as NSDictionary
                 currentSSID = interfaceData["SSID"] as! String?
             }
         }

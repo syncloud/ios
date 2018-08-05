@@ -7,8 +7,8 @@ class RedirectService: IUserService {
         self.webService = webService
     }
     
-    func getUser(email: String, password: String) -> UserResult {
-        let request = Request(RequestType.GET, "/user/get", ["email": email, "password": password])
+    func getUser(_ email: String, password: String) -> UserResult {
+        let request = Request(RequestType.get, "/user/get", ["email": email, "password": password])
         let (response, error) = webService.execute(request)
         
         if error != nil {
@@ -20,8 +20,8 @@ class RedirectService: IUserService {
         return (user: user, error: nil)
     }
 
-    func createUser(email: String, password: String) -> UserResult {
-        let request = Request(RequestType.POST, "/user/create", ["email": email, "password": password])
+    func createUser(_ email: String, password: String) -> UserResult {
+        let request = Request(RequestType.post, "/user/create", ["email": email, "password": password])
         let (response, error) = webService.execute(request)
 
         if error != nil {

@@ -1,6 +1,6 @@
 import Foundation
 
-public class Error {
+open class Error {
     let message: String
     
     init(_ message: String) {
@@ -8,7 +8,7 @@ public class Error {
     }
 }
 
-public class ResultError: Error {
+open class ResultError: Error {
     var result: BaseResult
 
     init(_ message: String, result: BaseResult) {

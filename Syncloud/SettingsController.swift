@@ -46,7 +46,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(true, animated: animated)
         
@@ -61,39 +61,39 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func sendLog() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.sendLog()
     }
     
     func clearLog() {
         let alertMessage = "Do you want to erase all logged records?"
-        let alert = UIAlertController(title: "Clear log file", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { action in
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let alert = UIAlertController(title: "Clear log file", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.clearLog()
         }))
-        alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func signOut() {
         (self.navigationController as! MainController).startOver()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return cells.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cells[section]!.count
     }
 
-    func getCell(indexPath: NSIndexPath) -> UITableViewCell {
+    func getCell(_ indexPath: IndexPath) -> UITableViewCell {
         var sectionCells = cells[indexPath.section]!
         return sectionCells[indexPath.row]
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == sectionAccount {
             return "ACCOUNT"
         }
@@ -106,11 +106,11 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
         return nil
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return getCell(indexPath)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = getCell(indexPath)
         if cellSignOut != nil && cell == cellSignOut {
             signOut()
@@ -125,7 +125,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
             let viewDnsSelector = DnsSelectorController()
             self.navigationController!.pushViewController(viewDnsSelector, animated: true)
         }
-        self.tableSettings.deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableSettings.deselectRow(at: indexPath, animated: true)
     }
     
 }

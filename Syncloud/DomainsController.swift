@@ -28,19 +28,19 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         
         let cellNib = UINib(nibName: "DeviceCell", bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "deviceCell")
+        self.tableView.register(cellNib, forCellReuseIdentifier: "deviceCell")
 
-        self.tableView.hidden = false
-        self.viewNoDevices.hidden = true
+        self.tableView.isHidden = false
+        self.viewNoDevices.isHidden = true
         
         self.title = "Devices"
         
-        let btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("btnAddClick:"))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        let btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DomainsController.btnAddClick(_:)))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnAdd, flexibleSpace]
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: Selector("reload:"), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(DomainsController.reload(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Loading devices...")
         self.tableView.addSubview(refreshControl)
         
@@ -50,7 +50,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         (self.navigationController as! MainController).addSettings()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
         self.navigationController!.setToolbarHidden(false, animated: animated)
         super.viewWillAppear(animated)
@@ -58,22 +58,22 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.loadDomains()
     }
 
-    @IBAction func reload(sender: AnyObject) {
+    @IBAction func reload(_ sender: AnyObject) {
         loadDomains()
     }
     
     func loadDomains() {
-        if self.refreshEndpoints!.refreshing == false {
+        if self.refreshEndpoints!.isRefreshing == false {
            self.refreshEndpoints!.beginRefreshing()
         }
         mainDomain = Storage.getMainDomain()
 
         let credentials = Storage.getCredentials()
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
-        dispatch_async(queue) { () -> Void in
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
+        queue.async { () -> Void in
             let result = self.mainController().getUserService().getUser(credentials.email!, password: credentials.password!)
 
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.refreshEndpoints!.endRefreshing()
                 if result.error == nil {
                     self.showDomains(result.user!)
@@ -82,13 +82,13 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
 
-    func showDomains(user: User) {
+    func showDomains(_ user: User) {
         if user.domains.isEmpty {
-            tableView.hidden = true
-            viewNoDevices.hidden = false
+            tableView.isHidden = true
+            viewNoDevices.isHidden = false
         } else {
-            tableView.hidden = false
-            viewNoDevices.hidden = true
+            tableView.isHidden = false
+            viewNoDevices.isHidden = true
         }
 
         domains.removeAll()
@@ -98,45 +98,45 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
 
-    func btnAddClick(sender: UIBarButtonItem) {
+    func btnAddClick(_ sender: UIBarButtonItem) {
         let viewDiscovery = DiscoveryController()
         self.navigationController!.pushViewController(viewDiscovery, animated: true)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return domains.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let domain = self.domains[indexPath.row]
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("deviceCell") as! DeviceCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "deviceCell") as! DeviceCell
         cell.load(mainDomain, domain)
         
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
         
         let domain = self.domains[indexPath.row]
 
-        let queue = dispatch_queue_create("org.syncloud.Syncloud", nil);
+        let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
         
-        let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.Alert)
-        self.presentViewController(progress, animated: true, completion: nil)
+        let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.alert)
+        self.present(progress, animated: true, completion: nil)
 
-        dispatch_async(queue) { () -> Void in
+        queue.async { () -> Void in
             let url = findAccessibleUrl(Storage.getMainDomain(), domain)
 
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                progress.dismissViewControllerAnimated(true, completion: { () -> Void in
+            DispatchQueue.main.async { () -> Void in
+                progress.dismiss(animated: true, completion: { () -> Void in
                     if let url = url {
                         self.mainController().openUrl(url)
                     } else {
-                        let alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        let alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     }
                 })
             }
