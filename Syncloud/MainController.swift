@@ -60,11 +60,6 @@ class MainController: UINavigationController {
     
     func openUrl(_ url: String) {
         let nsUrl = URL(string: url)!
-        //if OpenInChromeController.sharedInstance.isChromeInstalled() {
-        //    OpenInChromeController.sharedInstance.openInChrome(nsUrl, callbackURL: nil, createNewTab: true)
-        //} else {
-        NSLog(url)
         UIApplication.shared.openURL(nsUrl)
-        //}
     }
 }
