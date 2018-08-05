@@ -158,9 +158,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableEndpoints.deselectRow(at: indexPath, animated: true)
         let endpoint = self.endpoints[indexPath.row]
-        let viewActivate = ActivateController(idEndpoint: endpoint)
-        self.navigationController!.pushViewController(viewActivate, animated: true)
-        
+        self.mainController().openUrl(endpoint.endpoint.activationUrl())        
     }
 
 }

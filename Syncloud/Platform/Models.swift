@@ -130,8 +130,12 @@ class Endpoint {
         self.port = port
     }
     
+    func activationUrl() -> String {
+        return "http://" + self.host + ":81"
+    }
+
     func toString() -> String {
-        return self.host+":"+String(self.port)
+        return self.host + ":" + String(self.port)
     }
     
 }
