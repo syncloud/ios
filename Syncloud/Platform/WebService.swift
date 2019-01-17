@@ -43,7 +43,7 @@ class Request {
     }
     
     func toString(_ baseUrl: String) -> String {
-        return "\(self.type.toString()) URL: \(baseUrl)\(self.url) Parameters: \(self.paramsToString())"
+        return "\(self.type.toString()) URL: \(baseUrl)\(self.url)"
     }
 }
 
