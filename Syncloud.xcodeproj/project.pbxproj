@@ -79,6 +79,7 @@
 		FB47D52F1B05A6F300910F2D /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		FB5EFAD31C68102600205C37 /* CredentialsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsController.swift; sourceTree = "<group>"; };
 		FB5EFAD51C6812C200205C37 /* Credentials.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Credentials.xib; sourceTree = "<group>"; };
+		FB9D23C221F425BF0018D24B /* Syncloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Syncloud.entitlements; sourceTree = "<group>"; };
 		FBD450EA1C61301F005444E7 /* DnsSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DnsSelector.xib; sourceTree = "<group>"; };
 		FBD450EC1C613040005444E7 /* DnsSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DnsSelectorController.swift; sourceTree = "<group>"; };
 		FBD8E57C1B8D533500CD978F /* DeviceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceCell.xib; sourceTree = "<group>"; };
@@ -122,6 +123,7 @@
 		FB099FBE1AFA4DAE00AE22F2 /* Syncloud */ = {
 			isa = PBXGroup;
 			children = (
+				FB9D23C221F425BF0018D24B /* Syncloud.entitlements */,
 				FB099FEB1AFA54E700AE22F2 /* Platform */,
 				FB0757ED1B043AA800BE741F /* Discovery.swift */,
 				FB1281831B843DF000DF80C6 /* Network.swift */,
@@ -216,6 +218,11 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 68ZV7WHF2Q;
 						LastSwiftMigration = 0830;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -407,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Syncloud/Syncloud.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_THUMB_SUPPORT = NO;
@@ -427,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Syncloud/Syncloud.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_THUMB_SUPPORT = NO;

@@ -211,3 +211,5 @@ xcuserdata
 ####
 # CocoaPods folder
 Pods
+
+.idea/
