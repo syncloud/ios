@@ -2,7 +2,7 @@ import Foundation
 import SystemConfiguration.CaptiveNetwork
 import MessageUI
 
-class UrlCheck : NSObject, NSURLConnectionDelegate {
+class UrlCheck : NSObject, NSURLConnectionDataDelegate {
     
     let request: URLRequest
     
@@ -32,17 +32,21 @@ class UrlCheck : NSObject, NSURLConnectionDelegate {
     }
     
     func connection(_ connection: NSURLConnection, willSendRequestFor challenge: URLAuthenticationChallenge) {
+        NSLog("Auth challenge")
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            NSLog("Auth challenge: \(challenge.protectionSpace.authenticationMethod)")
             challenge.sender?.use(URLCredential(trust: challenge.protectionSpace.serverTrust!), for: challenge)
         }
     }
     
     func connection(_ connection: NSURLConnection, didFailWithError error: NSError) {
+        NSLog("Connection error: \(error)")
         self.error = error
         self.finished = true
     }
     
-    func connection(_ didReceiveResponse: NSURLConnection!, didReceiveResponse response: URLResponse!) {
+    func connection(_ didReceiveResponse: NSURLConnection, didReceive response: URLResponse) {
+        NSLog("Connection response: \(response)")
         self.response = response
         self.finished = true
     }
