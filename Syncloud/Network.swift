@@ -101,7 +101,7 @@ func getSSID() -> String? {
     }
     
     var currentSSID: String? = nil
-    if let interfaces:CFArray? = CNCopySupportedInterfaces() {
+    if let interfaces:CFArray = CNCopySupportedInterfaces() {
         for i in 0..<CFArrayGetCount(interfaces){
             let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interfaces, i)
             let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
