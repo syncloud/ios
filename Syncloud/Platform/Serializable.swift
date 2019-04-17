@@ -60,7 +60,7 @@ struct Serialize {
         let data = try! JSONSerialization.data(withJSONObject: dict, options:JSONSerialization.WritingOptions())
 
         // return result
-        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String
+        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
     }
     
     static func toJSON(_ dictionary: NSDictionary) -> String? {
@@ -68,7 +68,7 @@ struct Serialize {
         let data = try! JSONSerialization.data(withJSONObject: dictionary, options:JSONSerialization.WritingOptions())
         
         // return result
-        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String
+        return NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String?
     }
     
 }

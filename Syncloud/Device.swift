@@ -12,7 +12,7 @@ class DeviceInternal {
         self.host = host
     }
 
-    func id() -> (result: Identification?, error: Error?) {
+    func id() -> (result: Identification?, error: AppError?) {
         let webService = getRestWebService(self.host)
 
         let request = Request(RequestType.get, "/id")

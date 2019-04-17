@@ -7,7 +7,7 @@ class UrlCheck : NSObject, NSURLConnectionDataDelegate {
     let request: URLRequest
     
     var response: URLResponse? = nil
-    var error: NSError? = nil
+    var error: Error? = nil
     
     init(url: String) {
         let nsRequest: NSMutableURLRequest = NSMutableURLRequest(url: URL(string: url)!)
@@ -39,7 +39,7 @@ class UrlCheck : NSObject, NSURLConnectionDataDelegate {
         }
     }
     
-    func connection(_ connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         NSLog("Connection error: \(error)")
         self.error = error
         self.finished = true

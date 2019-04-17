@@ -13,7 +13,7 @@ struct KeychainConstants {
     static var matchLimit: String { return toString(kSecMatchLimit) }
     
     fileprivate static func toString(_ value: CFString) -> String {
-        return (value as String) ?? ""
+        return value as String
     }
 }
 
@@ -42,7 +42,7 @@ open class Keychain {
     
     open class func get(_ key: String) -> String? {
         if let data = getData(key),
-            let currentString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
+            let currentString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? {
                 
                 return currentString
         }

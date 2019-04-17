@@ -1,10 +1,10 @@
 import Foundation
 
-typealias JsonResult = (result: NSDictionary?, error: Error?)
+typealias JsonResult = (result: NSDictionary?, error: AppError?)
 
 func parseJsonResult(_ data: Data?) -> JsonResult {
     if data == nil {
-        return (result: nil, error: Error("There's no JSON"))
+        return (result: nil, error: AppError("There's no JSON"))
     }
     
     var jsonResult: NSDictionary? = nil
@@ -14,7 +14,7 @@ func parseJsonResult(_ data: Data?) -> JsonResult {
     } catch {
         let message = "Parsing JSON caused a error"
         NSLog(message)
-        return (result: nil, error: Error(message))
+        return (result: nil, error: AppError(message))
     }
     
     if let theJsonResult = jsonResult {
@@ -28,7 +28,7 @@ func parseJsonResult(_ data: Data?) -> JsonResult {
         }
     }
     
-    return (result: nil, error: Error("Unable to parse JSON"))
+    return (result: nil, error: AppError("Unable to parse JSON"))
 }
 
 

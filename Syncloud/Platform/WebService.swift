@@ -73,7 +73,7 @@ class WebService {
         self.apiUrl = apiUrl
     }
 
-    func execute(_ request: Request) -> (result: NSDictionary?, error: Error?) {
+    func execute(_ request: Request) -> (result: NSDictionary?, error: AppError?) {
         let nsRequest = createRequest(request, self.apiUrl)
         
         NSLog("Request: \(request.toString(self.apiUrl))")
@@ -85,7 +85,7 @@ class WebService {
         } catch let error as NSError {
             let message = "Request failed with error: \(error.debugDescription)"
             NSLog(message)
-            return (result: nil, error: Error(message))
+            return (result: nil, error: AppError(message))
         }
 
         if let responseData = responseData {
