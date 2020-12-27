@@ -26,9 +26,9 @@ class MainController: UINavigationController {
     }
 
     func addSettings() {
-        let button: UIButton = UIButton(type: UIButtonType.custom)
-        button.setImage(UIImage(named: "settings"), for: UIControlState())
-        button.addTarget(self, action: #selector(MainController.btnSettingsClick(_:)), for: UIControlEvents.touchUpInside)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(UIImage(named: "settings"), for: UIControl.State())
+        button.addTarget(self, action: #selector(MainController.btnSettingsClick(_:)), for: UIControl.Event.touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         
         let btnSettings = UIBarButtonItem(customView: button)
@@ -38,7 +38,7 @@ class MainController: UINavigationController {
         
     }
 
-    func btnSettingsClick(_ sender: UIBarButtonItem) {
+    @objc func btnSettingsClick(_ sender: UIBarButtonItem) {
         let viewSettings = SettingsController()
         self.pushViewController(viewSettings, animated: true)
     }

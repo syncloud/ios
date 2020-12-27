@@ -36,7 +36,7 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
         self.mainDomain = Storage.getMainDomain()
 
-        self.pickerDns.selectRow(domainsValues.index(of: self.mainDomain)!, inComponent: self.pickerDomainComponent, animated: false)
+        self.pickerDns.selectRow(domainsValues.firstIndex(of: self.mainDomain)!, inComponent: self.pickerDomainComponent, animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,13 +45,13 @@ class DnsSelectorController: UIViewController, UIPickerViewDelegate, UIPickerVie
         super.viewWillAppear(animated)
     }
 
-    func btnSaveClick(_ sender: UIBarButtonItem) {
+    @objc func btnSaveClick(_ sender: UIBarButtonItem) {
         let newMainDomain = self.domainsValues[self.pickerDns.selectedRow(inComponent: self.pickerDomainComponent)]
         Storage.setMainDomain(newMainDomain)
         self.navigationController!.popViewController(animated: true)
     }
 
-    func btnCancelClick(_ sender: UIBarButtonItem) {
+    @objc func btnCancelClick(_ sender: UIBarButtonItem) {
         self.navigationController!.popViewController(animated: true)
     }
 

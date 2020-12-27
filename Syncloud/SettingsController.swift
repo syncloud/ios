@@ -67,7 +67,7 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     
     func clearLog() {
         let alertMessage = "Do you want to erase all logged records?"
-        let alert = UIAlertController(title: "Clear log file", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Clear log file", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.clearLog()
