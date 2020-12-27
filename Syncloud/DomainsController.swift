@@ -35,8 +35,8 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.title = "Devices"
         
-        let btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DomainsController.btnAddClick(_:)))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        let btnAdd = UIBarButtonItem(title: "Discover", style: UIBarButtonItem.Style.plain, target: self, action: #selector(DomainsController.btnAddClick(_:)))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnAdd, flexibleSpace]
         
         let refreshControl = UIRefreshControl()
@@ -98,7 +98,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
 
-    func btnAddClick(_ sender: UIBarButtonItem) {
+    @objc func btnAddClick(_ sender: UIBarButtonItem) {
         let viewDiscovery = DiscoveryController()
         self.navigationController!.pushViewController(viewDiscovery, animated: true)
     }
@@ -123,7 +123,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
 
         let queue = DispatchQueue(label: "org.syncloud.Syncloud", attributes: []);
         
-        let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertControllerStyle.alert)
+        let progress = UIAlertController(title: "Opening device", message: "Finding address of the device...", preferredStyle: UIAlertController.Style.alert)
         self.present(progress, animated: true, completion: nil)
 
         queue.async { () -> Void in
@@ -134,7 +134,7 @@ class DomainsController: UIViewController, UITableViewDelegate, UITableViewDataS
                     if let url = url {
                         self.mainController().openUrl(url)
                     } else {
-                        let alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: "Can't open device", message: "If this device is in internal mode check that you are connected to the same network. It also possible that this device is offline.", preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }

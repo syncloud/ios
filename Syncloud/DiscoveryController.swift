@@ -33,8 +33,8 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.title = "Discovery"
         
-        let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DiscoveryController.btnDiscoveryClick(_:)))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        let btnRefresh = UIBarButtonItem(title: "Refresh", style: UIBarButtonItem.Style.plain, target: self, action: #selector(DiscoveryController.btnDiscoveryClick(_:)))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         self.toolbarItems = [flexibleSpace, btnRefresh, flexibleSpace]
         
         let refreshControl = UIRefreshControl()
@@ -69,7 +69,7 @@ class DiscoveryController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if ssid == nil {
             let alertMessage = "You are not connected to Wi-Fi network. Discovery is possible only in the same Wi-Fi network where you have Syncloud device connected."
-            let alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Wi-Fi Connection", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { action in
                 self.checkWiFi()
             }))

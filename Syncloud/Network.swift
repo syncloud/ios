@@ -21,7 +21,7 @@ class UrlCheck : NSObject, NSURLConnectionDataDelegate {
     
     func check() throws -> URLResponse? {
         self.connection = NSURLConnection(request: self.request, delegate: self, startImmediately: false)
-        self.connection!.schedule(in: RunLoop.main, forMode: RunLoopMode.defaultRunLoopMode)
+        self.connection!.schedule(in: RunLoop.main, forMode: RunLoop.Mode.default)
         self.connection!.start()
         while !self.finished {}
         self.connection?.cancel()

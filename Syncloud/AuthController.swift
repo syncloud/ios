@@ -28,7 +28,7 @@ class AuthController: UIViewController {
         btnSignUp.layer.cornerRadius = 5
         btnSignUp.layer.borderColor = blueColor
         btnSignUp.layer.backgroundColor = blueColor
-        btnSignUp.setTitleColor(UIColor.white, for: UIControlState())
+        btnSignUp.setTitleColor(UIColor.white, for: UIControl.State())
         
         self.checkCredentials()
     }

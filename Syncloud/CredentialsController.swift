@@ -49,7 +49,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
         
         let titleText = self.getTitleText()
         self.title = titleText
-        self.buttonSignIn.setTitle(titleText, for: UIControlState())
+        self.buttonSignIn.setTitle(titleText, for: UIControl.State())
         
         cells[sectionCredentials] = [cellEmail, cellPassword]
         
@@ -107,7 +107,7 @@ class CredentialsController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 if result.error != nil {
                     let titleText = self.getTitleText()
-                    let alert = UIAlertController(title: "\(titleText) Failed", message: "Incorrect email or password", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "\(titleText) Failed", message: "Incorrect email or password", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
